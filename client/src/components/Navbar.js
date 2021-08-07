@@ -3,16 +3,9 @@ import { Link } from 'react-router-dom'
 import { Popover, Transition } from '@headlessui/react'
 import {
 	BookmarkAltIcon,
-	CalendarIcon,
-	ChartBarIcon,
-	CursorClickIcon,
 	MenuIcon,
 	HomeIcon,
 	LinkIcon,
-	RefreshIcon,
-	ShieldCheckIcon,
-	SupportIcon,
-	ViewGridIcon,
 	XIcon,
 } from '@heroicons/react/outline'
 import SearchBar from './SearchBar'

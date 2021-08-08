@@ -16,6 +16,21 @@ class UserController {
       posts
     });
   }
+
+  async followUser(req, res) {
+    const { fromId, toId } = req.params;
+    const follower = await userService.followUser(fromId, toId);
+    res.status(201).json(follower);
+  }
+
+  async getFollowees(req, res) {
+    const { id } = req.params;
+    const followees = await userService.getFollowees(id);
+    res.json({
+      total: followees.length,
+      followees
+    });
+  }
 }
 
 module.exports = new UserController();

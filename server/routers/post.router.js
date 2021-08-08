@@ -4,4 +4,5 @@ const wrap = require('../utils/wrap');
 
 module.exports = express
   .Router()
-  .post('/:authorId', wrap(controller.create));
+  .post('/:authorId', wrap(controller.create))
+  .get('/feed/:userId', wrap(controller.getPostsByFollowee));

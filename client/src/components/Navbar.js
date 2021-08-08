@@ -7,6 +7,8 @@ import {
 	HomeIcon,
 	LinkIcon,
 	XIcon,
+	UserCircleIcon,
+	BellIcon,
 } from '@heroicons/react/outline'
 import SearchBar from './SearchBar'
 
@@ -19,16 +21,20 @@ const Navbar = () => {
 				<>
 					<div className="max-w-full mx-auto px-4 sm:px-6">
 						<div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+							
 							{/* LOGO */}
-							<div className="flex justify-start lg:w-0 lg:flex-1">
+							<div className="flex space-x-4 justify-start lg:w-0 lg:flex-1 items-center">
 								<Link to="#">
 									<span className="sr-only">Workflow</span>
 									<span className="text-xl font-bold text-black-600">ScreenView</span>
 
 								</Link>
-							</div>
-							<SearchBar />
+								<SearchBar />
 
+								
+							</div>
+							
+							{/* small screen burger */}
 							<div className="-mr-2 -my-2 md:hidden">
 								<Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<span className="sr-only">Open menu</span>
@@ -37,7 +43,7 @@ const Navbar = () => {
 							</div>
 
 
-							<div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+							<div className="hidden ml-10 md:flex items-center justify-center md:flex-1 lg:w-0">
 								<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<HomeIcon className="h-6 w-6" aria-hidden="true" />
 								</Link>
@@ -47,14 +53,14 @@ const Navbar = () => {
 								<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<BookmarkAltIcon className="h-6 w-6" aria-hidden="true" />
 								</Link>
-								<Link to="#" className="ml-8 whitespace-nowrap rounded-md inline-flex items-center justify-center px-4 py-2 text-base font-medium text-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 hover:bg-gray-100 hover:text-indigo-900">
-									Sign in
+								<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+									<BellIcon className="h-6 w-6" aria-hidden="true" />
 								</Link>
-								<Link
-									to="#"
-									className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-indigo-500 rounded-md text-indigo-500 shadow-sm text-base font-medium focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 hover:text-indigo-900 hover:bg-gray-100 hover:border-indigo-900"
-								>
-									Sign up
+							</div>
+
+							<div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+								<Link to="#" className="mr-10 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+									<UserCircleIcon className="h-8 w-8" aria-hidden="true" />
 								</Link>
 							</div>
 						</div>
@@ -77,7 +83,12 @@ const Navbar = () => {
 						>
 							<div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
 								<div className="pt-5 pb-6 px-5">
-									<div className="flex items-center justify-end">
+									<div className="flex items-center justify-between">
+										<div>
+											<Link to="#" className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+												<UserCircleIcon className="h-6 w-6" aria-hidden="true" />
+											</Link>
+										</div>
 										<div className="-mr-2 ">
 											<Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 												<span className="sr-only">Close menu</span>
@@ -97,20 +108,9 @@ const Navbar = () => {
 										<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 											<BookmarkAltIcon className="h-6 w-6" aria-hidden="true" />
 										</Link>
-									</div>
-									<div>
-										<Link
-											to="#"
-											className="w-full flex items-center justify-center px-4 py-2 border border-indigo-500 rounded-md shadow-sm text-base font-medium text-indigo-600 hover:text-indigo-900 hover:bg-gray-100"
-										>
-											Sign up
+										<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+											<BellIcon className="h-6 w-6" aria-hidden="true" />
 										</Link>
-										<p className="mt-6 text-center text-base font-medium text-gray-500">
-											Existing customer?{' '}
-											<Link to="#" className="whitespace-nowrap rounded-md inline-flex items-center justify-center px-4 py-2 text-base font-medium text-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 hover:bg-gray-100 hover:text-indigo-900">
-												Sign in
-											</Link>
-										</p>
 									</div>
 								</div>
 							</div>

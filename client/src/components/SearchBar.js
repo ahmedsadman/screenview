@@ -1,7 +1,7 @@
 import { SearchIcon } from '@heroicons/react/outline'
 import React from 'react'
 
-const SearchBar = () => {
+const SearchBar = ({ keyword }) => {
 	return (
 		<>
 			<div class="pt-2 relative mx-auto text-gray-600">

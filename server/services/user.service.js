@@ -4,8 +4,8 @@ const Follower = require('../models/follower.model');
 const postService = require('./post.service');
 
 class UserService {
-  async create(name, email) {
-    const user = new User({ name, email });
+  async create(guid) {
+    const user = new User({ guid });
     await user.save();
     return user;
   }

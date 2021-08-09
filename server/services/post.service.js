@@ -1,5 +1,6 @@
 const Post = require('../models/post.model');
 const Comment = require('../models/comment.model');
+const User = require('../models/user.model');
 const mongoose = require('mongoose');
 
 class PostService {
@@ -30,6 +31,7 @@ class PostService {
                 $expr: { $eq: ['$post', '$$post_id'] }
               }
             },
+            { $sort: { createdAt: -1 } },
             { $limit: 2 }
           ]
         }
@@ -40,6 +42,8 @@ class PostService {
         }
       }
     ]).exec();
+    await User.populate(posts, { path: 'author', select: 'name email' });
+    await User.populate(posts, { path: 'comments.author', select: 'name email createdAt' });
     return posts;
   }
 

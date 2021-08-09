@@ -1,4 +1,5 @@
 const Post = require('../models/post.model');
+const Comment = require('../models/comment.model');
 const mongoose = require('mongoose');
 
 class PostService {
@@ -20,6 +21,11 @@ class PostService {
       { $match: { 'rel.from': mongoose.Types.ObjectId(userId) }}
     ]).exec();
     return posts;
+  }
+
+  async addComment(post, author, content) {
+    const comment = new Comment({ post, author, content });
+    return await comment.save();
   }
 }
 

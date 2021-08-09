@@ -5,6 +5,7 @@ const wrap = require('../utils/wrap');
 module.exports = express
   .Router()
   .post('/', wrap(controller.create))
+  .put('/', wrap(controller.updateByGuid))
   .get('/:id/posts', wrap(controller.getUserPosts))
   .post('/:fromId/follow/:toId', wrap(controller.followUser))
   .get('/:id/followee', wrap(controller.getFollowees))

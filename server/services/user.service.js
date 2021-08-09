@@ -9,6 +9,16 @@ class UserService {
     await user.save();
     return user;
   }
+  
+  async updateByGuid(guid, fields) {
+    let updates = {
+      email: fields.email ?? null,
+      name: fields.name ?? null,
+      avatar_url: fields.avatar_url ?? null
+    }
+    const user = await User.findOneAndUpdate({ guid }, updates, { new: true });
+    return user;
+  }
 
   async getUserPosts(userId) {
     const posts = await Post.find({ author: userId }).lean().exec();

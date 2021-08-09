@@ -18,7 +18,15 @@ class PostService {
           as: 'rel'
         }
       },
-      { $match: { 'rel.from': mongoose.Types.ObjectId(userId) }}
+      { $match: { 'rel.from': mongoose.Types.ObjectId(userId) }},
+      {
+        $lookup: {
+          from: 'comments',
+          localField: '_id',
+          foreignField: 'post',
+          as: 'comments',
+        }
+      }
     ]).exec();
     return posts;
   }

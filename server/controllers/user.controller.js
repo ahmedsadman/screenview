@@ -31,6 +31,15 @@ class UserController {
       followees
     });
   }
+
+  async getUserFeed(req, res) {
+    const { id } = req.params;
+    const posts = await userService.getUserFeed(id);
+    res.json({
+      total: posts.length,
+      posts
+    });
+  }
 }
 
 module.exports = new UserController();

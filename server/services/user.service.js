@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const Post = require('../models/post.model');
 const Follower = require('../models/follower.model');
+const postService = require('./post.service');
 
 class UserService {
   async create(name, email) {
@@ -25,6 +26,11 @@ class UserService {
   async getFollowees(userId) {
     const followees = await Follower.find({ from: userId }, 'to').populate('to').exec();
     return followees;
+  }
+
+  async getUserFeed(userId) {
+    const posts = await postService.getPostsByFollowee(userId);
+    return posts;
   }
 }
 

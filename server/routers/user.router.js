@@ -7,4 +7,5 @@ module.exports = express
   .post('/', wrap(controller.create))
   .get('/:id/posts', wrap(controller.getUserPosts))
   .post('/:fromId/follow/:toId', wrap(controller.followUser))
-  .get('/:id/followee', wrap(controller.getFollowees));
+  .get('/:id/followee', wrap(controller.getFollowees))
+  .get('/:id/feed', wrap(controller.getUserFeed));

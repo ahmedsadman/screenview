@@ -2,9 +2,8 @@ const userService = require('../services/user.service');
 
 class UserController {
   async create(req, res) {
-    const { name, email } = req.body;
-    console.log(name, email);
-    const user = await userService.create(name, email);
+    const { guid } = req.body;
+    const user = await userService.create(guid);
     res.status(201).json(user);
   }
 

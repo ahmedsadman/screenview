@@ -19,7 +19,7 @@ const Navbar = () => {
 		<Popover className="relative bg-white">
 			{({ open }) => (
 				<>
-					<div className="max-w-full mx-auto px-4 sm:px-6">
+					<div className="max-w-full fixed h-20 inset-x-0 top-0 mx-auto px-4 sm:px-6">
 						<div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
 							
 							{/* LOGO */}

@@ -10,6 +10,7 @@ function App() {
       <Route path="/" exact component={LandingPage} />
       <Route path="/register" component={SignForm} />
       <Route path="/feed" component={HomePage} />
+    
     </Router>
   );
 }

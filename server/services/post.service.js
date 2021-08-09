@@ -22,9 +22,21 @@ class PostService {
       {
         $lookup: {
           from: 'comments',
-          localField: '_id',
-          foreignField: 'post',
           as: 'comments',
+          let: { post_id: '$_id' },
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ['$post', '$$post_id'] }
+              }
+            },
+            { $limit: 2 }
+          ]
+        }
+      },
+      {
+        $project: {
+          'rel': 0
         }
       }
     ]).exec();

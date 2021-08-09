@@ -4,4 +4,4 @@ const wrap = require('../utils/wrap');
 
 module.exports = express
   .Router()
-  .post('/:authorId', wrap(controller.create));
+  .post('/', wrap(controller.create));

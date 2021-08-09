@@ -5,11 +5,12 @@ import Recommendation from '../components/Recommendation'
 const HomePage = () => {
 	return (
 		<div>
-			<Navbar/>
-			<div className="flex absolute top-10 right-10 mt-20">
-				<Recommendation/>
+			<div className="py-24">
+      			<Navbar/>
+				<div className="flex absolute top-10 right-9 mt-20">
+					<Recommendation/>
+				</div>
 			</div>
-			
 		</div>
 	)
 }

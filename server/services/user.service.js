@@ -2,6 +2,7 @@ const User = require('../models/user.model');
 const Post = require('../models/post.model');
 const Follower = require('../models/follower.model');
 const postService = require('./post.service');
+const { APIError } = require('../utils/errors')
 
 class UserService {
   async create(guid) {
@@ -41,6 +42,21 @@ class UserService {
   async getUserFeed(userId) {
     const posts = await postService.getPostsByFollowee(userId);
     return posts;
+  }
+
+  async addToWatchList(userId, title, type, mediaId) {
+    // TODO: Make it a transaction
+    const user = await User.findById(userId).exec();
+    const { watchList } = user;
+    const itemAlreadyExists = watchList.find(item => item.mediaId === mediaId);
+
+    if (itemAlreadyExists) {
+      throw new APIError('The item already exists in your watchlist', 400);
+    }
+
+    user.watchList.push({ title, type, mediaId });
+    await user.save();
+    return user.watchList;
   }
 }
 

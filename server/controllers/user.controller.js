@@ -45,6 +45,13 @@ class UserController {
       posts
     });
   }
+
+  async addToWatchList(req, res) {
+    const { id } = req.params;
+    const { title, type, mediaId } = req.body;
+    const list = await userService.addToWatchList(id, title, type, mediaId);
+    res.json(list);
+  }
 }
 
 module.exports = new UserController();

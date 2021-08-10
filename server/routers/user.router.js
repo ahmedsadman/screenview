@@ -9,4 +9,5 @@ module.exports = express
   .get('/:id/posts', wrap(controller.getUserPosts))
   .post('/:fromId/follow/:toId', wrap(controller.followUser))
   .get('/:id/followee', wrap(controller.getFollowees))
-  .get('/:id/feed', wrap(controller.getUserFeed));
+  .get('/:id/feed', wrap(controller.getUserFeed))
+  .post('/:id/watchlist', wrap(controller.addToWatchList));

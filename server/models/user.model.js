@@ -1,6 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const watchListSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  type: {
+    type: String,
+    enum: ['movie', 'tv'],
+    required: true
+  },
+  mediaId: {
+    type: String,
+    required: true
+  }
+});
+
 const userSchema = new Schema({
   email: {
     type: String,
@@ -16,8 +32,12 @@ const userSchema = new Schema({
     type: String,
     required: false
   },
-  avatar_url: {
+  avatarUrl: {
     type: String,
+    required: false
+  },
+  watchList: {
+    type: [watchListSchema],
     required: false
   }
 }, {

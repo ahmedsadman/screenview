@@ -52,6 +52,13 @@ class UserController {
     const list = await userService.addToWatchList(id, title, type, mediaId);
     res.json(list);
   }
+
+  async removeFromWatchList(req, res) {
+    const { id } = req.params;
+    const { mediaId } = req.body;
+    const list = await userService.removeFromWatchList(id, mediaId);
+    res.json(list);
+  }
 }
 
 module.exports = new UserController();

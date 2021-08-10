@@ -58,6 +58,15 @@ class UserService {
     await user.save();
     return user.watchList;
   }
+
+  async removeFromWatchList(userId, mediaId) {
+    const user = await User.findOneAndUpdate(
+      { _id: userId }, 
+      { $pull: { watchList: { mediaId } } },
+      { new: true }
+    ).exec();
+    return user.watchList;
+  }
 }
 
 module.exports = new UserService();

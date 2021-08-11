@@ -16,9 +16,7 @@ const SignIn = () => {
 				</div>
 			
 				<LoginButton/>
-				<p className="mt-2">Need an account? <SignupButton/> </p>
-			
-				
+				<p className="mt-2">Need an account? <SignupButton/> </p>	
 			</div>
 			
 		</>

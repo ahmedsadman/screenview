@@ -73,7 +73,6 @@ const SignForm = () => {
 
 				<p className="mt-8">Need an account? <SignupButton/> </p>
 
-
 			</div>
 		</div>
 

@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+const audience = process.env.REACT_APP_AUDIENCE;
 
 ReactDOM.render(
     <Router>
@@ -15,6 +16,7 @@ ReactDOM.render(
       domain={domain}
       clientId={clientId}
       redirectUri={`${window.location.origin}/feed`}
+      audience={audience}
       >
         <App/>
       </Auth0Provider>

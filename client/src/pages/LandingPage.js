@@ -1,7 +1,8 @@
 import React from 'react'
 import Hero from '../components/Hero'
-import SignForm from '../components/SignForm'
+// import SignForm from '../components/SignForm'
 import hero from '../assets/1154.jpg'
+import SignIn from '../components/SignIn'
 
 const LandingPage = () => {
 	return (
@@ -10,7 +11,7 @@ const LandingPage = () => {
 			<div className="bg-white hidden lg:block max-w-screen md:w-1/2 xl:w-2/3 justify-center">
 				<img src={hero} alt="hero" className="w-full  max-h-screen object-cover" />
 			</div>
-			<SignForm />
+			<SignIn/>
 		</div>
 	)
 }

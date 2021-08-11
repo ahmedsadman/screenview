@@ -5,7 +5,7 @@ const SignupButton = () => {
   const { loginWithRedirect } = useAuth0();
   return (
     <button
-      className="btn btn-primary btn-block"
+      className="p-2 rounded-md hover:bg-gray-100 text-blue-400 hover:text-blue-800"
       onClick={() =>
         loginWithRedirect({
           screen_hint: "signup",

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
+import LogoutButton from './LogoutButton'
 
 const getSelectedClassName = (active) => {
 	let classNames = ''
@@ -56,11 +57,9 @@ const UserAvatar = () => {
 					</Menu.Item>
 					<Menu.Item>
 						{({ active }) => (
-							<Link to="#"
-								className={getSelectedClassName(active)}
-							>
-								Sign out
-							</Link>
+							<div className={getSelectedClassName(active)}>
+								<LogoutButton />
+							</div>
 						)}
 					</Menu.Item>
 				</Menu.Items>

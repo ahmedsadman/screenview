@@ -4,9 +4,6 @@ import Recommendation from '../components/Recommendation'
 import { useAuth0 } from "@auth0/auth0-react"
 
 const HomePage = ({ history }) => {
-
-	const { isAuthenticated } = useAuth0()
-
 	return (
 		<div>
 			<div className="py-24">

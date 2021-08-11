@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import SignupButton from './SignupButton'
 
 
 const SignForm = () => {
@@ -70,7 +71,7 @@ const SignForm = () => {
 					</div>
 				</form>
 
-				<p className="mt-8">Need an account? <Link to="/register" className="text-blue-500 hover:text-blue-700 font-semibold">Create an account</Link></p>
+				<p className="mt-8">Need an account? <SignupButton/> </p>
 
 
 			</div>

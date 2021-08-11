@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
-import LogoutButton from './LogoutButton'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const getSelectedClassName = (active) => {
 	let classNames = ''
@@ -15,6 +15,7 @@ const getSelectedClassName = (active) => {
 }
 
 const UserAvatar = () => {
+	const { logout } = useAuth0()
 	return (
 		<Menu as="div" className="relative">
 			<div>
@@ -57,9 +58,12 @@ const UserAvatar = () => {
 					</Menu.Item>
 					<Menu.Item>
 						{({ active }) => (
-							<div className={getSelectedClassName(active)}>
-								<LogoutButton />
-							</div>
+							<Link onClick={() =>
+								logout({
+									returnTo: window.location.origin,
+								})} className={getSelectedClassName(active)}>
+								Log Out
+							</Link>
 						)}
 					</Menu.Item>
 				</Menu.Items>

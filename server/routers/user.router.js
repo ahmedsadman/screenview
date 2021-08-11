@@ -1,12 +1,13 @@
 const express = require('express');
 const controller = require('../controllers/user.controller');
 const wrap = require('../utils/wrap');
+const checkJwt = require('../middleware/checkJwt');
 
 module.exports = express
   .Router()
   .post('/', wrap(controller.create))
   .put('/', wrap(controller.updateByGuid))
-  .get('/:guid', wrap(controller.getByGuid))
+  .get('/:guid', checkJwt, wrap(controller.getByGuid))
   .get('/:id/posts', wrap(controller.getUserPosts))
   .post('/:fromId/follow/:toId', wrap(controller.followUser))
   .get('/:id/followee', wrap(controller.getFollowees))

@@ -15,9 +15,9 @@ ReactDOM.render(
       domain={domain}
       clientId={clientId}
       redirectUri={`${window.location.origin}/feed`}
-    >
-      <App/>
-    </Auth0Provider>
+      >
+        <App/>
+      </Auth0Provider>
     </Router>,
   document.getElementById('root')
 );

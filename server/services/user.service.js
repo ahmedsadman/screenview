@@ -10,6 +10,14 @@ class UserService {
     await user.save();
     return user;
   }
+
+  async getByGuid(guid) {
+    const user = await User.findOne({ guid }).lean().exec();
+    if (!user) {
+      throw new APIError('User does not exist', 400);
+    }
+    return user;
+  }
   
   async updateByGuid(guid, fields) {
     let updates = {

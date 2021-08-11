@@ -6,6 +6,7 @@ module.exports = express
   .Router()
   .post('/', wrap(controller.create))
   .put('/', wrap(controller.updateByGuid))
+  .get('/:guid', wrap(controller.getByGuid))
   .get('/:id/posts', wrap(controller.getUserPosts))
   .post('/:fromId/follow/:toId', wrap(controller.followUser))
   .get('/:id/followee', wrap(controller.getFollowees))

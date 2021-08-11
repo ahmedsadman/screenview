@@ -7,6 +7,12 @@ class UserController {
     res.status(201).json(user);
   }
 
+  async getByGuid(req, res) {
+    const { guid } = req.params;
+    const user = await userService.getByGuid(guid);
+    res.json(user);
+  }
+
   async updateByGuid(req, res) {
     const { guid } = req.query;
     const user = await userService.updateByGuid(guid, req.body);

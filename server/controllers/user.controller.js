@@ -1,4 +1,5 @@
 const userService = require('../services/user.service');
+const { APIError } = require('../utils/errors');
 
 class UserController {
   async create(req, res) {
@@ -9,6 +10,9 @@ class UserController {
 
   async getByGuid(req, res) {
     const { guid } = req.params;
+    if (req.user.sub !== guid) {
+      throw new APIError('Not allowed', 403);
+    }
     const user = await userService.getByGuid(guid);
     res.json(user);
   }

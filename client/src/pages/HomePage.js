@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Recommendation from '../components/Recommendation'
+import { useAuth0 } from "@auth0/auth0-react"
 
-const HomePage = () => {
+const HomePage = ({ history }) => {
+
+	const { isAuthenticated } = useAuth0()
+
 	return (
 		<div>
 			<div className="py-24">
       			<Navbar/>
-				<div className="flex absolute top-10 right-9 mt-20">
+				<div className="flex fixed top-32 right-9 mt-20">
 					<Recommendation/>
 				</div>
 			</div>

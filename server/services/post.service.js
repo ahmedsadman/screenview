@@ -4,8 +4,16 @@ const User = require('../models/user.model');
 const mongoose = require('mongoose');
 
 class PostService {
-  async create(type, content, author) {
-    const post = new Post({ type, content, author });
+  async create(data) {
+    const { type, content, authorId } = data;
+    let rating = null;
+    let mediaId = null;
+
+    if (type === 'review') {
+      rating = data.rating;
+      mediaId = data.mediaId;
+    }
+    const post = new Post({ type, content, author: authorId, rating, mediaId });
     return await post.save();
   }
 

@@ -14,6 +14,16 @@ const postSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
+  },
+  mediaId: {
+    type: String,
+    required: false
+  },
+  rating: {
+    type: Number,
+    min: 1,
+    max: 10,
+    required: false
   }
 }, {
   timestamps: true

@@ -15,7 +15,7 @@ ReactDOM.render(
       <Auth0Provider
       domain={domain}
       clientId={clientId}
-      redirectUri={`${window.location.origin}/feed`}
+      redirectUri={`${window.location.origin}/postlogin`}
       audience={audience}
       >
         <App/>

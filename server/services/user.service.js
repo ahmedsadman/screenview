@@ -20,7 +20,7 @@ class UserService {
     let updates = {
       email: fields.email ?? null,
       name: fields.name ?? null,
-      avatar_url: fields.avatar_url ?? null
+      avatarUrl: fields.avatar_url ?? null
     }
     const user = await User.findOneAndUpdate({ guid }, updates, { new: true });
     return user;

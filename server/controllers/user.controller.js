@@ -1,10 +1,10 @@
 const userService = require('../services/user.service');
-const { APIError } = require('../utils/errors');
 
 class UserController {
   async create(req, res) {
     const { sub } = req.user;
-    const user = await userService.create(sub);
+    const { email } = req.body;
+    const user = await userService.create(sub, email);
     res.status(201).json(user);
   }
 

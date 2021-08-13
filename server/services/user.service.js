@@ -5,8 +5,8 @@ const postService = require('./post.service');
 const { APIError } = require('../utils/errors')
 
 class UserService {
-  async create(guid) {
-    const user = new User({ guid });
+  async create(guid, email) {
+    const user = new User({ guid, email });
     await user.save();
     return user;
   }

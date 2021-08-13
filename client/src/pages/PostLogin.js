@@ -5,15 +5,21 @@ import API from '../api';
 
 const PostLogin = () => {
   const { getAccessTokenSilently, user } = useAuth0();
-  const [redirect, setRedirect] = useState(false);
+  const [redirectFeed, setRedirectFeed] = useState(false);
+  const [redirectProfile, setRedirectProfile] = useState(false);
 
   const updateUser = async () => {
     const token = await getAccessTokenSilently();
     const api = new API(token);
+    const _user = await api.getUser();
 
-    await api.updateUser(user.name, user.email, user.picture);
-    console.log('user updated');
-    setRedirect(true);
+    if (_user.found) {
+      await api.updateUser(user.name, user.email, user.picture);
+      setRedirectFeed(true);
+    } else {
+      await api.createUser(user.email);
+      setRedirectProfile(true);
+    }
   };
 
   useEffect(() => {
@@ -23,7 +29,8 @@ const PostLogin = () => {
   return (
     <div>
       <div>Please wait</div>
-      {redirect && <Redirect to='/feed' />}
+      {redirectFeed && <Redirect to='/feed' />}
+      {redirectProfile && <Redirect to='/profile' />}
     </div>
   );
 }

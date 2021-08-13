@@ -16,6 +16,11 @@ class API {
   }
 
   /* --------------------- USER ----------------------- */
+  async createUser(email) {
+    const res = await this._axiosAuth.post(`/users/me`, { email });
+    return res.data;
+  }
+
   async getUser() {
     const res = await this._axiosAuth.get(`/users/me`);
     return res.data;

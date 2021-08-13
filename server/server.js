@@ -15,7 +15,8 @@ class Server {
     const options = {
       useNewUrlParser:true,
       useUnifiedTopology: true,
-      useCreateIndex: true
+      useCreateIndex: true,
+      useFindAndModify: false
     }
     mongoose.connect(url, options).catch(err => console.log('Error connecting to db', err));
     return this;

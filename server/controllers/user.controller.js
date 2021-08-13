@@ -3,29 +3,29 @@ const { APIError } = require('../utils/errors');
 
 class UserController {
   async create(req, res) {
-    const { guid } = req.body;
-    const user = await userService.create(guid);
+    const { sub } = req.user;
+    const user = await userService.create(sub);
     res.status(201).json(user);
   }
 
-  async getByGuid(req, res) {
-    const { guid } = req.params;
-    if (req.user.sub !== guid) {
-      throw new APIError('Not allowed', 403);
-    }
-    const user = await userService.getByGuid(guid);
-    res.json(user);
+  async getUser(req, res) {
+    const { sub } = req.user;
+    const user = await userService.getByGuid(sub);
+    res.json({
+      found: !!user,
+      user
+    });
   }
 
-  async updateByGuid(req, res) {
-    const { guid } = req.query;
-    const user = await userService.updateByGuid(guid, req.body);
+  async updateUser(req, res) {
+    const { sub } = req.user;
+    const user = await userService.updateByGuid(sub, req.body);
     res.json(user);
   }
 
   async getUserPosts(req, res) {
-    const { id } = req.params;
-    const posts = await userService.getUserPosts(id);
+    const { sub } = req.user;
+    const posts = await userService.getUserPosts(sub);
     res.json({
       total: posts.length,
       posts
@@ -33,14 +33,15 @@ class UserController {
   }
 
   async followUser(req, res) {
-    const { fromId, toId } = req.params;
-    const follower = await userService.followUser(fromId, toId);
+    const { toId } = req.params;
+    const { sub } = req.user;
+    const follower = await userService.followUser(sub, toId);
     res.status(201).json(follower);
   }
 
   async getFollowees(req, res) {
-    const { id } = req.params;
-    const followees = await userService.getFollowees(id);
+    const { sub } = req.user;
+    const followees = await userService.getFollowees(sub);
     res.json({
       total: followees.length,
       followees
@@ -48,8 +49,8 @@ class UserController {
   }
 
   async getUserFeed(req, res) {
-    const { id } = req.params;
-    const posts = await userService.getUserFeed(id);
+    const { sub } = req.user;
+    const posts = await userService.getUserFeed(sub);
     res.json({
       total: posts.length,
       posts
@@ -57,16 +58,16 @@ class UserController {
   }
 
   async addToWatchList(req, res) {
-    const { id } = req.params;
+    const { sub } = req.user;
     const { title, type, mediaId } = req.body;
-    const list = await userService.addToWatchList(id, title, type, mediaId);
+    const list = await userService.addToWatchList(sub, title, type, mediaId);
     res.json(list);
   }
 
   async removeFromWatchList(req, res) {
-    const { id } = req.params;
+    const { sub } = req.user;
     const { mediaId } = req.body;
-    const list = await userService.removeFromWatchList(id, mediaId);
+    const list = await userService.removeFromWatchList(sub, mediaId);
     res.json(list);
   }
 }

@@ -16,50 +16,49 @@ class API {
   }
 
   /* --------------------- USER ----------------------- */
-  async getUserByGuid(guid) {
-    const res = await this._axiosAuth.get(`/users/${guid}`);
+  async getUser() {
+    const res = await this._axiosAuth.get(`/users/me`);
     return res.data;
   }
 
   // guid and userId (or id in short) is different. id/userId refers to the mongoose id
   // while guid refers to the unique auth0 id
-  async updateUserByGuid(guid, name, email, avatar_url = null) {
+  async updateUser(name, email, avatar_url = null) {
     const data = {
       name,
       email,
       avatar_url
     }
-    const res = await this._axiosAuth.put(`/users?guid=${guid}`, data);
+    const res = await this._axiosAuth.put(`/users/me`, data);
     return res.data;
   }
 
   // Followee -> person that you're following/want to follow
-  async followUser(userId, followeeId) {
-    const res = await this._axiosAuth.post(`/users/${userId}/follow/${followeeId}`);
+  async followUser(followeeId) {
+    const res = await this._axiosAuth.post(`/users/me/follow/${followeeId}`);
     return res.data;
   }
 
-  async getFollowees(userId) {
-    const res = await this._axiosAuth.get(`/users/${userId}/followee`);
+  async getFollowees() {
+    const res = await this._axiosAuth.get(`/users/me/followee`);
     return res.data;
   }
 
-  async getUserFeed(userId) {
-    const res = await this._axiosAuth.get(`/users/${userId}/feed`);
+  async getUserFeed() {
+    const res = await this._axiosAuth.get(`/users/me/feed`);
     return res.data;
   }
 
-  async getUserPosts(userId) {
-    const res = await this._axiosAuth.get(`/users/${userId}/posts`);
+  async getUserPosts() {
+    const res = await this._axiosAuth.get(`/users/me/posts`);
     return res.data;
   }
 
   /* --------------------- POSTS ----------------------- */
-  async createPost(type, content, authorId, mediaId, rating = null) {
+  async createPost(type, content, mediaId, rating = null) {
     const data = {
       type,
       content,
-      author: authorId,
       mediaId,
       rating
     };
@@ -67,13 +66,12 @@ class API {
     return res.data;
   }
 
-  async addPostComment(postId, authorId, content) {
+  async addPostComment(postId, content) {
     const data = {
       postId,
-      authorId,
       content
     };
-    const res = await this._axiosAuth.post(`/:${postId}/comments`, data);
+    const res = await this._axiosAuth.post(`/posts/${postId}/comments`, data);
     return res.data;
   }
 }

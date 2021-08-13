@@ -20,13 +20,11 @@ const watchListSchema = new Schema({
 const userSchema = new Schema({
   email: {
     type: String,
-    required: false,
-    unique: true
+    required: false
   },
   guid: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   name: {
     type: String,
@@ -43,5 +41,7 @@ const userSchema = new Schema({
 }, {
   timestamps: true
 });
+
+userSchema.index({ email: 1, guid: 1 }, { unique: true });
 
 module.exports = mongoose.model('User', userSchema);

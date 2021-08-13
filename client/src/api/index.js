@@ -54,6 +54,21 @@ class API {
     return res.data;
   }
 
+  async addToWatchList(title, type, mediaId) {
+    const data = {
+      title,
+      type,
+      mediaId
+    }
+    const res = await this._axiosAuth.post(`/users/me/watchlist`, data);
+    return res.data;
+  }
+
+  async removeFromWatchList(mediaId) {
+    const res = await this._axiosAuth.delete(`/users/me/watchlist?mediaId=${mediaId}`);
+    return res.data;
+  }
+
   /* --------------------- POSTS ----------------------- */
   async createPost(type, content, mediaId, rating = null) {
     const data = {

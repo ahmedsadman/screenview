@@ -66,7 +66,7 @@ class UserController {
 
   async removeFromWatchList(req, res) {
     const { sub } = req.user;
-    const { mediaId } = req.body;
+    const { mediaId } = req.query;
     const list = await userService.removeFromWatchList(sub, mediaId);
     res.json(list);
   }

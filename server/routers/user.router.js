@@ -5,12 +5,12 @@ const checkJwt = require('../middleware/checkJwt');
 
 module.exports = express
   .Router()
-  .post('/', wrap(controller.create))
-  .put('/', wrap(controller.updateByGuid))
-  .get('/:guid', checkJwt, wrap(controller.getByGuid))
-  .get('/:id/posts', wrap(controller.getUserPosts))
-  .post('/:fromId/follow/:toId', wrap(controller.followUser))
-  .get('/:id/followee', wrap(controller.getFollowees))
-  .get('/:id/feed', wrap(controller.getUserFeed))
-  .post('/:id/watchlist', wrap(controller.addToWatchList))
-  .delete('/:id/watchlist', wrap(controller.removeFromWatchList));
+  .post('/me', checkJwt, wrap(controller.create))
+  .put('/me', checkJwt, wrap(controller.updateUser))
+  .get('/me', checkJwt, wrap(controller.getUser))
+  .get('/me/posts', checkJwt, wrap(controller.getUserPosts))
+  .post('/me/follow/:toId', checkJwt, wrap(controller.followUser))
+  .get('/me/followee', checkJwt, wrap(controller.getFollowees))
+  .get('/me/feed', checkJwt, wrap(controller.getUserFeed))
+  .post('/me/watchlist', checkJwt, wrap(controller.addToWatchList))
+  .delete('/me/watchlist', checkJwt, wrap(controller.removeFromWatchList));

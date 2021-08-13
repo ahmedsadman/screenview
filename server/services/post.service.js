@@ -4,16 +4,15 @@ const User = require('../models/user.model');
 const mongoose = require('mongoose');
 
 class PostService {
-  async create(data) {
-    const { type, content, authorId } = data;
+  async create(authorGuid, data) {
+    const { type, content, mediaId } = data;
     let rating = null;
-    let mediaId = null;
 
     if (type === 'review') {
       rating = data.rating;
-      mediaId = data.mediaId;
     }
-    const post = new Post({ type, content, author: authorId, rating, mediaId });
+    const user = await User.findOne({ guid: authorGuid }).lean().exec();
+    const post = new Post({ type, content, author: user._id, rating, mediaId });
     return await post.save();
   }
 
@@ -55,8 +54,9 @@ class PostService {
     return posts;
   }
 
-  async addComment(post, author, content) {
-    const comment = new Comment({ post, author, content });
+  async addComment(post, authorGuid, content) {
+    const user = await User.findOne({ guid: authorGuid }).lean().exec();
+    const comment = new Comment({ post, author: user._id, content });
     return await comment.save();
   }
 }

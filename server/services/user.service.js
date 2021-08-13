@@ -13,9 +13,6 @@ class UserService {
 
   async getByGuid(guid) {
     const user = await User.findOne({ guid }).lean().exec();
-    if (!user) {
-      throw new APIError('User does not exist', 400);
-    }
     return user;
   }
   
@@ -29,32 +26,42 @@ class UserService {
     return user;
   }
 
-  async getUserPosts(userId) {
-    const posts = await Post.find({ author: userId }).lean().exec();
+  async getUserPosts(guid) {
+    const user = await User.findOne({ guid }).lean().exec();
+    const posts = await Post.find({ author: user._id }).lean().exec();
     return posts;
   }
 
-  async followUser(fromUserId, toUserId) {
+  async followUser(guid, toUserId) {
     // fromUserId -> The user (follower)
     // toUserId -> The person the user wants to follow (followee)
-    const follower = new Follower({ from: fromUserId, to: toUserId });
+    const user = await User.findOne({ guid }).lean().exec();
+    const isFollowing = await Follower.findOne({ from: user._id, to: toUserId}).lean().exec();
+
+    if (isFollowing) {
+      throw new APIError('You are already following the user', 400);
+    }
+
+    const follower = new Follower({ from: user._id, to: toUserId });
     await follower.save();
     return follower;
   }
 
-  async getFollowees(userId) {
-    const followees = await Follower.find({ from: userId }, 'to').populate('to').exec();
+  async getFollowees(guid) {
+    const user = await User.findOne({ guid }).lean().exec();
+    const followees = await Follower.find({ from: user._id }, 'to').populate('to').exec();
     return followees;
   }
 
-  async getUserFeed(userId) {
-    const posts = await postService.getPostsByFollowee(userId);
+  async getUserFeed(guid) {
+    const user = await User.findOne({ guid }).lean().exec();
+    const posts = await postService.getPostsByFollowee(user._id);
     return posts;
   }
 
-  async addToWatchList(userId, title, type, mediaId) {
+  async addToWatchList(guid, title, type, mediaId) {
     // TODO: Make it a transaction
-    const user = await User.findById(userId).exec();
+    const user = await User.findOne({ guid }).exec();
     const { watchList } = user;
     const itemAlreadyExists = watchList.find(item => item.mediaId === mediaId);
 
@@ -67,9 +74,9 @@ class UserService {
     return user.watchList;
   }
 
-  async removeFromWatchList(userId, mediaId) {
+  async removeFromWatchList(guid, mediaId) {
     const user = await User.findOneAndUpdate(
-      { _id: userId }, 
+      { guid }, 
       { $pull: { watchList: { mediaId } } },
       { new: true }
     ).exec();

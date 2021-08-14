@@ -58,7 +58,7 @@ const UserAvatar = () => {
 					</Menu.Item>
 					<Menu.Item>
 						{({ active }) => (
-							<Link onClick={() =>
+							<Link to="#" onClick={() =>
 								logout({
 									returnTo: window.location.origin,
 								})} className={getSelectedClassName(active)}>

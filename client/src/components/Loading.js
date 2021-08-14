@@ -2,7 +2,7 @@ import React from 'react'
 
 const Loading = () => {
 	return (
-		<button type="button" class="bg-rose-600 ..." disabled>
+		<button type="button" disabled>
   			Processing...
 		</button>
 	)

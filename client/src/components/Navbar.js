@@ -19,10 +19,10 @@ const Navbar = () => {
 	const { logout } = useAuth0()
 
 	return (
-		<Popover className="relative bg-white">
+		<Popover className="">
 			{({ open }) => (
 				<>
-					<div className="max-w-full fixed h-20 inset-x-0 top-0 mx-auto px-4 sm:px-6">
+					<div className="max-w-full bg-white fixed h-24 inset-x-0 top-0 mx-auto px-4 sm:px-6">
 						<div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
 							
 							{/* LOGO */}
@@ -46,7 +46,7 @@ const Navbar = () => {
 							</div>
 
 
-							<div className="hidden ml-10 md:flex items-center justify-center md:flex-1 lg:w-0">
+							<div className="hidden md:max-w-1/4 ml-10 md:flex items-center justify-center md:flex-1 lg:w-0">
 								<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<HomeIcon className="h-6 w-6" aria-hidden="true" />
 								</Link>
@@ -63,7 +63,7 @@ const Navbar = () => {
 							
 							{/* UserAvatar */}
 							<div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-								<div className="mr-10">
+								<div className="lg:mr-10">
 									<UserAvatar/>
 								</div>
 								
@@ -117,7 +117,7 @@ const Navbar = () => {
 										<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 											<BellIcon className="h-6 w-6" aria-hidden="true" />
 										</Link>
-										<Link 
+										<Link to="#"
 											className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" onClick={() =>
 											logout({
 												returnTo: window.location.origin,

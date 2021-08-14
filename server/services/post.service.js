@@ -2,6 +2,7 @@ const Post = require('../models/post.model');
 const Comment = require('../models/comment.model');
 const User = require('../models/user.model');
 const mongoose = require('mongoose');
+const notificationService = require('./notification.service');
 
 class PostService {
   async create(authorGuid, data) {
@@ -54,10 +55,21 @@ class PostService {
     return posts;
   }
 
-  async addComment(post, authorGuid, content) {
+  async addComment(postId, authorGuid, content) {
     const user = await User.findOne({ guid: authorGuid }).lean().exec();
-    const comment = new Comment({ post, author: user._id, content });
-    return await comment.save();
+    const post = await Post.findById(postId).lean().exec();
+    const comment = new Comment({ post: postId, author: user._id, content });
+    await comment.save();
+
+    notificationService.create('postComment', {
+      senderId: user._id,
+      senderName: user.name,
+      receiverId: post.author,
+      eventName: 'postComment',
+      post: postId
+    });
+
+    return comment;
   }
 }
 

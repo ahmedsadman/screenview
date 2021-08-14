@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Tab } from '@headlessui/react'
 import MovieShow from './MovieShow'
+import { Link } from 'react-router-dom'
 
 const getSelectedClassName = (selected) => {
 	const staticClass = 'w-full text-sm leading-5 font-medium rounded-lg bg-white rounded-md p-4 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'
@@ -124,7 +125,9 @@ const Recommendation = () => {
 						{Object.values(categories).map((posts, idx) => (
 							<Tab.Panel key={idx}>
 								{posts.map((post) => (
+									<Link to='#' className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<MovieShow show={post} key={post.id} />
+									</Link>
 								))}
 							</Tab.Panel>
 						))}						

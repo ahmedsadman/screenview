@@ -2,6 +2,7 @@ const User = require('../models/user.model');
 const Post = require('../models/post.model');
 const Follower = require('../models/follower.model');
 const postService = require('./post.service');
+const notificationService = require('./notification.service');
 const { APIError } = require('../utils/errors')
 
 class UserService {
@@ -54,6 +55,13 @@ class UserService {
 
     const follower = new Follower({ from: user._id, to: toUserId });
     await follower.save();
+
+    notificationService.create('userFollow', {
+      senderId: user._id,
+      senderName: user.name,
+      receiverId: toUserId,
+      eventName: 'userFollow',
+    });
     return follower;
   }
 

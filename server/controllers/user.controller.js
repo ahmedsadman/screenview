@@ -32,6 +32,15 @@ class UserController {
     });
   }
 
+  async searchUser(req, res) {
+    const { q } = req.query;
+    const users = await userService.searchUserByName(q);
+    res.json({
+      total: users.length,
+      users
+    });
+  }
+
   async followUser(req, res) {
     const { toId } = req.params;
     const { sub } = req.user;

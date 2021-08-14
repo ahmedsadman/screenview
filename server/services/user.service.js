@@ -32,6 +32,16 @@ class UserService {
     return posts;
   }
 
+  async searchUserByName(query) {
+    const users = await User.find({
+      name: {
+        $regex: new RegExp(`^${query}`),
+        $options: 'i'
+      }
+    }).limit(10).lean().exec();
+    return users;
+  }
+
   async followUser(guid, toUserId) {
     // fromUserId -> The user (follower)
     // toUserId -> The person the user wants to follow (followee)

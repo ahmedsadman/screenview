@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 
 const MovieShow = ({ show }) => {
 	return (
-		<div className="flex mt-1 items-center justify-between">
+		<div className="flex mt-1 justify-between">
 			
-			<Link to='#' className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+			
 					<div className="w-full lg:w-1/3 lg:rounded-r max-w-screen max-h-screen object-cover">
 						<img src={show.image} alt={show.title} />
 					</div>
@@ -21,7 +21,7 @@ const MovieShow = ({ show }) => {
 						</div>
 					</div>
                 
-            </Link>
+            
 		
             
         </div>

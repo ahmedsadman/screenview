@@ -5,15 +5,25 @@ import Box from '@material-ui/core/Box';
 
 const labels = {
   0.5: 'Horrible',
-  1: 'Disappointing',
-  1.5: 'Poor',
-  2: 'Bad',
-  2.5: 'Meh',
-  3: 'Ok',
-  3.5: 'Good',
-  4: 'Enjoyed',
-  4.5: 'Excellent',
-  5: 'MasterPiece',
+  1: 'Horrible',
+  1.5: 'Disappointing',
+  2: 'Disappointing',
+  2.5: 'Poor',
+  3: 'Poor',
+  3.5: 'Bad',
+  4: 'Bad',
+  4.5: 'Meh',
+  5: 'Meh',
+  5.5: 'Ok',
+  6: 'Ok',
+  6.5: 'Good',
+  7: 'Good',
+  7.5: 'Pretty Good',
+  8: 'Pretty Good',
+  8.5: 'Excellent',
+  9: 'Excellent',
+  9.5: 'Masterpiece',
+  10: 'Marvelous MasterPiece',
 };
 
 const useStyles = makeStyles({
@@ -35,6 +45,7 @@ export default function HoverRating() {
         name="hover-feedback"
         value={value}
         precision={0.5}
+        max={10}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}

@@ -22,7 +22,7 @@ const Navbar = () => {
 		<Popover className="">
 			{({ open }) => (
 				<>
-					<div className="max-w-full bg-white fixed h-24 inset-x-0 top-0 mx-auto px-4 sm:px-6">
+					<div className="max-w-full bg-white fixed h-24 inset-x-0 top-0 mx-auto px-4 sm:px-6" style={{zIndex:1000}}>
 						<div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
 							
 							{/* LOGO */}

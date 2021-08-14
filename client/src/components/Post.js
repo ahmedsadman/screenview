@@ -28,7 +28,7 @@ const Post = () => {
 			</div>
 			<div className="flex justify-between items-center mb-4">
 				<div className="flex justify-start">
-					<SearchBar/>
+					<SearchBar style={{zIndex: 0}}/>
 				</div>
 						
 				<div className="w-1/3">

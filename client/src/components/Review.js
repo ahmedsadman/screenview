@@ -1,8 +1,8 @@
+import { HeartIcon, ChatIcon, ShareIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import HoverRating from './HoverRating'
 import MovieShow from './MovieShow'
-import SearchBar from './SearchBar'
+
 
 const Review = () => {
 
@@ -72,10 +72,10 @@ const Review = () => {
 							<Link to='#' className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 								<MovieShow show={post} key={post.id} />
 							</Link>
-							<div className="bg-white p-1 border shadow flex flex-row flex-wrap">
-								<div className="w-1/3 hover:bg-gray-200 text-center text-xl text-gray-700 font-semibold">Like</div>
-								<div className="w-1/3 hover:bg-gray-200 border-l-4 border-r- text-center text-xl text-gray-700 font-semibold">Share</div>
-								<div className="w-1/3 hover:bg-gray-200 border-l-4 text-center text-xl text-gray-700 font-semibold">Comment</div>
+							<div className="bg-white shadow p-2 border-b flex flex-row flex-wrap">
+								<button className="w-1/3 p-1 hover:bg-gray-100 hover:text-gray-800 flex justify-center rounded-md items-center text-xl text-gray-500 font-semibold"><HeartIcon className="h-6 w-6" aria-hidden="true" /></button>
+								<button className="w-1/3 p-1 hover:bg-gray-100 hover:text-gray-800 flex justify-center rounded-md items-center text-xl text-gray-500 font-semibold"><ShareIcon className="h-6 w-6" aria-hidden="true" /></button>
+								<button className="w-1/3 p-1 hover:bg-gray-100 hover:text-gray-800 flex justify-center rounded-md items-center text-xl text-gray-500 font-semibold"><ChatIcon className="h-6 w-6" aria-hidden="true" /></button>
 							</div>
 							{/* <div className="bg-white border-4 bg-gray-300 border-white rounded-b-lg shadow p-5 text-xl text-gray-700 content-center font-semibold flex flex-row flex-wrap">
 								<div className="w-full">

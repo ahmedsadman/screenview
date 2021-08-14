@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import HoverRating from './HoverRating'
 import SearchBar from './SearchBar'
+import Feeling from './Feeling'
 
 const Post = () => {
 
@@ -52,9 +53,15 @@ const Post = () => {
         					</div>
 						</div>
       					: 
-						<div className="w-2/3 flex justify-start">
-          					<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg">Submit</button>
-        				</div> }
+						<div className="w-full flex flex-row flex-wrap mt-3 items-center">
+							<div className="w-1/3">
+								<Feeling/>
+						 	</div>
+						  	<div className="w-2/3">
+								<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg">Submit</button>
+						  	</div>
+					  	</div>
+					}
 				</div>
 			</div>						
 		</div>	

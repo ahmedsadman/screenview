@@ -7,8 +7,10 @@ import Recommendation from '../components/Recommendation'
 const HomePage = () => {
 	return (
 		<div>
-			<div className="py-24">
+			<div className="fixed max-w-full inset-x-0 z-20">
       			<Navbar/>
+			</div>
+			<div className="py-24">
 				<div className="xl:ml-40 xl:max-w-3/4 lg:max-w-4/5 mx-auto item-center">
 					<Feed/>
 				</div>

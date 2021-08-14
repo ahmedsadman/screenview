@@ -1,24 +1,18 @@
 import React from 'react'
+import Post from './Post'
 
 const Feed = () => {
 	return (
 		<div>
+			
 			<div className="w-full flex flex-row flex-wrap">
+				
 				<div className="w-full bg-white-100 h-screen flex flex-row flex-wrap justify-center ">
+					
   					<div className="w-full sm:w-3/4 md:w-3/4 lg:w-4/5 p-5 md:px-12 lg:24 h-full antialiased">
+						  
     					<div className="bg-white w-full shadow-lg border-2 border-gray-100 rounded-lg p-5">
-      						<textarea className="bg-gray-200 w-full rounded-lg shadow border p-2" rows="5" placeholder="Speak your mind"></textarea>
-    						<div className="w-full flex flex-row flex-wrap mt-3">
-        						<div className="w-1/3">
-          							<select className="w-full p-2 rounded-lg bg-gray-200 shadow border float-left">
-            							<option>Public</option>
-            							<option>Private</option>
-          							</select>
-        						</div>
-        						<div className="w-2/3">
-          							<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg">Submit</button>
-        						</div>
-      						</div>
+							<Post/>
     					</div>
     
     					<div className="mt-3 flex flex-col">

@@ -1,10 +1,17 @@
 import { HeartIcon, ChatIcon, ShareIcon } from '@heroicons/react/outline'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Comments from './Comments'
 import MovieShow from './MovieShow'
 
 
 const Status = ({ post }) => {
+	const [visibleComment, setVisibleComment] = useState(false)
+	
+	const makeCommentsVisible = () => {
+		setVisibleComment(!visibleComment)
+	}
+
 	return (
 	<div>
 		<div className="mt-3 flex flex-col">
@@ -23,8 +30,15 @@ const Status = ({ post }) => {
 					<div className="bg-white shadow p-2 border-b flex flex-row flex-wrap">
 						<button className="w-1/3 p-1 hover:bg-gray-100 hover:text-gray-800 flex justify-center rounded-md items-center text-xl text-gray-500 font-semibold"><HeartIcon className="h-6 w-6" aria-hidden="true" /></button>
 						<button className="w-1/3 p-1 hover:bg-gray-100 hover:text-gray-800 flex justify-center rounded-md items-center text-xl text-gray-500 font-semibold"><ShareIcon className="h-6 w-6" aria-hidden="true" /></button>
-						<button className="w-1/3 p-1 hover:bg-gray-100 hover:text-gray-800 flex justify-center rounded-md items-center text-xl text-gray-500 font-semibold"><ChatIcon className="h-6 w-6" aria-hidden="true" /></button>
+						<button className="w-1/3 p-1 hover:bg-gray-100 hover:text-gray-800 flex justify-center rounded-md items-center text-xl text-gray-500 font-semibold" onClick={makeCommentsVisible}>
+							<ChatIcon className="h-6 w-6" aria-hidden="true" />
+						</button>
 					</div>
+					{visibleComment ? <div>
+							<div className="w-full">
+								{post.comment ? <Comments comments={post.comment}/> : <p className="mt-2 text-center text-gray-400 items-center">Wow Such Empty</p>}
+							</div>
+						</div> : ''}
 					{/* <div className="bg-white border-4 bg-gray-300 border-white rounded-b-lg shadow p-5 text-xl text-gray-700 content-center font-semibold flex flex-row flex-wrap">
 						<div className="w-full">
 							<div className="w-full text-left text-xl text-gray-600">

@@ -41,7 +41,7 @@ const Feed = () => {
 		{
 			id: 2,
 			title: 'Black Widow',
-			type: 'review',
+			type: 'status',
 			date: '5h ago',
 			description: 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
 			image: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/2No8qXpkdu4yfaWGtTqh02qo1Dq.jpg',
@@ -55,7 +55,7 @@ const Feed = () => {
 		{
 			id: 5,
 			title: 'Rick & Morty',
-			type: 'status',
+			type: 'review',
 			date: '5h ago',
 			description: 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
 			image: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8kOWDBK6XlPUzckuHDo3wwVRFwt.jpg',

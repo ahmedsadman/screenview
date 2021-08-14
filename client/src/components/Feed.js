@@ -4,11 +4,7 @@ import Review from './Review'
 import Status from './Status'
 
 const isStatus = (type) =>{
-	if(type !== 'status'){
-		return false
-	} else {
-		return true
-	}
+	return type === 'status'
 }
 
 const Feed = () => {

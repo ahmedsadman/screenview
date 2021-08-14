@@ -6,9 +6,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 const getSelectedClassName = (active) => {
 	let classNames = ''
 	if (active) {
-		classNames = 'bg-gray-100 block px-4 py-2 text-sm text-gray-700'
+		classNames = 'bg-gray-100'
 	} else {
-		classNames = 'block px-4 py-2 text-sm text-gray-700'
+		classNames = ''
 	}
 
 	return classNames
@@ -40,30 +40,36 @@ const UserAvatar = () => {
 				<Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
 					<Menu.Item>
 						{({ active }) => (
-							<Link to="#"
-								className={getSelectedClassName(active)}
-							>
-								Your Profile
-							</Link>
+							<div className={getSelectedClassName(active)}>
+								<Link to="#"
+									className='w-full flex justify-start block px-4 py-2 text-sm text-gray-700'
+								>
+									Your Profile
+								</Link>
+							</div>
 						)}
 					</Menu.Item>
 					<Menu.Item>
 						{({ active }) => (
-							<Link to="#"
-								className={getSelectedClassName(active)}
-							>
-								Settings
-							</Link>
+							<div className={getSelectedClassName(active)}>
+								<Link to="#"
+									className='w-full flex justify-start block px-4 py-2 text-sm text-gray-700'
+								>
+									Settings
+								</Link>
+							</div>
 						)}
 					</Menu.Item>
 					<Menu.Item>
 						{({ active }) => (
-							<Link to="#" onClick={() =>
-								logout({
-									returnTo: window.location.origin,
-								})} className={getSelectedClassName(active)}>
-								Log Out
-							</Link>
+							<div className={getSelectedClassName(active)}>
+								<button onClick={() =>
+									logout({
+										returnTo: window.location.origin,
+									})} className='w-full flex justify-start block px-4 py-2 text-sm text-gray-700' >
+									Log Out
+								</button>
+							</div>
 						)}
 					</Menu.Item>
 				</Menu.Items>

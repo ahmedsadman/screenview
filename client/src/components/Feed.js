@@ -2,10 +2,6 @@ import React from 'react'
 import Post from './Post'
 import Review from './Review'
 import Status from './Status'
-	
-
-
-
 
 const isStatus = (type) =>{
 	if(type !== 'status'){
@@ -14,8 +10,6 @@ const isStatus = (type) =>{
 		return true
 	}
 }
-
-
 
 const Feed = () => {
 
@@ -33,6 +27,16 @@ const Feed = () => {
 			rating: 4,
 			reviewText: 'A Pretty Cool photo from the mountains. Image credit to @danielmirlea on Unsplash.',
 			expression: 'Excited',
+			comment: [{
+				text: 'ur mom gae',
+				userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+			},
+			{
+				text: 'no u',
+				userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+			},
+			
+			]
 		},
 		{
 			id: 2,
@@ -75,18 +79,16 @@ const Feed = () => {
 
 	return (
 		<div>
-			
 			<div className="w-full flex flex-row flex-wrap">
-				
 				<div className="w-full bg-white-100 h-screen flex flex-row flex-wrap justify-center ">
-					
-  					<div className="w-full sm:w-3/4 md:w-3/4 lg:w-4/5 p-5 md:px-12 lg:24 h-full antialiased">
-						  
+  					<div className="w-full sm:w-3/4 md:w-3/4 lg:w-4/5 p-5 md:px-12 lg:24 h-full antialiased"> 
     					<div className="bg-white w-full shadow-lg border-2 border-gray-100 rounded-lg p-5">
 							<Post/>
     					</div>
-    
-        				{posts.map(post => (isStatus(post.type) ? <Status post={post} key={post.id} /> : <Review post={post} key={post.id} />))}		       						
+        				{posts.map(post => (
+							<div key={post.id} >
+								{isStatus(post.type) ? <Status post={post} /> : <Review post={post}/>}
+							</div>))}		       						
       				</div>
       			</div>
     		</div>

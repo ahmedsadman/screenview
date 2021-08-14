@@ -21,6 +21,11 @@ class API {
     return res.data;
   }
 
+  async searchUserByName(name) {
+    const res = await this._axiosAuth.get(`/users/search?q=${name}`);
+    return res.data;
+  }
+
   async getUser() {
     const res = await this._axiosAuth.get(`/users/me`);
     return res.data;

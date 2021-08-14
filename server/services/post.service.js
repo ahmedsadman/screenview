@@ -19,6 +19,7 @@ class PostService {
 
   async getPostsByFollowee(userId) {
     const posts = await Post.aggregate([
+      // match followee posts
       {
         $lookup: {
           from: 'followers',
@@ -28,6 +29,7 @@ class PostService {
         }
       },
       { $match: { 'rel.from': mongoose.Types.ObjectId(userId) }},
+      // Get first 2 comments
       {
         $lookup: {
           from: 'comments',
@@ -42,7 +44,28 @@ class PostService {
             { $sort: { createdAt: -1 } },
             { $limit: 2 }
           ]
-        }
+        },
+      },
+      // Get total comment count
+      {
+        $lookup: {
+          from: 'comments',
+          as: 'totalComments',
+          let: { post_id: '$_id' },
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ['$post', '$$post_id'] }
+              }
+            },
+            {
+              $group: {
+                _id: 1,
+                count: { $sum: 1 }
+              }
+            }
+          ]
+        },
       },
       {
         $project: {

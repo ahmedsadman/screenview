@@ -30,7 +30,7 @@ const Recommendation = () => {
 				rating: 4,
 			},
 			{
-				id: 1,
+				id: 2,
 				title: 'Black Widow',
 				date: '5h ago',
 				description: 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
@@ -52,7 +52,7 @@ const Recommendation = () => {
 				rating: 4,
 			},
 			{
-				id: 1,
+				id: 2,
 				title: 'Black Widow',
 				date: '5h ago',
 				description: 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
@@ -74,7 +74,7 @@ const Recommendation = () => {
 				rating: 4,
 			},
 			{
-				id: 1,
+				id: 2,
 				title: 'Black Widow',
 				date: '5h ago',
 				description: 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
@@ -84,7 +84,7 @@ const Recommendation = () => {
 				rating: 4,
 			},
 			{
-				id: 1,
+				id: 3,
 				title: 'Black Widow',
 				date: '5h ago',
 				description: 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
@@ -94,7 +94,7 @@ const Recommendation = () => {
 				rating: 4,
 			},
 			{
-				id: 1,
+				id: 4,
 				title: 'Black Widow',
 				date: '5h ago',
 				description: 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
@@ -108,10 +108,10 @@ const Recommendation = () => {
 
 
 	return (
-		<div className="rounded-lg hidden border-2 border-gray-500 lg:block w-full border-opacity-20 max-w-md overflow-auto max-h-3/4">
+		<div className="rounded-lg overflow-auto hidden border-2 border-gray-500 xl:block border-opacity-20 max-w-1/4 max-h-3/4">
 			<Tab.Group>
-				<div className="fixed inset-x-3/4 bg-blue-900/20 left-90 right-10 max-w-full">
-					<Tab.List className="flex h-16 inset-x-0 space-x-1 border-b-2 bg-blue-900/20 rounded-t-lg">
+				<div className="bg-white border-b-2 fixed w-1/4 max-w-1/4">
+					<Tab.List className="flex h-16 space-x-1 bg-white rounded-t-lg">
 						{Object.keys(categories).map((category) => (
 							<Tab key={category} className={({ selected }) => getSelectedClassName(selected)}>
 								{category}
@@ -124,10 +124,10 @@ const Recommendation = () => {
 						{Object.values(categories).map((posts, idx) => (
 							<Tab.Panel key={idx}>
 								{posts.map((post) => (
-									<MovieShow show={post} />
+									<MovieShow show={post} key={post.id} />
 								))}
 							</Tab.Panel>
-						))}
+						))}						
 					</Tab.Panels>
 				</div>
 			</Tab.Group>

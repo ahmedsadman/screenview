@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 
 
@@ -18,7 +17,9 @@ const MovieShow = ({ show }) => {
 						<div className="grid grid-cols-2 gap-y-4 gap-x-8 flex justify-between">
 								<p>Reviews: {show.reviewCount}</p>
 								<p>Seen By: {show.watchedCount}</p>
+								
 						</div>
+						{show.reviewText ? <p>{show.reviewText}</p> : ''}
 					</div>
                 
             

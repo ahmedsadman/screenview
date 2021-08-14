@@ -28,7 +28,11 @@ class PostService {
           as: 'rel'
         }
       },
-      { $match: { 'rel.from': mongoose.Types.ObjectId(userId) }},
+      { $match: { $or: [ 
+        { 'rel.from': mongoose.Types.ObjectId(userId) }, 
+        { author: userId }
+      ] }},
+      { $sort: { createdAt: -1 }},
       // Get first 2 comments
       {
         $lookup: {

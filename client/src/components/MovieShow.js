@@ -15,9 +15,8 @@ const MovieShow = ({ show }) => {
 						<h3 className="font-bold text-lg">{show.title}</h3>
 						<h5 className="text-sm mb-4">{show.date}</h5>
 						<div className="grid grid-cols-2 gap-y-4 gap-x-8 flex justify-between">
-								<p>Reviews: {show.reviewCount}</p>
-								<p>Seen By: {show.watchedCount}</p>
-								
+							<p>Reviews: {show.reviewCount}</p>
+							<p>Seen By: {show.watchedCount}</p>		
 						</div>
 						{show.reviewText ? <p>{show.reviewText}</p> : ''}
 					</div>

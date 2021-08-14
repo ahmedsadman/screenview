@@ -22,7 +22,7 @@ const Navbar = () => {
 		<Popover className="">
 			{({ open }) => (
 				<>
-					<div className="max-w-full bg-white fixed h-24 inset-x-0 top-0 mx-auto px-4 sm:px-6" style={{zIndex:1000}}>
+					<div className="max-w-full bg-white h-24 inset-x-0 top-0 mx-auto px-4 sm:px-6 z-10">
 						<div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
 							
 							{/* LOGO */}
@@ -86,7 +86,7 @@ const Navbar = () => {
 							static
 							className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
 						>
-							<div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+							<div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50 z-40">
 								<div className="pt-5 pb-6 px-5">
 									<div className="flex items-center justify-between">
 										<div>
@@ -117,14 +117,14 @@ const Navbar = () => {
 										<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 											<BellIcon className="h-6 w-6" aria-hidden="true" />
 										</Link>
-										<Link to="#"
+										<button
 											className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" onClick={() =>
 											logout({
 												returnTo: window.location.origin,
 											})}
 										>
 											Log Out
-										</Link>
+										</button>
 									</div>
 								</div>
 							</div>

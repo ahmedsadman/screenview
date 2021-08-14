@@ -1,8 +1,78 @@
 import React from 'react'
 import Post from './Post'
 import Review from './Review'
+import Status from './Status'
+	
+
+
+
+
+const isStatus = (type) =>{
+	if(type !== 'status'){
+		return false
+	} else {
+		return true
+	}
+}
+
+
 
 const Feed = () => {
+
+
+	const posts =[{
+			id: 1,
+			userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+			title: 'Black Widow',
+			type: 'review',
+			date: '5h ago',
+			description: 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
+			image: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/2No8qXpkdu4yfaWGtTqh02qo1Dq.jpg',
+			reviewCount: 5,
+			watchedCount: 2,
+			rating: 4,
+			reviewText: 'A Pretty Cool photo from the mountains. Image credit to @danielmirlea on Unsplash.',
+			expression: 'Excited',
+		},
+		{
+			id: 2,
+			title: 'Black Widow',
+			type: 'review',
+			date: '5h ago',
+			description: 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
+			image: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/2No8qXpkdu4yfaWGtTqh02qo1Dq.jpg',
+			reviewCount: 5,
+			watchedCount: 2,
+			rating: 4,
+			reviewText: 'A Pretty Cool photo from the mountains. Image credit to @danielmirlea on Unsplash.',
+		},
+	
+	
+		{
+			id: 5,
+			title: 'Rick & Morty',
+			type: 'status',
+			date: '5h ago',
+			description: 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
+			image: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8kOWDBK6XlPUzckuHDo3wwVRFwt.jpg',
+			reviewCount: 5,
+			watchedCount: 2,
+			rating: 4,
+			expression: 'Excited',
+		},
+		{
+			id: 6,
+			title: 'Black Widow',
+			type: 'status',
+			date: '5h ago',
+			description: 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
+			image: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/2No8qXpkdu4yfaWGtTqh02qo1Dq.jpg',
+			reviewCount: 5,
+			watchedCount: 2,
+			rating: 4,
+			expression: 'Afraid',
+		},]
+
 	return (
 		<div>
 			
@@ -16,11 +86,11 @@ const Feed = () => {
 							<Post/>
     					</div>
     
-        				<Review/>		       						
-      						</div>
-      					</div>
-    				</div>
-  				</div>
+        				{posts.map(post => (isStatus(post.type) ? <Status post={post} key={post.id} /> : <Review post={post} key={post.id} />))}		       						
+      				</div>
+      			</div>
+    		</div>
+  		</div>
 	)
 }
 

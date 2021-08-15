@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import PostLogin from './pages/PostLogin';
 import Profile from './pages/Profile'
 import ProtectedRoute from './auth/protected-route';
+import test from './pages/test';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <ProtectedRoute exact path="/postlogin" component={PostLogin} />
         <ProtectedRoute exact path="/profile" component={Profile}/>
       </Switch>
+      <Route path="/test" exact component={test} />
       
     </>
     

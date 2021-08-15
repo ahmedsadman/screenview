@@ -12,6 +12,7 @@ import {
 } from '@heroicons/react/outline'
 import SearchBar from './SearchBar'
 import UserAvatar from './UserAvatar'
+import PostSearchBar from './PostSearchBar';
 
 
 
@@ -32,7 +33,7 @@ const Navbar = () => {
 									<span className="text-xl font-bold text-black-600">ScreenView</span>
 
 								</Link>
-								<SearchBar />
+								<PostSearchBar />
 
 								
 							</div>

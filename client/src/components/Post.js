@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import HoverRating from './HoverRating'
 import SearchBar from './SearchBar'
 import Feeling from './Feeling'
+import PostSearchBar from './PostSearchBar'
 
 const Post = () => {
 
@@ -27,9 +28,9 @@ const Post = () => {
 				<h4>What are you feeling....</h4>
 						
 			</div>
-			<div className="flex justify-between items-center mb-4">
+			<div className="flex justify-between mt-2 items-center mb-4">
 				<div className="flex justify-start">
-					<SearchBar/>
+					<PostSearchBar/>
 				</div>
 						
 				<div className="w-1/3">

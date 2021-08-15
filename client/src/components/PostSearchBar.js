@@ -75,6 +75,8 @@ const containerTransition = { type: "spring", damping: 22, stiffness: 150 }
 
 const PostSearchBar = ({ keyword }) => {
 
+	const key = process.env.REACT_APP_TMDB_KEY
+
 	const [isExpanded, setExpanded] = useState(false)
 	const [parentRef, isClickedOutside] = useClickOutside()
 	const inputRef = useRef()
@@ -110,8 +112,8 @@ const PostSearchBar = ({ keyword }) => {
 	  }, [isClickedOutside])
 	
 	  const prepareSearchQuery = (query) => {
-		const url = `http://api.tvmaze.com/search/shows?q=${query}`
-	
+		const url = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${query}`
+		
 		return encodeURI(url)
 	  }
 	
@@ -126,12 +128,13 @@ const PostSearchBar = ({ keyword }) => {
 		const response = await axios.get(URL).catch((err) => {
 		  console.log("Error: ", err)
 		})
-	
+
+		const responseList = response.data
+
 		if (response) {
-		  console.log("Response: ", response.data)
-		  if (response.data && response.data.length === 0) setNoTvShows(true)
+		  if (responseList && responseList.length === 0) setNoTvShows(true)
 	
-		  setTvShows(response.data)
+		  setTvShows(responseList.results)
 		}
 	
 		setLoading(false)
@@ -193,7 +196,7 @@ const PostSearchBar = ({ keyword }) => {
           )}
           {!isLoading && !isEmpty && (
             <>
-              {tvShows.map(({ show }) => (
+              {tvShows.map(show => (
                 <MovieShow show={show} key={show.id} />
               ))}
             </>

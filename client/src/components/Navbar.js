@@ -16,7 +16,7 @@ import UserAvatar from './UserAvatar'
 
 
 const Navbar = () => {
-	const { logout } = useAuth0()
+	const { logout, user } = useAuth0()
 
 	return (
 		<Popover className="">
@@ -27,7 +27,7 @@ const Navbar = () => {
 							
 							{/* LOGO */}
 							<div className="flex space-x-4 justify-start lg:w-0 lg:flex-1 items-center">
-								<Link to="#">
+								<Link to="/feed">
 									<span className="sr-only">Workflow</span>
 									<span className="text-xl font-bold text-black-600">ScreenView</span>
 
@@ -47,7 +47,7 @@ const Navbar = () => {
 
 
 							<div className="hidden md:max-w-1/4 ml-10 md:flex items-center justify-center md:flex-1 lg:w-0">
-								<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+								<Link to="/feed" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<HomeIcon className="h-6 w-6" aria-hidden="true" />
 								</Link>
 								<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -91,7 +91,7 @@ const Navbar = () => {
 									<div className="flex items-center justify-between">
 										<div>
 											<img className="h-10 w-10 rounded-full"
-												src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+												src={user.picture}
 												alt=""
 											/>
 										</div>
@@ -105,7 +105,7 @@ const Navbar = () => {
 								</div>
 								<div className="py-6 px-5 space-y-6">
 									<div className="grid grid-cols-2 gap-y-4 gap-x-8 flex justify-between">
-										<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+										<Link to="/feed" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 											<HomeIcon className="h-6 w-6" aria-hidden="true" />
 										</Link>
 										<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">

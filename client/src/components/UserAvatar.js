@@ -41,7 +41,7 @@ const UserAvatar = () => {
 					<Menu.Item>
 						{({ active }) => (
 							<div className={getSelectedClassName(active)}>
-								<Link to="#"
+								<Link to="/profile"
 									className='w-full flex justify-start block px-4 py-2 text-sm text-gray-700'
 								>
 									Your Profile

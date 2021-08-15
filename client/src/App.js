@@ -4,6 +4,7 @@ import LandingPage from './pages/LandingPage';
 // import SignForm from './components/SignForm';
 import HomePage from './pages/HomePage';
 import PostLogin from './pages/PostLogin';
+import Profile from './pages/Profile'
 import ProtectedRoute from './auth/protected-route';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Switch>
         <ProtectedRoute exact path="/feed" component={HomePage} />
         <ProtectedRoute exact path="/postlogin" component={PostLogin} />
+        <ProtectedRoute exact path="/profile" component={Profile}/>
       </Switch>
       
     </>

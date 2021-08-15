@@ -33,10 +33,6 @@ const Recommendation = () => {
 		// eslint-disable-next-line
 	}, [])
 
-	console.log(catagories)
-	
-	
-
 	return (
 		<div className="rounded-lg overflow-auto hidden border-2 border-gray-500 xl:block border-opacity-20 max-w-1/4 max-h-3/4">
 			{catagories ?

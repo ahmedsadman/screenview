@@ -63,7 +63,7 @@ const Status = ({ post }) => {
 					</div>
 					
 					<div className='flex justify-center'>
-						<div className="bg-white mb-4 mt-2 flex flex-row flex-wrap justify-center">
+						<div className="bg-white w-full mb-4 mt-2 flex flex-row flex-wrap justify-center">
 							<button className="w-full p-2 hover:bg-gray-100 hover:text-gray-800 flex justify-center rounded-md items-center text-xl text-gray-500 font-semibold" onClick={makeComment}>
 								<ChatIcon className="h-6 w-6" aria-hidden="true" />
 							</button>
@@ -88,6 +88,7 @@ const Status = ({ post }) => {
 					{commentVisibility ? 
 						<div className="w-full">
 							<Comments comments={visibleComment} key={comment}/>
+							<button>View All Comments</button>
 						</div>
 						: ''}
 					{/* <div className="bg-white border-4 bg-gray-300 border-white rounded-b-lg shadow p-5 text-xl text-gray-700 content-center font-semibold flex flex-row flex-wrap">

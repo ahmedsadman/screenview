@@ -16,6 +16,9 @@ const SearchBarContainer = styled(motion.div)`
   background-color: #fff;
   border-radius: 6px;
   box-shadow: 0px 2px 12px 3px rgba(0, 0, 0, 0.14);
+  @media (max-width: 1190px) {
+	width: 15rem;
+  }
 `;
 
 
@@ -142,7 +145,7 @@ const PostSearchBar = ({ keyword }) => {
 				animate={isExpanded ? "expanded" : "collapsed"}
 				variants={containerVariants}
 				ref={parentRef}
-				className="border-2 border-gray-300 h-10"
+				className="border-2 border-gray-300 "
 			>
 				<div className="relative mx-auto z-0 text-gray-600 flex items-center">
 					<SearchIcon className="p-2 items-center text-center h-10 w-10" aria-hidden="true" />

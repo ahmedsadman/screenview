@@ -13,6 +13,8 @@ const Feed = () => {
 	const posts =[{
 			id: 1,
 			userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+			userNickname: 'gay',
+			postDate: '10/10/2021',
 			title: 'Black Widow',
 			type: 'review',
 			date: '5h ago',
@@ -25,17 +27,22 @@ const Feed = () => {
 			expression: 'Excited',
 			comment: [{
 				text: 'ur mom gae',
+				userNickname: 'fucker',
 				userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 			},
 			{
 				text: 'no u',
+				userNickname: 'fucker',
 				userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-			},
+			},]
 			
-			]
+			
 		},
 		{
 			id: 2,
+			userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+			userNickname: 'gay',
+			postDate: '10/10/2021',
 			title: 'Black Widow',
 			type: 'status',
 			date: '5h ago',
@@ -45,6 +52,16 @@ const Feed = () => {
 			watchedCount: 2,
 			rating: 4,
 			reviewText: 'A Pretty Cool photo from the mountains. Image credit to @danielmirlea on Unsplash.',
+			comment: [{
+				text: 'ur mom gae',
+				userNickname: 'fucker',
+				userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+			},
+			{
+				text: 'no u',
+				userNickname: 'fucker',
+				userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+			},]
 		},
 	
 	
@@ -59,6 +76,7 @@ const Feed = () => {
 			watchedCount: 2,
 			rating: 4,
 			expression: 'Excited',
+			comment: [{}]
 		},
 		{
 			id: 6,
@@ -71,6 +89,7 @@ const Feed = () => {
 			watchedCount: 2,
 			rating: 4,
 			expression: 'Afraid',
+			
 		},]
 
 	return (

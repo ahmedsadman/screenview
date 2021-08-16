@@ -12,7 +12,7 @@ import { SearchIcon } from '@heroicons/react/outline'
 const SearchBarContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  width: 15rem;
+  width: 20rem;
   background-color: #fff;
   border-radius: 6px;
   box-shadow: 0px 2px 12px 3px rgba(0, 0, 0, 0.14);
@@ -37,15 +37,6 @@ const LineSeperator = styled.span`
   background-color: #d8d8d878;
 `;
 
-const SearchContent = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1em;
-  overflow-y: auto;
-  max-height: 30em;
-`;
-
 const LoadingWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -64,14 +55,17 @@ const WarningMessage = styled.span`
 
 const containerVariants = {
 	expanded: {
-	  
+	  height: "30em",
+	  position: 'absolute',
+	  top: -20
 	},
 	collapsed: {
 	  height: "2.7em",
+	  position: 'absolute',
+	  top: -20
 	},
 }
 
-const containerTransition = { type: "spring", damping: 22, stiffness: 150 }
 
 const PostSearchBar = ({ keyword }) => {
 
@@ -92,32 +86,32 @@ const PostSearchBar = ({ keyword }) => {
 		if (e.target.value.trim() === "") setNoTvShows(false)
 	
 		setSearchQuery(e.target.value)
-	  }
+	}
 	
-	  const expandContainer = () => {
+	const expandContainer = () => {
 		setExpanded(true)
-	  }
+	}
 	
-	  const collapseContainer = () => {
+	const collapseContainer = () => {
 		setExpanded(false)
 		setSearchQuery("")
 		setLoading(false)
 		setNoTvShows(false)
 		setTvShows([])
 		if (inputRef.current) inputRef.current.value = ""
-	  }
+	}
 	
-	  useEffect(() => {
+	useEffect(() => {
 		if (isClickedOutside) collapseContainer()
-	  }, [isClickedOutside])
+	}, [isClickedOutside])
 	
-	  const prepareSearchQuery = (query) => {
+	const prepareSearchQuery = (query) => {
 		const url = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${query}`
 		
 		return encodeURI(url)
-	  }
+	}
 	
-	  const searchTvShow = async () => {
+	const searchTvShow = async () => {
 		if (!searchQuery || searchQuery.trim() === "") return
 	
 		setLoading(true)
@@ -132,78 +126,71 @@ const PostSearchBar = ({ keyword }) => {
 		const responseList = response.data
 
 		if (response) {
-		  if (responseList && responseList.length === 0) setNoTvShows(true)
+			if (responseList && responseList.length === 0) setNoTvShows(true)
 	
-		  setTvShows(responseList.results)
+		  	setTvShows(responseList.results)
 		}
 	
 		setLoading(false)
 	}
 	
-	  useDebounce(searchQuery, 500, searchTvShow)
+	useDebounce(searchQuery, 500, searchTvShow)
 
 	return (
-		<SearchBarContainer
-			transition={containerTransition}
-			ref={parentRef}
-			className="border-2 border-gray-300 h-10"
-		>
-			<div className="relative mx-auto z-0 text-gray-600 flex items-center">
-			
+		<div style={{display: 'relative'}}>
+			<SearchBarContainer
+				animate={isExpanded ? "expanded" : "collapsed"}
+				variants={containerVariants}
+				ref={parentRef}
+				className="border-2 border-gray-300 h-10"
+			>
+				<div className="relative mx-auto z-0 text-gray-600 flex items-center">
 					<SearchIcon className="p-2 items-center text-center h-10 w-10" aria-hidden="true" />
-				<input className="w-full pr-16 rounded-md text-sm focus:outline-none hover:border-gray-600"
-					placeholder="Search" onFocus={expandContainer} ref={inputRef} value={searchQuery} onChange={changeHandler}/>
+					<input className="w-full pr-24 rounded-md text-sm focus:outline-none hover:border-gray-600"
+						placeholder="Search" onFocus={expandContainer} ref={inputRef} value={searchQuery} onChange={changeHandler}/>
 
-				<AnimatePresence>
-					{isExpanded && (
-						<CloseIcon
-							key="close-icon"
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							exit={{ opacity: 0 }}
-							onClick={collapseContainer}
-							transition={{ duration: 0.2 }}
-						>
-							<IoClose />
-						</CloseIcon>
-					)}
-				</AnimatePresence>
-					
-			</div>
-		
-    
-        <div>
-		{isExpanded && <LineSeperator />}
-      {isExpanded && (
-        <div className="max-h-96 overflow-x-scroll z-50">
-          {isLoading && (
-            <LoadingWrapper>
-              <MoonLoader loading color="#000" size={20} />
-            </LoadingWrapper>
-          )}
-          {!isLoading && isEmpty && !noTvShows && (
-            <LoadingWrapper>
-              <WarningMessage>Start typing to Search</WarningMessage>
-            </LoadingWrapper>
-          )}
-          {!isLoading && noTvShows && (
-            <LoadingWrapper>
-              <WarningMessage>No Tv Shows or Series found!</WarningMessage>
-            </LoadingWrapper>
-          )}
-          {!isLoading && !isEmpty && (
-            <>
-              {tvShows.map(show => (
-                <MovieShow show={show} key={show.id} />
-              ))}
-            </>
-          )}
-        </div>
-      )}
+					<AnimatePresence>
+						{isExpanded && (
+							<CloseIcon
+								key="close-icon"
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ opacity: 0 }}
+								onClick={collapseContainer}
+								transition={{ duration: 0.2 }}
+							>
+								<IoClose />
+							</CloseIcon>
+						)}
+					</AnimatePresence>
+				</div>
+
+				
+				{isExpanded && <LineSeperator />}
+				{isExpanded && (
+					<div className="overflow-y-auto">
+						{isLoading && (
+							<LoadingWrapper>
+								<MoonLoader loading color="#000" size={20} />
+							</LoadingWrapper>
+						)}
+						{!isLoading && noTvShows && (
+							<LoadingWrapper>
+								<WarningMessage>No Tv Shows or Series found!</WarningMessage>
+							</LoadingWrapper>
+						)}
+						{!isLoading && !isEmpty && (
+							<>
+								{tvShows.map(show => (
+								<MovieShow show={show} key={show.id} />
+								))}
+							</>
+						)}
+					</div>
+				)}
+				
+    		</SearchBarContainer>
 		</div>
-      
-      
-    </SearchBarContainer>
 	)
 }
 

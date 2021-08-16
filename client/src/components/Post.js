@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import HoverRating from './HoverRating'
 import SearchBar from './SearchBar'
-import Feeling from './Feeling'
 import PostSearchBar from './PostSearchBar'
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -32,7 +31,7 @@ const Post = () => {
 						
 			</div>
 			<div className="flex justify-between mt-2 items-center mb-4">
-				<div className="flex justify-start">
+				<div className="flex justify-start relative z-10">
 					<PostSearchBar/>
 				</div>
 						
@@ -44,30 +43,33 @@ const Post = () => {
           			</select>
         		</div>
 			</div>
-			<div>
-				<div>{review}</div>
-				<div className="">
+			
+			<div className="">
+				<form action="#" method="POST">
 					{review ? 
+						<div>	
+							<div>{review}</div>
+							<div className="w-full flex flex-row flex-wrap mt-3 items-center">
+								<div className="w-1/3">
+									<HoverRating/>
+								</div>
+								<div className="w-2/3">
+									<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg">Submit</button>
+								</div>
+							</div>
+						</div>	
+						: 
 						<div className="w-full flex flex-row flex-wrap mt-3 items-center">
-							<div className="w-1/3">
-          						<HoverRating/>
-        					</div>
-        					<div className="w-2/3">
-          						<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg">Submit</button>
-        					</div>
-						</div>
-      					: 
-						<div className="w-full flex flex-row flex-wrap mt-3 items-center">
-							<div className="w-2/3">
+							<div className="w-full">
 								<textarea className="bg-gray-100 w-full rounded-lg shadow border p-2" rows="1" placeholder="Express Yourself"></textarea>
-						 	</div>
-						  	<div className="w-1/3">
+							</div>
+							<div className="w-1/3 flex">
 								<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg">Submit</button>
-						  	</div>
-					  	</div>
+							</div>
+						</div>
 					}
-				</div>
-			</div>						
+				</form>	
+			</div>					
 		</div>	
 	)
 }

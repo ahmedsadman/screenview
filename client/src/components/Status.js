@@ -63,8 +63,8 @@ const Status = ({ post }) => {
 					</div>
 					
 					<div className='flex justify-center'>
-						<div className="bg-white w-2/3 shadow mb-4 mt-2 border-b flex flex-row flex-wrap justify-center">
-							<button className="w-full p-1 hover:bg-gray-100 hover:text-gray-800 flex justify-center rounded-md items-center text-xl text-gray-500 font-semibold" onClick={makeComment}>
+						<div className="bg-white mb-4 mt-2 flex flex-row flex-wrap justify-center">
+							<button className="w-full p-2 hover:bg-gray-100 hover:text-gray-800 flex justify-center rounded-md items-center text-xl text-gray-500 font-semibold" onClick={makeComment}>
 								<ChatIcon className="h-6 w-6" aria-hidden="true" />
 							</button>
 						</div>

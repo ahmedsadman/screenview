@@ -31,6 +31,8 @@ const useStyles = makeStyles({
     width: 200,
     display: 'flex',
     alignItems: 'center',
+    position: 'relative',
+    zIndex: 0,
   },
 });
 

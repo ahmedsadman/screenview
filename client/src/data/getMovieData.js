@@ -27,9 +27,9 @@ export const getRecommendedObject = async () => {
 	const trending = trendingData.data.results
 
 	const recommended = {
-		popular: popular,
-		upcoming: upcoming,
-		trending: trending,
+		Popular: popular,
+		Upcoming: upcoming,
+		Trending: trending,
 	}
 	return recommended
 }

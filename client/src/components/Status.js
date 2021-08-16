@@ -8,6 +8,8 @@ import MovieShow from './MovieShow'
 const Status = ({ post }) => {
 	const [commentArea, setCommentArea] = useState(false)
 	const [visibleComment, setVisibleComment] = useState([''])
+	const [allCommentsShow, setAllCommentsShow] = useState(false)
+
 
 	let commentVisibility = false
 	
@@ -25,14 +27,24 @@ const Status = ({ post }) => {
 		}
 
 		commentModification()
-	})
+		// eslint-disable-next-line
+	}, [])
 	
 	
 	if(comment && comment.length !== 0){
 		commentVisibility = true
 	}
 	
-	
+	const showAllComment = () => {
+		setAllCommentsShow(!allCommentsShow)
+		if(!allCommentsShow){
+			setVisibleComment(comment)
+		} else {
+			setVisibleComment(comment.slice(0, 2))
+		}
+		
+		
+	}
 
 	const makeComment = () => {
 		setCommentArea(!commentArea)
@@ -88,9 +100,13 @@ const Status = ({ post }) => {
 					{commentVisibility ? 
 						<div className="w-full">
 							<Comments comments={visibleComment} key={comment}/>
-							<button>View All Comments</button>
+							{allCommentsShow ?
+								<button className="text-xs mt-2 text-gray-400 hover:underline hover:text-gray-500" onClick={showAllComment}>Collapse</button>
+								:
+								<button className="text-xs mt-2 text-gray-400 hover:underline hover:text-gray-500" onClick={showAllComment}>View All Comments</button>
+							}
 						</div>
-						: ''}
+						: <p className="text-xs mt-2 text-gray-400" onClick={showAllComment}>Wow Such Empty. Be the first to comment</p>}
 					{/* <div className="bg-white border-4 bg-gray-300 border-white rounded-b-lg shadow p-5 text-xl text-gray-700 content-center font-semibold flex flex-row flex-wrap">
 						<div className="w-full">
 							<div className="w-full text-left text-xl text-gray-600">

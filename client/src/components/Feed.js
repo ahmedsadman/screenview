@@ -1,11 +1,7 @@
 import React from 'react'
 import Post from './Post'
-import Review from './Review'
 import Status from './Status'
 
-const isStatus = (type) =>{
-	return type === 'status'
-}
 
 const Feed = () => {
 
@@ -76,7 +72,6 @@ const Feed = () => {
 			watchedCount: 2,
 			rating: 4,
 			expression: 'Excited',
-			comment: [{}]
 		},
 		{
 			id: 6,
@@ -102,7 +97,7 @@ const Feed = () => {
     					</div>
         				{posts.map(post => (
 							<div key={post.id} >
-								{isStatus(post.type) ? <Status post={post} /> : <Review post={post}/>}
+								<Status post={post} />
 							</div>))}		       						
       				</div>
       			</div>

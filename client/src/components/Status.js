@@ -1,4 +1,4 @@
-import { HeartIcon, ChatIcon, ShareIcon } from '@heroicons/react/outline'
+import { ChatIcon } from '@heroicons/react/outline'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Comments from './Comments'
@@ -54,7 +54,9 @@ const Status = ({ post }) => {
 						</div>
 					</div>
 					<div>
-						<p className='text-md text-gray-600 mt-2 mb-2'>Is {post.expression} watching</p>
+						{post.type === 'status' ? <p className='text-md text-gray-600 mt-2 mb-2'>Is {post.expression} watching...</p> : 
+							<p className='text-md text-gray-600 mt-2 mb-2'>Posted a Review on</p>}
+						
 						<Link to='#' className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 							<MovieShow show={post} key={post.id} />
 						</Link>

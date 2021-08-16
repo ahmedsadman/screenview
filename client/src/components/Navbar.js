@@ -23,7 +23,7 @@ const Navbar = () => {
 		<Popover className="">
 			{({ open }) => (
 				<>
-					<div className="max-w-full bg-white h-24 inset-x-0 top-0 mx-auto px-4 sm:px-6 z-10">
+					<div className="max-w-full fixed overflow-hidden bg-white max-h-24 h-24 inset-x-0 top-0 mx-auto px-4 sm:px-6 z-10">
 						<div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
 							
 							{/* LOGO */}
@@ -33,7 +33,10 @@ const Navbar = () => {
 									<span className="text-xl font-bold text-black-600">ScreenView</span>
 
 								</Link>
-								<PostSearchBar />
+								<div className="relative">
+									<PostSearchBar />
+								</div>
+								
 
 								
 							</div>

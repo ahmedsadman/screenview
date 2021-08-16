@@ -39,11 +39,11 @@ const LineSeperator = styled.span`
 
 const SearchContent = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 1em;
   overflow-y: auto;
+  max-height: 30em;
 `;
 
 const LoadingWrapper = styled.div`
@@ -64,7 +64,7 @@ const WarningMessage = styled.span`
 
 const containerVariants = {
 	expanded: {
-	  height: "30em",
+	  
 	},
 	collapsed: {
 	  height: "2.7em",
@@ -138,14 +138,12 @@ const PostSearchBar = ({ keyword }) => {
 		}
 	
 		setLoading(false)
-	  }
+	}
 	
 	  useDebounce(searchQuery, 500, searchTvShow)
 
 	return (
 		<SearchBarContainer
-			animate={isExpanded ? "expanded" : "collapsed"}
-			variants={containerVariants}
 			transition={containerTransition}
 			ref={parentRef}
 			className="border-2 border-gray-300 h-10"
@@ -174,11 +172,10 @@ const PostSearchBar = ({ keyword }) => {
 			</div>
 		
     
-        
-      
-      {isExpanded && <LineSeperator />}
+        <div>
+		{isExpanded && <LineSeperator />}
       {isExpanded && (
-        <SearchContent>
+        <div className="max-h-96 overflow-x-scroll z-50">
           {isLoading && (
             <LoadingWrapper>
               <MoonLoader loading color="#000" size={20} />
@@ -201,8 +198,11 @@ const PostSearchBar = ({ keyword }) => {
               ))}
             </>
           )}
-        </SearchContent>
+        </div>
       )}
+		</div>
+      
+      
     </SearchBarContainer>
 	)
 }

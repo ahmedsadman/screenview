@@ -3,8 +3,11 @@ import HoverRating from './HoverRating'
 import SearchBar from './SearchBar'
 import Feeling from './Feeling'
 import PostSearchBar from './PostSearchBar'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const Post = () => {
+
+	const { user } = useAuth0()
 
 	const [selectedPostType, setSelectedPostType] = useState('')
 	const postChangeHandler = (e) => {
@@ -22,7 +25,7 @@ const Post = () => {
 		<div>
 			<div className="flex items-center">
 				<img className="h-10 w-10 mr-4 rounded-full"
-					src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+					src={user.picture}
 					alt=""
 				/>
 				<h4>What are you feeling....</h4>
@@ -55,10 +58,10 @@ const Post = () => {
 						</div>
       					: 
 						<div className="w-full flex flex-row flex-wrap mt-3 items-center">
-							<div className="w-1/3">
-								<Feeling/>
+							<div className="w-2/3">
+								<textarea className="bg-gray-100 w-full rounded-lg shadow border p-2" rows="1" placeholder="Express Yourself"></textarea>
 						 	</div>
-						  	<div className="w-2/3">
+						  	<div className="w-1/3">
 								<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg">Submit</button>
 						  	</div>
 					  	</div>

@@ -30,7 +30,13 @@ const Feed = () => {
 				text: 'no u',
 				userNickname: 'fucker',
 				userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-			},]
+			},
+			{
+				text: 'ur mom',
+				userNickname: 'sucker',
+				userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+			},
+			]
 			
 			
 		},
@@ -84,7 +90,11 @@ const Feed = () => {
 			watchedCount: 2,
 			rating: 4,
 			expression: 'Afraid',
-			
+			comment: [{
+				text: 'Stop being Gae',
+				userNickname: 'Techlead',
+				userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+			},]
 		},]
 
 	return (

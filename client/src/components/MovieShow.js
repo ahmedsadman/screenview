@@ -3,6 +3,7 @@ import React from 'react'
 
 
 const MovieShow = ({ show }) => {
+	console.log(show)
 	const image_url = `https://image.tmdb.org/t/p/w500${show.poster_path}`
 	return (
 		<div className="flex mt-1 justify-between">

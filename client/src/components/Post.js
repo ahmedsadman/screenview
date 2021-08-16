@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import HoverRating from './HoverRating'
-import SearchBar from './SearchBar'
 import PostSearchBar from './PostSearchBar'
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -61,7 +60,7 @@ const Post = () => {
 						: 
 						<div className="w-full flex flex-row flex-wrap mt-3 items-center">
 							<div className="w-full">
-								<textarea className="bg-gray-100 w-full rounded-lg shadow border p-2" rows="1" placeholder="Express Yourself"></textarea>
+								<textarea className="bg-gray-100 w-full rounded-lg shadow border p-2" rows="5" placeholder="Express Yourself"></textarea>
 							</div>
 							<div className="w-1/3 flex">
 								<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg">Submit</button>

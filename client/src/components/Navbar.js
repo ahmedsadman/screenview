@@ -10,7 +10,6 @@ import {
 	XIcon,
 	BellIcon,
 } from '@heroicons/react/outline'
-import SearchBar from './SearchBar'
 import UserAvatar from './UserAvatar'
 import PostSearchBar from './PostSearchBar';
 
@@ -42,7 +41,7 @@ const Navbar = () => {
 							</div>
 							
 							{/* small screen burger */}
-							<div className="-mr-2 -my-2 md:hidden">
+							<div className="-mr-2 -my-2  lg:hidden">
 								<Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<span className="sr-only">Open menu</span>
 									<MenuIcon className="h-6 w-6" aria-hidden="true" />
@@ -50,7 +49,7 @@ const Navbar = () => {
 							</div>
 
 
-							<div className="hidden md:max-w-1/4 ml-10 md:flex items-center justify-center md:flex-1 lg:w-0">
+							<div className="hidden lg:max-w-1/10 md:flex items-center justify-center md:flex-1 lg:w-0">
 								<Link to="/feed" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<HomeIcon className="h-6 w-6" aria-hidden="true" />
 								</Link>
@@ -66,7 +65,7 @@ const Navbar = () => {
 							</div>
 							
 							{/* UserAvatar */}
-							<div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+							<div className="hidden md:flex items-center justify-end md:flex-1 md:w-0">
 								<div className="lg:mr-10">
 									<UserAvatar/>
 								</div>

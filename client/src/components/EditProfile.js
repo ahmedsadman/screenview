@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-const EditProfile = ({ user }) => {
+const EditProfile = ({ user, onProfileSave }) => {
+	const [userName, setUserName] = useState(user.name);
+	const onSaveClick = (e) => {
+		e.preventDefault();
+		onProfileSave(userName);
+	};
 
 	return (
 		<div className="mt-5 md:mt-0 md:col-span-2">
@@ -12,13 +17,14 @@ const EditProfile = ({ user }) => {
 								<div className="grid grid-cols-6 gap-6">
 									<div className="col-span-6 sm:col-span-4">
 										<label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-											Nickname
+											Name
 										</label>
 										<input
 											type="text"
 											name="email-address"
 											id="email-address"
-											defaultValue={user.nickname}
+											value={userName}
+											onChange={(e) => setUserName(e.target.value)}
 											autoComplete="email"
 											className="mt-1 px-4 border-2 border-gray-300 h-10 focus:ring-gray-800 focus:border-gray-800 block w-full shadow-sm sm:text-sm rounded-md"
 										/>
@@ -33,6 +39,7 @@ const EditProfile = ({ user }) => {
 											name="email-address"
 											id="email-address"
 											defaultValue={user.email}
+											disabled
 											autoComplete="email"
 											className="mt-1 px-4 border-2 border-gray-300 h-10 focus:ring-gray-800 focus:border-gray-800 block w-full shadow-sm sm:text-sm rounded-md"
 										/>
@@ -42,7 +49,7 @@ const EditProfile = ({ user }) => {
 							<div className="flex-col flex items-center content-center justify-center">
 								<div className=' flex-col flex justify-center mx-auto'>
 									<div className="h-20 w-20 rounded-full overflow-hidden bg-gray-100">
-										<img src={user.picture} alt="" />
+										<img src={user.avatarUrl} alt="" />
 									</div>
 								</div>	
 							</div>			
@@ -51,6 +58,7 @@ const EditProfile = ({ user }) => {
 							<button
 								type="submit"
 								className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+								onClick={onSaveClick}
 							>
 								Save
 							</button>

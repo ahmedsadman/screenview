@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const EditProfile = ({ user, onProfileSave }) => {
+const EditProfile = ({ user, auth0User, onProfileSave }) => {
 	const [userName, setUserName] = useState(user.name);
 	const onSaveClick = (e) => {
 		e.preventDefault();
@@ -16,14 +16,14 @@ const EditProfile = ({ user, onProfileSave }) => {
 							<div className="px-4 py-5 bg-white sm:p-6">
 								<div className="grid grid-cols-6 gap-6">
 									<div className="col-span-6 sm:col-span-4">
-										<label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+										<label htmlFor="username" className="block text-sm font-medium text-gray-700">
 											Name
 										</label>
 										<input
 											type="text"
-											name="email-address"
-											id="email-address"
-											value={userName}
+											name="username"
+											id="username"
+											value={userName || auth0User.name}
 											onChange={(e) => setUserName(e.target.value)}
 											autoComplete="email"
 											className="mt-1 px-4 border-2 border-gray-300 h-10 focus:ring-gray-800 focus:border-gray-800 block w-full shadow-sm sm:text-sm rounded-md"
@@ -38,7 +38,7 @@ const EditProfile = ({ user, onProfileSave }) => {
 											type="text"
 											name="email-address"
 											id="email-address"
-											defaultValue={user.email}
+											defaultValue={auth0User.email}
 											disabled
 											autoComplete="email"
 											className="mt-1 px-4 border-2 border-gray-300 h-10 focus:ring-gray-800 focus:border-gray-800 block w-full shadow-sm sm:text-sm rounded-md"

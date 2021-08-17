@@ -1,21 +1,38 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import EditProfile from '../components/EditProfile'
 import Navbar from '../components/Navbar'
 import StaticProfile from '../components/StaticProfile'
+import API from '../api';
 
 const Profile = () => {
-	
-	const [profileEditStatus, setProfileEditStatus] = useState(false)
-
-	const { user } = useAuth0()
-
-	console.log(user)
-	
+	const [profileEditStatus, setProfileEditStatus] = useState(false);
+	const [user, setUser] = useState({});
+	const { user: _auth0User, getAccessTokenSilently } = useAuth0()
 	const profileEditStatusChanger = () => {
 		setProfileEditStatus(true)
 	}
 
+	const onProfileSave = async (name) => {
+		const token = await getAccessTokenSilently();
+		const api = new API(token);
+		await api.updateUser(name, user.email, _auth0User.picture);
+		setProfileEditStatus(false);
+		alert('User updated');
+		await getUser();
+	}
+
+	const getUser = async () => {
+		const token = await getAccessTokenSilently();
+		const api = new API(token);
+		const res = await api.getUser();
+		console.log('user is', res.user);
+		setUser(res.user);
+	}
+
+	useEffect(() => {
+		getUser();
+	}, []);
 	
 	return (
 		<div>
@@ -34,7 +51,7 @@ const Profile = () => {
 					
 					<div>
 						<div>
-							{!profileEditStatus ? <StaticProfile user={user}/> : <EditProfile user={user}/>}
+							{!profileEditStatus ? <StaticProfile user={user}/> : <EditProfile onProfileSave={onProfileSave} user={user}/>}
 						</div>
 						{!profileEditStatus?<div className="px-4 mt-2 flex justify-center py-3 bg-gray-50 text-right sm:px-6">
 							 <button

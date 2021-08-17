@@ -70,7 +70,7 @@ const containerVariants = {
 }
 
 
-const PostSearchBar = ({ keyword }) => {
+const PostSearchBar = ({ keyword, selectHandler }) => {
 
 	const key = process.env.REACT_APP_TMDB_KEY
 
@@ -81,6 +81,8 @@ const PostSearchBar = ({ keyword }) => {
 	const [isLoading, setLoading] = useState(false)
 	const [tvShows, setTvShows] = useState([])
 	const [noTvShows, setNoTvShows] = useState(false)
+
+	const fromSearch = useState(true)
   
 	const isEmpty = !tvShows || tvShows.length === 0
 
@@ -139,6 +141,9 @@ const PostSearchBar = ({ keyword }) => {
 	
 	useDebounce(searchQuery, 500, searchTvShow)
 
+	// Select for post
+	 
+
 	return (
 		<div style={{display: 'relative'}}>
 			<SearchBarContainer
@@ -185,7 +190,7 @@ const PostSearchBar = ({ keyword }) => {
 						{!isLoading && !isEmpty && (
 							<>
 								{tvShows.map(show => (
-								<MovieShow show={show} key={show.id} />
+									<MovieShow fromSearch={fromSearch} selectHandler={selectHandler} show={show} key={show.id} />
 								))}
 							</>
 						)}

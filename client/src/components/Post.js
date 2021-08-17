@@ -5,34 +5,47 @@ import { useAuth0 } from '@auth0/auth0-react'
 import MovieShow from './MovieShow'
 import { XIcon } from '@heroicons/react/outline'
 
-const Post = () => {
+const Post = ({ onPostComplete }) => {
 
-	const { user } = useAuth0()
+	const { user } = useAuth0();
 
-	const [selectedPostType, setSelectedPostType] = useState('')
-	const [selectedShow, setSelectedShow] = useState('')
+	const [selectedPostType, setSelectedPostType] = useState('watch');
+	const [selectedShow, setSelectedShow] = useState(null);
+
+	const [mediaId, setMediaId] = useState(null);
+	const [content, setContent] = useState('');
+	const [rating, setRating] = useState(null);
 
 	const postChangeHandler = (e) => {
-		setSelectedPostType(e.target.value)
+		if (e.target.value === 'watch') {
+			setRating(null);
+		}
+		setSelectedPostType(e.target.value);
 	}
-	
-	let review
-	if(selectedPostType === 'Review') {
-	review = <textarea className="bg-gray-100 w-full rounded-lg shadow border p-2" rows="5" placeholder="Speak your mind"></textarea>
-				
-	} else {
-	review = ''
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+		if (!mediaId || !content) {
+			alert('Please fill up all the fields');
+			return;
+		}
+		onPostComplete(selectedPostType, content, mediaId, rating);
+		setMediaId(null);
+		setContent('');
+		setSelectedShow(null);
 	}
 
 	// Select Movie for posting purpose
 	const selectShowHandler = (show) => {
-		setSelectedShow(show)
-	}
+		setSelectedShow(show);
+		setMediaId(show.id);
+	};
 
 	const showSelectHandler = () => {
-		setSelectedShow('')
-	}
+		setSelectedShow('');
+	};
 
+	const isReview = selectedPostType === 'review';
 
 	return (
 		<div>
@@ -52,47 +65,38 @@ const Post = () => {
 				<div className="w-1/3">
           			<select className="w-full p-2 rounded-lg bg-gray-100 shadow border float-left"
 						onChange={postChangeHandler}>
-            			<option>Status</option>
-            			<option>Review</option>
+            			<option value='watch'>Watch</option>
+            			<option value='review'>Review</option>
           			</select>
         		</div>
 			</div>
 			
 			<div className="">
-				<form action="#" method="POST">
+				<form>
 					{selectedShow ? 
 						<div className="flex">
 							<MovieShow show={selectedShow}/>
 							<button className="flex h-10 justify-start bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
 								onClick={showSelectHandler}
 							>
-								<XIcon className="h-6 w-6 flex text-right" aria-hidden="true"/>
+								<XIcon className="h-6 w-6 flex text-right" aria-hidden="true" onClick={() => setMediaId(null)}/>
 							</button>
 						</div>
 						: ''
 					}
-					{review ? 
-						<div>	
-							<div>{review}</div>
-							<div className="w-full flex flex-row flex-wrap mt-3 items-center">
-								<div className="w-1/3">
-									<HoverRating/>
-								</div>
-								<div className="w-2/3">
-									<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg">Submit</button>
-								</div>
-							</div>
-						</div>	
-						: 
-						<div className="w-full flex flex-row flex-wrap mt-3 items-center">
-							<div className="w-full">
-								<textarea className="bg-gray-100 w-full rounded-lg shadow border p-2" rows="5" placeholder="Express Yourself"></textarea>
-							</div>
-							<div className="w-1/3 flex">
-								<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg">Submit</button>
-							</div>
+					<div className="w-full flex flex-row flex-wrap mt-3 items-center">
+						<div className="w-full">
+							<textarea className="bg-gray-100 w-full rounded-lg shadow border p-2" rows="5" placeholder="Express Yourself" value={content} onChange={e => setContent(e.target.value)}></textarea>
 						</div>
-					}
+						{isReview && (
+							<div className="w-1/3">
+								<HoverRating value={rating || 2} onRatingChange={(val) => setRating(val)} />
+							</div>
+						)}
+						<div className={isReview ? "w-2/3" : "w-3/3"}>
+							<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg" onClick={onSubmit}>Submit</button>
+						</div>
+					</div>
 				</form>	
 			</div>					
 		</div>	

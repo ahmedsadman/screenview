@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StaticProfile = ({ user }) => {
+const StaticProfile = ({ auth0User, user }) => {
 	return (
 		<div className="mt-5 md:mt-0 md:col-span-2">
 			<div className="shadow sm:rounded-md sm:overflow-hidden">
@@ -9,14 +9,14 @@ const StaticProfile = ({ user }) => {
 						<div className="px-4 py-5 bg-white sm:p-6">
 							<div className="grid grid-cols-6 gap-6">
 								<div className="col-span-6 sm:col-span-4">
-									<label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+									<label htmlFor="username" className="block text-sm font-medium text-gray-700">
 										Name
 									</label>
 									<input
 										type="text"
-										name="email-address"
-										id="email-address"
-										value={user.name}
+										name="username"
+										id="username"
+										value={user.name || auth0User.name}
 										readOnly
 										autoComplete="email"
 										className="mt-1 px-4 border-2 border-gray-300 h-10 focus:ring-gray-800 focus:border-gray-800 block w-full shadow-sm sm:text-sm rounded-md"
@@ -31,7 +31,7 @@ const StaticProfile = ({ user }) => {
 										type="text"
 										name="email-address"
 										id="email-address"
-										value={user.email}
+										value={auth0User.email}
 										readOnly
 										autoComplete="email"
 										className="mt-1 px-4 border-2 border-gray-300 h-10 focus:ring-gray-800 focus:border-gray-800 block w-full shadow-sm sm:text-sm rounded-md"

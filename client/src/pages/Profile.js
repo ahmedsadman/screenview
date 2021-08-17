@@ -16,7 +16,7 @@ const Profile = () => {
 	const onProfileSave = async (name) => {
 		const token = await getAccessTokenSilently();
 		const api = new API(token);
-		await api.updateUser(name, user.email, _auth0User.picture);
+		await api.updateUser(name, _auth0User.email, _auth0User.picture);
 		setProfileEditStatus(false);
 		alert('User updated');
 		await getUser();
@@ -51,7 +51,7 @@ const Profile = () => {
 					
 					<div>
 						<div>
-							{!profileEditStatus ? <StaticProfile user={user}/> : <EditProfile onProfileSave={onProfileSave} user={user}/>}
+							{!profileEditStatus ? <StaticProfile user={user} auth0User={_auth0User}/> : <EditProfile auth0User={_auth0User} onProfileSave={onProfileSave} user={user}/>}
 						</div>
 						{!profileEditStatus?<div className="px-4 mt-2 flex justify-center py-3 bg-gray-50 text-right sm:px-6">
 							 <button

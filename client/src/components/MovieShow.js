@@ -4,7 +4,6 @@ import React from 'react'
 
 
 const MovieShow = ({ show, selectHandler, fromSearch }) => {
-	console.log(show)
 	const image_url = `https://image.tmdb.org/t/p/w500${show.poster_path}`
 	return (
 		<button className="bg-white p-1 rounded-md text-start text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"

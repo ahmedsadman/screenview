@@ -36,8 +36,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HoverRating() {
-  const [value, setValue] = React.useState(2);
+export default function HoverRating({ value, onRatingChange }) {
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles();
 
@@ -49,7 +48,7 @@ export default function HoverRating() {
         precision={0.5}
         max={10}
         onChange={(event, newValue) => {
-          setValue(newValue);
+          onRatingChange(newValue);
         }}
         onChangeActive={(event, newHover) => {
           setHover(newHover);

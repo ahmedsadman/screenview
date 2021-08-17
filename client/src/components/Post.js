@@ -2,22 +2,37 @@ import React, { useState } from 'react'
 import HoverRating from './HoverRating'
 import PostSearchBar from './PostSearchBar'
 import { useAuth0 } from '@auth0/auth0-react'
+import MovieShow from './MovieShow'
+import { XIcon } from '@heroicons/react/outline'
 
 const Post = () => {
 
 	const { user } = useAuth0()
 
 	const [selectedPostType, setSelectedPostType] = useState('')
+	const [selectedShow, setSelectedShow] = useState('')
+
 	const postChangeHandler = (e) => {
 		setSelectedPostType(e.target.value)
 	}
-	 let review
-	 if(selectedPostType === 'Review') {
-		review = <textarea className="bg-gray-100 w-full rounded-lg shadow border p-2" rows="5" placeholder="Speak your mind"></textarea>
-					
-	 } else {
-		review = ''
-	 }
+	
+	let review
+	if(selectedPostType === 'Review') {
+	review = <textarea className="bg-gray-100 w-full rounded-lg shadow border p-2" rows="5" placeholder="Speak your mind"></textarea>
+				
+	} else {
+	review = ''
+	}
+
+	// Select Movie for posting purpose
+	const selectShowHandler = (show) => {
+		setSelectedShow(show)
+	}
+
+	const showSelectHandler = () => {
+		setSelectedShow('')
+	}
+
 
 	return (
 		<div>
@@ -31,7 +46,7 @@ const Post = () => {
 			</div>
 			<div className="flex justify-between mt-2 items-center mb-4">
 				<div className="flex justify-start relative z-10">
-					<PostSearchBar/>
+					<PostSearchBar selectHandler={selectShowHandler}/>
 				</div>
 						
 				<div className="w-1/3">
@@ -45,6 +60,17 @@ const Post = () => {
 			
 			<div className="">
 				<form action="#" method="POST">
+					{selectedShow ? 
+						<div className="flex">
+							<MovieShow show={selectedShow}/>
+							<button className="flex h-10 justify-start bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+								onClick={showSelectHandler}
+							>
+								<XIcon className="h-6 w-6 flex text-right" aria-hidden="true"/>
+							</button>
+						</div>
+						: ''
+					}
 					{review ? 
 						<div>	
 							<div>{review}</div>

@@ -101,6 +101,11 @@ class API {
     return res.data;
   }
 
+  async getPostComments(postId) {
+    const res = await this._axiosAuth.get(`/posts/${postId}/comments`);
+    return res.data;
+  }
+
   /* --------- TMDB ----------------- */
   buildTmdbUrl(url) {
     return `https://api.themoviedb.org/3${url}api_key=${this.tmdbKey}`

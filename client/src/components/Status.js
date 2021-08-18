@@ -1,17 +1,17 @@
 import { ChatIcon } from '@heroicons/react/outline';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 import Comments from './Comments';
 import MovieShow from './MovieShow';
 import API from '../api';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const Status = ({ post, addComment }) => {
+	const { getAccessTokenSilently } = useAuth0();
 	const [commentArea, setCommentArea] = useState(false);
 	const [commentContent, setCommentContent] = useState('');
 	const [visibleComment, setVisibleComment] = useState(post?.comments);
-	const [allCommentsShow, setAllCommentsShow] = useState(false);
 	const [media, setMedia] = useState({});
 
 	let commentVisibility = false;
@@ -54,20 +54,17 @@ const Status = ({ post, addComment }) => {
 	}
 	
 	// TODO: The comment handling logic needs improvement. It should be more simpler
-	const showAllComment = () => {
-		setAllCommentsShow(!allCommentsShow)
-		if(!allCommentsShow){
-			setVisibleComment(post?.comments)
-		} else {
-			setVisibleComment(post?.comments?.slice(0, 2))
-		}
+	const showAllComment = async () => {
+		const token = await getAccessTokenSilently();
+		const api = new API(token);
+		const res = await api.getPostComments(post._id);
+		setVisibleComment(res.comments);
 	}
 
 	const makeComment = () => {
 		setCommentArea(!commentArea)
 	}
 
-	console.log('post comments are', post.comments);
 	return (
 	<div>
 		<div className="mt-3 flex flex-col">
@@ -119,13 +116,9 @@ const Status = ({ post, addComment }) => {
 					{commentVisibility ? 
 						<div className="w-full">
 							<Comments comments={visibleComment} />
-							{allCommentsShow ?
-								<button className="text-xs mt-2 text-gray-400 hover:underline hover:text-gray-500" onClick={showAllComment}>Collapse</button>
-								:
-								<button className="text-xs mt-2 text-gray-400 hover:underline hover:text-gray-500" onClick={showAllComment}>View All Comments</button>
-							}
+							<button className="text-xs mt-2 text-gray-400 hover:underline hover:text-gray-500" onClick={showAllComment}>View All Comments</button>
 						</div>
-						: <p className="text-xs mt-2 text-gray-400" onClick={showAllComment}>Wow Such Empty. Be the first to comment</p>}
+						: <p className="text-xs mt-2 text-gray-400">Wow Such Empty. Be the first to comment</p>}
 					{/* <div className="bg-white border-4 bg-gray-300 border-white rounded-b-lg shadow p-5 text-xl text-gray-700 content-center font-semibold flex flex-row flex-wrap">
 						<div className="w-full">
 							<div className="w-full text-left text-xl text-gray-600">

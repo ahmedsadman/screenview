@@ -23,7 +23,7 @@ const EditProfile = ({ user, auth0User, onProfileSave }) => {
 											type="text"
 											name="username"
 											id="username"
-											value={userName || auth0User.name}
+											value={userName || ''}
 											onChange={(e) => setUserName(e.target.value)}
 											autoComplete="email"
 											className="mt-1 px-4 border-2 border-gray-300 h-10 focus:ring-gray-800 focus:border-gray-800 block w-full shadow-sm sm:text-sm rounded-md"

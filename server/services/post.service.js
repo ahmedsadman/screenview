@@ -98,6 +98,14 @@ class PostService {
 
     return comment;
   }
+
+  async getPostComments(postId) {
+    const comments = await Comment.find({ post: postId }).
+      populate('author', 'name email avatarUrl')
+      .sort({ createdAt: -1 })
+      .lean().exec();
+    return comments;
+  }
 }
 
 module.exports = new PostService();

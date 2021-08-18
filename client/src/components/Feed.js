@@ -20,10 +20,20 @@ const Feed = () => {
 		console.log(type, content, mediaId, rating);
 		const token = await getAccessTokenSilently();
 		const api = new API(token);
-		const res = await api.createPost(type, content, mediaId, rating);
-		console.log('res is', res);
+		await api.createPost(type, content, mediaId, rating);
 		alert('Post created');
 	};
+
+	const addComment = async (id, content) => {
+		if (!content) {
+			alert('You must write something');
+			return;
+		}
+		const token = await getAccessTokenSilently();
+		const api = new API(token);
+		await api.addPostComment(id, content);
+		await getUserFeed();
+	}
 
 	useEffect(() => {
 		getUserFeed();
@@ -38,8 +48,8 @@ const Feed = () => {
 								<Post onPostComplete={onPostComplete} />
     					</div>
 							{posts.map(post => (
-								<div key={post.id} >
-									<Status post={post} />
+								<div key={post._id} >
+									<Status post={post} addComment={addComment} />
 								</div>
 							))}		       						
       				</div>

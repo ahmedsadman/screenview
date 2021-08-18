@@ -1,20 +1,20 @@
 import { ChatIcon } from '@heroicons/react/outline';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import Comments from './Comments';
 import MovieShow from './MovieShow';
 import API from '../api';
 
 
-const Status = ({ post }) => {
+const Status = ({ post, addComment }) => {
 	const [commentArea, setCommentArea] = useState(false);
-	const [visibleComment, setVisibleComment] = useState(['']);
+	const [commentContent, setCommentContent] = useState('');
+	const [visibleComment, setVisibleComment] = useState(post?.comments);
 	const [allCommentsShow, setAllCommentsShow] = useState(false);
 	const [media, setMedia] = useState({});
 
 	let commentVisibility = false;
-	
-	const { comment } = post;
 
 	const getMedia = async () => {
 		const api = new API();
@@ -22,42 +22,52 @@ const Status = ({ post }) => {
 		setMedia(res);
 	}
 
+	const handleCommentSubmit = (e) => {
+		e.preventDefault();
+		addComment(post._id, commentContent);
+		setCommentContent('');
+	}
+
 	useEffect(() => {
 		const commentModification = () => {
-			if(comment){
-				if(comment.length > 2){
-					setVisibleComment(comment.slice(0, 2))
+			if(post.comments){
+				if(post.comments.length > 2){
+					setVisibleComment(post.comments?.slice(0, 2))
 				} else {
-					setVisibleComment(comment)
+					setVisibleComment(post?.comments)
 				}
 			}
 		}
 
 		commentModification();
+		// eslint-disable-next-line
+	}, [post.comments]);
+
+	useEffect(() => {
 		getMedia();
 		// eslint-disable-next-line
-	}, [])
+	}, []);
 	
 	
-	if(comment && comment.length !== 0){
+	if(post.comments && post.comments.length !== 0){
 		commentVisibility = true
 	}
 	
+	// TODO: The comment handling logic needs improvement. It should be more simpler
 	const showAllComment = () => {
 		setAllCommentsShow(!allCommentsShow)
 		if(!allCommentsShow){
-			setVisibleComment(comment)
+			setVisibleComment(post?.comments)
 		} else {
-			setVisibleComment(comment.slice(0, 2))
+			setVisibleComment(post?.comments?.slice(0, 2))
 		}
-		
-		
 	}
 
 	const makeComment = () => {
 		setCommentArea(!commentArea)
 	}
-	console.log('post is', post)
+
+	console.log('post comments are', post.comments);
 	return (
 	<div>
 		<div className="mt-3 flex flex-col">
@@ -93,10 +103,11 @@ const Status = ({ post }) => {
 					{commentArea ? 
 						<div className="rounded-lg bg-gray-50 mb-2 shadow">
 							<form action="#" method="post">
-								<textarea className="bg-gray-100 w-full rounded-t-lg border" rows="3" placeholder="What are your thoughts? "></textarea>
+								<textarea className="bg-gray-100 w-full rounded-t-lg border" rows="3" placeholder="What are your thoughts? " value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
 								<div className="text-center pb-2">
 									<button
 										type="submit"
+										onClick={handleCommentSubmit}
 										className="inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 									>
 										Comment
@@ -107,7 +118,7 @@ const Status = ({ post }) => {
 
 					{commentVisibility ? 
 						<div className="w-full">
-							<Comments comments={visibleComment} key={comment}/>
+							<Comments comments={visibleComment} />
 							{allCommentsShow ?
 								<button className="text-xs mt-2 text-gray-400 hover:underline hover:text-gray-500" onClick={showAllComment}>Collapse</button>
 								:

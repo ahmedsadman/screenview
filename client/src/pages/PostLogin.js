@@ -14,7 +14,9 @@ const PostLogin = () => {
     const _user = await api.getUser();
 
     if (_user.found) {
-      await api.updateUser(user.name, user.email, user.picture);
+      if (!_user.user.name || !_user.user.email) {
+        await api.updateUser(user.name, user.email, user.picture);
+      }
       setRedirectFeed(true);
     } else {
       await api.createUser(user.email);

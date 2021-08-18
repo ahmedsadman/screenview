@@ -13,7 +13,7 @@ const Feed = () => {
 		const token = await getAccessTokenSilently();
 		const api = new API(token);
 		const res = await api.getUserFeed();
-		console.log('feed is', res);
+		setPosts(res.posts);
 	};
 
 	const onPostComplete = async (type, content, mediaId, rating = null) => {
@@ -35,12 +35,13 @@ const Feed = () => {
 				<div className="w-full bg-white-100 h-screen flex flex-row flex-wrap justify-center ">
   					<div className="w-full sm:w-3/4 md:w-3/4 lg:w-4/5 p-5 md:px-12 lg:24 h-full antialiased"> 
     					<div className="bg-white w-full shadow-lg border-2 border-gray-100 rounded-lg p-5">
-							<Post onPostComplete={onPostComplete} />
+								<Post onPostComplete={onPostComplete} />
     					</div>
-        				{posts.map(post => (
-							<div key={post.id} >
-								<Status post={post} />
-							</div>))}		       						
+							{posts.map(post => (
+								<div key={post.id} >
+									<Status post={post} />
+								</div>
+							))}		       						
       				</div>
       			</div>
     		</div>

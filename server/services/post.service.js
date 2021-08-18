@@ -77,7 +77,7 @@ class PostService {
         }
       }
     ]).exec();
-    await User.populate(posts, { path: 'author', select: 'name email' });
+    await User.populate(posts, { path: 'author', select: 'name email avatarUrl' });
     await User.populate(posts, { path: 'comments.author', select: 'name email createdAt' });
     return posts;
   }

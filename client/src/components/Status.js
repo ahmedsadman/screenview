@@ -1,19 +1,26 @@
-import { ChatIcon } from '@heroicons/react/outline'
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import Comments from './Comments'
-import MovieShow from './MovieShow'
+import { ChatIcon } from '@heroicons/react/outline';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Comments from './Comments';
+import MovieShow from './MovieShow';
+import API from '../api';
 
 
 const Status = ({ post }) => {
-	const [commentArea, setCommentArea] = useState(false)
-	const [visibleComment, setVisibleComment] = useState([''])
-	const [allCommentsShow, setAllCommentsShow] = useState(false)
+	const [commentArea, setCommentArea] = useState(false);
+	const [visibleComment, setVisibleComment] = useState(['']);
+	const [allCommentsShow, setAllCommentsShow] = useState(false);
+	const [media, setMedia] = useState({});
 
-
-	let commentVisibility = false
+	let commentVisibility = false;
 	
-	const { comment } = post
+	const { comment } = post;
+
+	const getMedia = async () => {
+		const api = new API();
+		const res = await api.getMediaDetails(post.mediaId);
+		setMedia(res);
+	}
 
 	useEffect(() => {
 		const commentModification = () => {
@@ -26,7 +33,8 @@ const Status = ({ post }) => {
 			}
 		}
 
-		commentModification()
+		commentModification();
+		getMedia();
 		// eslint-disable-next-line
 	}, [])
 	
@@ -49,7 +57,7 @@ const Status = ({ post }) => {
 	const makeComment = () => {
 		setCommentArea(!commentArea)
 	}
-
+	console.log('post is', post)
 	return (
 	<div>
 		<div className="mt-3 flex flex-col">
@@ -57,20 +65,20 @@ const Status = ({ post }) => {
 				<div className="bg-white w-full shadow-lg border-2 border-gray-100 rounded-lg p-5">
 					<div className="flex items-center">
 						<img className="h-10 w-10 mr-4 rounded-full"
-							src={post.userAvatar}
+							src={post?.author?.avatarUrl}
 							alt=""
 						/>
 						<div>
-							<h4 className="text-lg text-gray-700">{post.userNickname}</h4>
+							<h4 className="text-lg text-gray-700">{post.author.name}</h4>
 							<p className="text-sm mt-1 text-gray-400">{post.postDate}</p>
 						</div>
 					</div>
 					<div>
-						{post.type === 'status' ? <p className='text-md text-gray-600 mt-2 mb-2'>Is {post.expression} watching...</p> : 
+						{post.type === 'watch' ? <p className='text-md text-gray-600 mt-2 mb-2'>Is Watching...</p> : 
 							<p className='text-md text-gray-600 mt-2 mb-2'>Posted a Review on</p>}
 						
 						<Link to='#' className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-							<MovieShow show={post} key={post.id} />
+							<MovieShow show={media} key={post.id} />
 						</Link>
 					</div>
 					

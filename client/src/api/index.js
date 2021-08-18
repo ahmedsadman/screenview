@@ -7,6 +7,7 @@ const BASE_URL_PROD = '';
 class API {
   constructor(token) {
     const baseURL = STAGE === 'PROD' ? BASE_URL_PROD : BASE_URL_LOCAL;
+    this.tmdbKey = process.env.REACT_APP_TMDB_KEY;
     this._axiosAuth = axios.create({
       baseURL,
       headers: {
@@ -97,6 +98,21 @@ class API {
       content
     };
     const res = await this._axiosAuth.post(`/posts/${postId}/comments`, data);
+    return res.data;
+  }
+
+  /* --------- TMDB ----------------- */
+  buildTmdbUrl(url) {
+    return `https://api.themoviedb.org/3${url}api_key=${this.tmdbKey}`
+  }
+
+  getPosterPath(url, size=300) {
+    return `https://image.tmdb.org/t/p/w${size}/${url}`;
+  }
+
+  async getMediaDetails(mediaId) {
+    const url = this.buildTmdbUrl(`/movie/${mediaId}?`);
+    const res = await axios.get(url);
     return res.data;
   }
 }

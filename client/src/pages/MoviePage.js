@@ -1,9 +1,12 @@
 import React from 'react'
 
-const MoviePage = () => {
+const MoviePage = ({ match }) => {
+
+	console.log(match)
+
 	return (
 		<div>
-			
+
 		</div>
 	)
 }

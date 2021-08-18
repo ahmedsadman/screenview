@@ -6,8 +6,8 @@ import { useClickOutside } from 'react-click-outside-hook'
 import MoonLoader from 'react-spinners/MoonLoader'
 import axios from 'axios'
 import { useDebounce } from '../hooks/debounceHook'
-import MovieShow from './MovieShow'
 import { SearchIcon } from '@heroicons/react/outline'
+import People from './People'
 
 const SearchBarContainer = styled(motion.div)`
   display: flex;
@@ -48,29 +48,21 @@ const LoadingWrapper = styled.div`
   justify-content: center;
 `;
 
-const WarningMessage = styled.span`
-  color: #a1a1a1;
-  font-size: 14px;
-  display: flex;
-  align-self: center;
-  justify-self: center;
-`;
 
 const containerVariants = {
 	expanded: {
 		height: "30em",
-		position: 'absolute',
-		top: -20
+		position: "fixed",
+
 	},
 	collapsed: {
 		height: "2.7em",
-		position: 'absolute',
-		top: -20
+		position: "fixed"
 	},
 }
 
 
-const PostSearchBar = ({ keyword, selectHandler }) => {
+const UserSearchBar = ({ keyword, selectHandler }) => {
 
 	const key = process.env.REACT_APP_TMDB_KEY
 
@@ -79,12 +71,12 @@ const PostSearchBar = ({ keyword, selectHandler }) => {
 	const inputRef = useRef()
 	const [searchQuery, setSearchQuery] = useState("")
 	const [isLoading, setLoading] = useState(false)
-	const [tvShows, setTvShows] = useState([])
+	const [allUsers, setAllUsers] = useState([])
 	const [noTvShows, setNoTvShows] = useState(false)
 
 	const fromSearch = useState(true)
 
-	const isEmpty = !tvShows || tvShows.length === 0
+	const isEmpty = !allUsers || allUsers.length === 0
 
 	const changeHandler = (e) => {
 		e.preventDefault()
@@ -102,7 +94,7 @@ const PostSearchBar = ({ keyword, selectHandler }) => {
 		setSearchQuery("")
 		setLoading(false)
 		setNoTvShows(false)
-		setTvShows([])
+		setAllUsers([])
 		if (inputRef.current) inputRef.current.value = ""
 	}
 
@@ -111,6 +103,7 @@ const PostSearchBar = ({ keyword, selectHandler }) => {
 	}, [isClickedOutside])
 
 	const prepareSearchQuery = (query) => {
+		//TODO: replace it with user api
 		const url = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${query}`
 
 		return encodeURI(url)
@@ -133,7 +126,7 @@ const PostSearchBar = ({ keyword, selectHandler }) => {
 		if (response) {
 			if (responseList && responseList.length === 0) setNoTvShows(true)
 
-			setTvShows(responseList.results)
+			setAllUsers(responseList.results)
 		}
 
 		setLoading(false)
@@ -143,14 +136,14 @@ const PostSearchBar = ({ keyword, selectHandler }) => {
 
 
 	return (
-		<div style={{ display: 'relative' }}>
+		<div className="flex justify-center mb-10 mt-10">
 			<SearchBarContainer
 				animate={isExpanded ? "expanded" : "collapsed"}
 				variants={containerVariants}
 				ref={parentRef}
 				className="border-2 border-gray-300 "
 			>
-				<div className="relative mx-auto z-0 text-gray-600 flex items-center">
+				<div className="mx-auto z-0 text-gray-600 flex items-center">
 					<SearchIcon className="p-2 items-center text-center h-10 w-10" aria-hidden="true" />
 					<input className="w-full pr-24 rounded-md text-sm focus:outline-none hover:border-gray-600"
 						placeholder="Search" onFocus={expandContainer} ref={inputRef} value={searchQuery} onChange={changeHandler} />
@@ -180,15 +173,10 @@ const PostSearchBar = ({ keyword, selectHandler }) => {
 								<MoonLoader loading color="#000" size={20} />
 							</LoadingWrapper>
 						)}
-						{!isLoading && noTvShows && (
-							<LoadingWrapper>
-								<WarningMessage>No Tv Shows or Series found!</WarningMessage>
-							</LoadingWrapper>
-						)}
 						{!isLoading && !isEmpty && (
 							<>
-								{tvShows.map(show => (
-									<MovieShow fromSearch={fromSearch} selectHandler={selectHandler} show={show} key={show.id} />
+								{allUsers.map(show => (
+									<People user={show} />
 								))}
 							</>
 						)}
@@ -200,4 +188,4 @@ const PostSearchBar = ({ keyword, selectHandler }) => {
 	)
 }
 
-export default PostSearchBar
+export default UserSearchBar

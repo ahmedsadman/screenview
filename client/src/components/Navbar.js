@@ -6,17 +6,15 @@ import {
 	BookmarkAltIcon,
 	MenuIcon,
 	HomeIcon,
-	LinkIcon,
+	UserGroupIcon,
 	XIcon,
 	BellIcon,
 } from '@heroicons/react/outline'
 import UserAvatar from './UserAvatar'
 import PostSearchBar from './PostSearchBar';
 
-
-
 const Navbar = () => {
-	const { logout, user } = useAuth0()
+	const { user, logout } = useAuth0()
 
 	return (
 		<Popover className="">
@@ -24,7 +22,7 @@ const Navbar = () => {
 				<>
 					<div className="max-w-full fixed bg-white max-h-24 h-24 inset-x-0 top-0 mx-auto px-4 sm:px-6 z-10">
 						<div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
-							
+
 							{/* LOGO */}
 							<div className="flex space-x-4 justify-start lg:w-0 lg:flex-1 items-center">
 								<Link to="/feed">
@@ -35,11 +33,11 @@ const Navbar = () => {
 								<div className="relative">
 									<PostSearchBar />
 								</div>
-								
 
-								
+
+
 							</div>
-							
+
 							{/* small screen burger */}
 							<div className="-mr-2 -my-2  lg:hidden">
 								<Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -53,8 +51,8 @@ const Navbar = () => {
 								<Link to="/feed" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<HomeIcon className="h-6 w-6" aria-hidden="true" />
 								</Link>
-								<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-									<LinkIcon className="h-6 w-6" aria-hidden="true" />
+								<Link to="/connections" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+									<UserGroupIcon className="h-6 w-6" aria-hidden="true" />
 								</Link>
 								<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<BookmarkAltIcon className="h-6 w-6" aria-hidden="true" />
@@ -63,13 +61,13 @@ const Navbar = () => {
 									<BellIcon className="h-6 w-6" aria-hidden="true" />
 								</Link>
 							</div>
-							
+
 							{/* UserAvatar */}
 							<div className="hidden md:flex items-center justify-end md:flex-1 md:w-0">
 								<div className="lg:mr-10">
-									<UserAvatar/>
+									<UserAvatar />
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
@@ -94,7 +92,7 @@ const Navbar = () => {
 									<div className="flex items-center justify-between">
 										<div>
 											<img className="h-10 w-10 rounded-full"
-												src={user.picture}
+												src={user.useravatar}
 												alt=""
 											/>
 										</div>
@@ -111,8 +109,8 @@ const Navbar = () => {
 										<Link to="/feed" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 											<HomeIcon className="h-6 w-6" aria-hidden="true" />
 										</Link>
-										<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-											<LinkIcon className="h-6 w-6" aria-hidden="true" />
+										<Link to="/connections" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+											<UserGroupIcon className="h-6 w-6" aria-hidden="true" />
 										</Link>
 										<Link to="#" className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 											<BookmarkAltIcon className="h-6 w-6" aria-hidden="true" />
@@ -122,9 +120,9 @@ const Navbar = () => {
 										</Link>
 										<button
 											className="ml-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" onClick={() =>
-											logout({
-												returnTo: window.location.origin,
-											})}
+												logout({
+													returnTo: window.location.origin,
+												})}
 										>
 											Log Out
 										</button>

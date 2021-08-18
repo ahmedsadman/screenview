@@ -55,27 +55,27 @@ const Post = ({ onPostComplete }) => {
 					alt=""
 				/>
 				<h4>What are you feeling....</h4>
-						
+
 			</div>
 			<div className="flex justify-between mt-2 items-center mb-4">
 				<div className="flex justify-start relative z-10">
-					<PostSearchBar selectHandler={selectShowHandler}/>
+					<PostSearchBar selectHandler={selectShowHandler} />
 				</div>
-						
+
 				<div className="w-1/3">
-          			<select className="w-full p-2 rounded-lg bg-gray-100 shadow border float-left"
+					<select className="w-full p-2 rounded-lg bg-gray-100 shadow border float-left"
 						onChange={postChangeHandler}>
             			<option value='watch'>Watch</option>
             			<option value='review'>Review</option>
           			</select>
         		</div>
 			</div>
-			
+
 			<div className="">
 				<form>
 					{selectedShow ? 
 						<div className="flex">
-							<MovieShow show={selectedShow}/>
+							<MovieShow show={selectedShow} />
 							<button className="flex h-10 justify-start bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
 								onClick={showSelectHandler}
 							>

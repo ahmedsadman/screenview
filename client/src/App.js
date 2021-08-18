@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import PostLogin from './pages/PostLogin';
 import Profile from './pages/Profile'
 import ProtectedRoute from './auth/protected-route';
+import ConnectionPage from './pages/ConnectionPage';
 import test from './pages/test';
 
 function App() {
@@ -16,12 +17,13 @@ function App() {
       <Switch>
         <ProtectedRoute exact path="/feed" component={HomePage} />
         <ProtectedRoute exact path="/postlogin" component={PostLogin} />
-        <ProtectedRoute exact path="/profile" component={Profile}/>
+        <ProtectedRoute exact path="/profile" component={Profile} />
+        <ProtectedRoute exact path="/connections" component={ConnectionPage} />
       </Switch>
       <Route path="/test" exact component={test} />
-      
+
     </>
-    
+
   );
 }
 

@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import ProtectedRoute from './auth/protected-route';
 import ConnectionPage from './pages/ConnectionPage';
 import test from './pages/test';
+import MoviePage from './pages/MoviePage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <ProtectedRoute exact path="/postlogin" component={PostLogin} />
         <ProtectedRoute exact path="/profile" component={Profile} />
         <ProtectedRoute exact path="/connections" component={ConnectionPage} />
+        <ProtectedRoute exact path="/movie/:id" component={MoviePage} />
       </Switch>
       <Route path="/test" exact component={test} />
 

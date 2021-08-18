@@ -2,7 +2,6 @@ import React from 'react'
 
 
 const Comments = ({ comments }) => {
-	console.log('inside comments are', comments);
 	return (
 		<div>
 			{comments.map(comment => (

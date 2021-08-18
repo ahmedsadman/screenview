@@ -6,4 +6,5 @@ const checkJwt = require('../middleware/checkJwt');
 module.exports = express
   .Router()
   .post('/', checkJwt, wrap(controller.create))
-  .post('/:postId/comments', checkJwt, wrap(controller.addComment));
+  .post('/:postId/comments', checkJwt, wrap(controller.addComment))
+  .get('/:postId/comments', checkJwt, wrap(controller.getComments));

@@ -14,6 +14,15 @@ class PostController {
     const comment = await postService.addComment(postId, sub, content);
     res.status(201).json(comment);
   }
+
+  async getComments(req, res) {
+    const { postId } = req.params;
+    const comments = await postService.getPostComments(postId);
+    res.json({
+      total: comments.length,
+      comments
+    })
+  }
 }
 
 module.exports = new PostController();

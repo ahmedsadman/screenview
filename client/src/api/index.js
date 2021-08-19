@@ -50,6 +50,11 @@ class API {
     return res.data;
   }
 
+  async unfollowUser(followeeId) {
+    const res = await this._axiosAuth.post(`/users/me/unfollow/${followeeId}`);
+    return res.data;
+  }
+
   async getFollowees() {
     const res = await this._axiosAuth.get(`/users/me/followee`);
     return res.data;

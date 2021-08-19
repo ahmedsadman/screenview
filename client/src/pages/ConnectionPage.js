@@ -8,25 +8,52 @@ import { useAuth0 } from '@auth0/auth0-react';
 const ConnectionPage = () => {
 	const { getAccessTokenSilently } = useAuth0();
 	const [userSuggestions, setUserSuggestions] = useState([]);
+	const [followeesId, setFolloweesId] = useState([]);
 
-	const getUserSuggestions = async () => {
+	const fetchFollowees = async () => {
+		const token = await getAccessTokenSilently();
+		const api = new API(token);
+		const resFollowees = await api.getFollowees();
+		const followeesId = resFollowees.followees.map(user => user.to._id);
+		setFolloweesId(followeesId);
+		return followeesId;
+	}
+
+	const getUserSuggestions = async (_followeesId) => {
 		const token = await getAccessTokenSilently();
 		const api = new API(token);
 		const res = await api.getUserSuggestions();
-		const resFollowees = await api.getFollowees();
-		const followeesId = resFollowees.followees.map(user => user.to._id);
 
 		const modifiedUsers = res.users.map(user => {
-			user.isFollowing = followeesId.includes(user._id);
+			user.isFollowing = _followeesId.includes(user._id);
 			return user;
 		});
 
 		setUserSuggestions(modifiedUsers);
 	}
 
+	const fetchAndSyncSuggestion = async () => {
+		return fetchFollowees().then((_followeesId) => {
+			getUserSuggestions(_followeesId);
+		});
+	}
+
+	const updateFolloweesIds = (action, id) => {
+		let newFolloweesId = [];
+		if (action === 'follow') {
+			newFolloweesId = [id, ...followeesId];
+			setFolloweesId(newFolloweesId);
+		} else {
+			newFolloweesId = followeesId.filter(_id => _id !== id);
+			setFolloweesId(newFolloweesId);
+		}
+		return newFolloweesId;
+	}
+
 	const handleFollowUnfollow = async (action, id) => {
 		const token = await getAccessTokenSilently();
 		const api = new API(token);
+
 		if (action === 'follow') {
 			const res = await api.followUser(id);
 			console.log(res);
@@ -35,11 +62,13 @@ const ConnectionPage = () => {
 			const res = await api.unfollowUser(id);
 			console.log(res);
 		}
-		await getUserSuggestions();
+
+		const newFolloweesId = updateFolloweesIds(action, id);
+		await getUserSuggestions(newFolloweesId);
 	}
 
 	useEffect(() => {
-		getUserSuggestions();
+		fetchAndSyncSuggestion();
 	}, []);
 
 	return (
@@ -60,7 +89,6 @@ const ConnectionPage = () => {
 							{userSuggestions.map(user => (
 								<People user={user} key={user._id} actionHandler={handleFollowUnfollow} />
 							))}
-
 						</div>
 					</div>
 				</div>

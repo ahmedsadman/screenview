@@ -136,7 +136,7 @@ const UserSearchBar = ({ keyword, selectHandler }) => {
 
 
 	return (
-		<div className="flex justify-center mb-10 mt-10">
+		<div className="flex justify-center mb-10 mt-5">
 			<SearchBarContainer
 				animate={isExpanded ? "expanded" : "collapsed"}
 				variants={containerVariants}

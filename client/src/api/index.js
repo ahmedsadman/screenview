@@ -80,6 +80,11 @@ class API {
     return res.data;
   }
 
+  async getUserSuggestions() {
+    const res = await this._axiosAuth.get('/users/suggestions');
+    return res.data;
+  }
+
   /* --------------------- POSTS ----------------------- */
   async createPost(type, content, mediaId, rating = null) {
     const data = {

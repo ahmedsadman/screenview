@@ -12,6 +12,7 @@ module.exports = express
   .get('/me', checkJwt, wrap(controller.getUser))
   .get('/me/posts', checkJwt, wrap(controller.getUserPosts))
   .post('/me/follow/:toId', checkJwt, wrap(controller.followUser))
+  .post('/me/unfollow/:toId', checkJwt, wrap(controller.unfollowUser))
   .get('/me/followee', checkJwt, wrap(controller.getFollowees))
   .get('/me/feed', checkJwt, wrap(controller.getUserFeed))
   .post('/me/watchlist', checkJwt, wrap(controller.addToWatchList))

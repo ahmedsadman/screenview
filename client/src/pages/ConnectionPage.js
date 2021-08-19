@@ -13,8 +13,29 @@ const ConnectionPage = () => {
 		const token = await getAccessTokenSilently();
 		const api = new API(token);
 		const res = await api.getUserSuggestions();
-		console.log('response is', res);
-		setUserSuggestions(res.users);
+		const resFollowees = await api.getFollowees();
+		const followeesId = resFollowees.followees.map(user => user.to._id);
+
+		const modifiedUsers = res.users.map(user => {
+			user.isFollowing = followeesId.includes(user._id);
+			return user;
+		});
+
+		setUserSuggestions(modifiedUsers);
+	}
+
+	const handleFollowUnfollow = async (action, id) => {
+		const token = await getAccessTokenSilently();
+		const api = new API(token);
+		if (action === 'follow') {
+			const res = await api.followUser(id);
+			console.log(res);
+		}
+		if (action === 'unfollow') {
+			const res = await api.unfollowUser(id);
+			console.log(res);
+		}
+		await getUserSuggestions();
 	}
 
 	useEffect(() => {
@@ -37,7 +58,7 @@ const ConnectionPage = () => {
 						<div className="mt-2 p-5 max-w-1/3 w-1/3 sm:w-full">
 							<h3 className="text-center">Suggestions</h3>
 							{userSuggestions.map(user => (
-								<People user={user} key={user._id} />
+								<People user={user} key={user._id} actionHandler={handleFollowUnfollow} />
 							))}
 
 						</div>

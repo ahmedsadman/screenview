@@ -48,6 +48,13 @@ class UserController {
     res.status(201).json(follower);
   }
 
+  async unfollowUser(req, res) {
+    const { toId } = req.params;
+    const { sub } = req.user;
+    await userService.unfollowUser(sub, toId);
+    res.json();
+  }
+
   async getFollowees(req, res) {
     const { sub } = req.user;
     const followees = await userService.getFollowees(sub);

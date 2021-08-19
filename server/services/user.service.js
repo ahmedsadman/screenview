@@ -72,6 +72,19 @@ class UserService {
     return follower;
   }
 
+  async unfollowUser(guid, toUserId) {
+    // fromUserId -> The user (follower)
+    // toUserId -> The person the user wants to follow (followee)
+    const user = await User.findOne({ guid }).lean().exec();
+    const isFollowing = await Follower.findOne({ from: user._id, to: toUserId}).lean().exec();
+
+    if (!isFollowing) {
+      throw new APIError('You are not following the user', 400);
+    }
+
+    await Follower.deleteOne({ from: user._id, to: toUserId });
+  }
+
   async getFollowees(guid) {
     const user = await User.findOne({ guid }).lean().exec();
     const followees = await Follower.find({ from: user._id }, 'to').populate('to').exec();

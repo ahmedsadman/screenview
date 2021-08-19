@@ -57,6 +57,14 @@ class UserController {
     });
   }
 
+  async getFollowSuggestions(req, res) {
+    const { sub } = req.user;
+    const users = await userService.getFollowSuggestions(sub);
+    res.json({
+      users
+    });
+  }
+
   async getUserFeed(req, res) {
     const { sub } = req.user;
     const posts = await userService.getUserFeed(sub);

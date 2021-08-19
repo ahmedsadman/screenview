@@ -33,6 +33,13 @@ class UserService {
     return posts;
   }
 
+  async getFollowSuggestions(myId) {
+    const users = await User.find({ guid: {
+      $ne: myId
+    } }).sort({ createdAt: -1 }).limit(10).lean().exec();
+    return users;
+  }
+
   async searchUserByName(query) {
     const users = await User.find({
       name: {

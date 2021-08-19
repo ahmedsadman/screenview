@@ -6,6 +6,7 @@ const checkJwt = require('../middleware/checkJwt');
 module.exports = express
   .Router()
   .get('/search', checkJwt, wrap(controller.searchUser))
+  .get('/suggestions', checkJwt, wrap(controller.getFollowSuggestions))
   .post('/me', checkJwt, wrap(controller.create))
   .put('/me', checkJwt, wrap(controller.updateUser))
   .get('/me', checkJwt, wrap(controller.getUser))

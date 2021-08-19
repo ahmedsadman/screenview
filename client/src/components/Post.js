@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import HoverRating from './HoverRating'
 import PostSearchBar from './PostSearchBar'
 import { useAuth0 } from '@auth0/auth0-react'
-import MovieShow from './MovieShow'
 import { XIcon } from '@heroicons/react/outline'
+import MovieShowCard from './MovieShowCard'
 
 const Post = ({ onPostComplete }) => {
 
@@ -11,6 +11,7 @@ const Post = ({ onPostComplete }) => {
 
 	const [selectedPostType, setSelectedPostType] = useState('watch');
 	const [selectedShow, setSelectedShow] = useState(null);
+	const [fromPost, setFromPost] = useState(true);
 
 	const [mediaId, setMediaId] = useState(null);
 	const [content, setContent] = useState('');
@@ -59,27 +60,27 @@ const Post = ({ onPostComplete }) => {
 			</div>
 			<div className="flex justify-between mt-2 items-center mb-4">
 				<div className="flex justify-start relative z-10">
-					<PostSearchBar selectHandler={selectShowHandler} />
+					<PostSearchBar fromPost={fromPost} selectHandler={selectShowHandler} />
 				</div>
 
 				<div className="w-1/3">
 					<select className="w-full p-2 rounded-lg bg-gray-100 shadow border float-left"
 						onChange={postChangeHandler}>
-            			<option value='watch'>Watch</option>
-            			<option value='review'>Review</option>
-          			</select>
-        		</div>
+						<option value='watch'>Watch</option>
+						<option value='review'>Review</option>
+					</select>
+				</div>
 			</div>
 
 			<div className="">
 				<form>
-					{selectedShow ? 
+					{selectedShow ?
 						<div className="flex">
-							<MovieShow show={selectedShow} />
+							<MovieShowCard show={selectedShow} />
 							<button className="flex h-10 justify-start bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
 								onClick={showSelectHandler}
 							>
-								<XIcon className="h-6 w-6 flex text-right" aria-hidden="true" onClick={() => setMediaId(null)}/>
+								<XIcon className="h-6 w-6 flex text-right" aria-hidden="true" onClick={() => setMediaId(null)} />
 							</button>
 						</div>
 						: ''
@@ -97,9 +98,9 @@ const Post = ({ onPostComplete }) => {
 							<button type="button" className="float-right bg-indigo-400 hover:bg-indigo-300 text-white p-2 rounded-lg" onClick={onSubmit}>Submit</button>
 						</div>
 					</div>
-				</form>	
-			</div>					
-		</div>	
+				</form>
+			</div>
+		</div>
 	)
 }
 

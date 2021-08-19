@@ -32,11 +32,13 @@ const ConnectionPage = () => {
 			<div className="flex flex-col justify-center w-full items-center">
 				<div className="lg:w-1/3 w-full">
 					<div className="mt-28">
+						<h3 className="text-center">Search For People</h3>
 						<UserSearchBar />
 					</div>
 
 					<div className="flex justify-center">
-						<div className="p-5 max-w-1/3 w-1/3 sm:w-full">
+						<div className="mt-2 p-5 max-w-1/3 w-1/3 sm:w-full">
+							<h3 className="text-center">Suggestions</h3>
 							{users.map(user => (
 								<People user={user} key={user.username} />
 							))}

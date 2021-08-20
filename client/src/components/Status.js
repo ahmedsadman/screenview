@@ -5,6 +5,7 @@ import Comments from './Comments';
 import API from '../api';
 import { useAuth0 } from '@auth0/auth0-react';
 import MovieShowCard from './MovieShowCard';
+import { StarIcon } from '@heroicons/react/solid';
 
 
 const Status = ({ post, addComment }) => {
@@ -90,8 +91,14 @@ const Status = ({ post, addComment }) => {
 							<Link to={`/movie/${media.id}`} className="bg-white p-1 shadow-md rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 								<MovieShowCard show={media} fromStatus={fromStatus} />
 							</Link>
+							{post.rating ?
+								<p className='text-sm mt-3 flex items-center'>
+									Rating: {post.rating}<StarIcon className="h-4 w-4 text-yellow-500" />
+								</p> :
+								''
+							}
 
-							<p className='text-md text-gray-600 mt-2 mb-2'>{post.content}</p>
+							<p className='text-md text-gray-600 mt-1 mb-2'>{post.content}</p>
 
 						</div>
 

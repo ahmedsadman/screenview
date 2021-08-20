@@ -6,4 +6,4 @@ require('dotenv').config();
 module.exports = new Server()
   .router(routes)
   .db(process.env.MONGODB_DATABASE_URI)
-  .listen(3001);
+  .listen(process.env.PORT || 3001);

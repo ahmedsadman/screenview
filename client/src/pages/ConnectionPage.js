@@ -4,11 +4,14 @@ import UserSearchBar from '../components/UserSearchBar';
 import Navbar from '../components/Navbar';
 import API from '../api';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useDebounce } from '../hooks/debounceHook';
 
 const ConnectionPage = () => {
 	const { getAccessTokenSilently } = useAuth0();
 	const [userSuggestions, setUserSuggestions] = useState([]);
+	const [userSearchResult, setUserSearchResult] = useState([]);
 	const [followeesId, setFolloweesId] = useState([]);
+	const [searchQuery, setSearchQuery] = useState('');
 
 	const fetchFollowees = async () => {
 		const token = await getAccessTokenSilently();
@@ -17,6 +20,10 @@ const ConnectionPage = () => {
 		const followeesId = resFollowees.followees.map(user => user.to._id);
 		setFolloweesId(followeesId);
 		return followeesId;
+	}
+
+	const onChangeSearchQuery = (e) => {
+		setSearchQuery(e.target.value);
 	}
 
 	const getUserSuggestions = async (_followeesId) => {
@@ -65,7 +72,27 @@ const ConnectionPage = () => {
 
 		const newFolloweesId = updateFolloweesIds(action, id);
 		await getUserSuggestions(newFolloweesId);
+		await searchUser(newFolloweesId);
 	}
+
+	const searchUser = async (_followeesId) => {
+		if (!searchQuery || searchQuery.trim() === "") {
+			setUserSearchResult([]);
+			return;
+		};
+
+		const token = await getAccessTokenSilently();
+		const api = new API(token);
+
+		const res = await api.searchUserByName(searchQuery);
+		const modifiedUsers = res.users.map(user => {
+			user.isFollowing = _followeesId.includes(user._id);
+			return user;
+		});
+		setUserSearchResult(modifiedUsers);
+	}
+
+	useDebounce(searchQuery, 500, () => searchUser(followeesId));
 
 	useEffect(() => {
 		fetchAndSyncSuggestion();
@@ -80,7 +107,7 @@ const ConnectionPage = () => {
 				<div className="lg:w-1/3 w-full">
 					<div className="mt-28">
 						<h3 className="text-center">Search For People</h3>
-						<UserSearchBar />
+						<UserSearchBar searchQuery={searchQuery} users={userSearchResult} actionHandler={handleFollowUnfollow} onChangeSearchQuery={onChangeSearchQuery} />
 					</div>
 
 					<div className="flex justify-center">

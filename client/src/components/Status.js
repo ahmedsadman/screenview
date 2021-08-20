@@ -131,7 +131,7 @@ const Status = ({ post, addComment }) => {
 						{commentVisibility ?
 							<div className="w-full">
 								<Comments comments={visibleComment} />
-								<button className="text-xs mt-2 text-gray-400 hover:underline hover:text-gray-500" onClick={showAllComment}>View All Comments: {post.totalComments[0].count}</button>
+								<button className="text-xs mt-2 text-gray-400 hover:underline hover:text-gray-500" onClick={showAllComment}>View All Comments({post.totalComments[0].count})</button>
 							</div>
 							: <p className="text-xs mt-2 text-gray-400">Wow Such Empty. Be the first to comment</p>}
 						{/* <div className="bg-white border-4 bg-gray-300 border-white rounded-b-lg shadow p-5 text-xl text-gray-700 content-center font-semibold flex flex-row flex-wrap">

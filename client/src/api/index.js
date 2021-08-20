@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const STAGE = process.env.REACT_APP_STAGE
 const BASE_URL_LOCAL = 'http://localhost:3001';
-const BASE_URL_PROD = '';
+const BASE_URL_PROD = 'https://screenview.herokuapp.com';
 
 class API {
   constructor(token) {

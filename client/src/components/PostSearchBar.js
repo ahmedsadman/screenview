@@ -193,7 +193,7 @@ const PostSearchBar = ({ keyword, selectHandler, fromPost }) => {
 									<>
 										{tvShows.map(show => (
 											<Link to={`/movie/${show.id}`} key={show.id} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-												<MovieShowCard show={show} />
+												<MovieShowCard fromSearch={fromSearch} show={show} />
 											</Link>
 										))}
 									</>

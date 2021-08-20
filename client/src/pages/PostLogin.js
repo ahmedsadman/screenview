@@ -20,6 +20,7 @@ const PostLogin = () => {
       setRedirectFeed(true);
     } else {
       await api.createUser(user.email);
+      await api.updateUser(user.name, user.email, user.picture);
       setRedirectProfile(true);
     }
   };

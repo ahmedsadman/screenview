@@ -67,10 +67,6 @@ const Status = ({ post, addComment }) => {
 		setCommentArea(!commentArea)
 	}
 
-	const h = '0'
-
-	console.log(post.totalComments[0].count)
-
 	return (
 		<div>
 			<div className="mt-3 flex flex-col">

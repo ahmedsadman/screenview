@@ -116,6 +116,11 @@ class API {
     return res.data;
   }
 
+  async getReviewPosts(mediaId) {
+    const res = await this._axiosAuth.get(`/posts/reviews/${mediaId}`);
+    return res.data;
+  }
+
   /* --------- TMDB ----------------- */
   buildTmdbUrl(url) {
     return `https://api.themoviedb.org/3${url}api_key=${this.tmdbKey}`

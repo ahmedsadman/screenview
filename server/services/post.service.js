@@ -100,11 +100,19 @@ class PostService {
   }
 
   async getPostComments(postId) {
-    const comments = await Comment.find({ post: postId }).
-      populate('author', 'name email avatarUrl')
+    const comments = await Comment.find({ post: postId })
+      .populate('author', 'name email avatarUrl')
       .sort({ createdAt: -1 })
       .lean().exec();
     return comments;
+  }
+
+  async getReviewPosts(mediaId) {
+    const posts = await Post.find({ mediaId, type: 'review' })
+      .populate('author', 'name email avatarUrl')
+      .sort({ createdAt: -1 })
+      .lean().exec();
+    return posts;
   }
 }
 

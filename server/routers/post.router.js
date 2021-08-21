@@ -7,4 +7,5 @@ module.exports = express
   .Router()
   .post('/', checkJwt, wrap(controller.create))
   .post('/:postId/comments', checkJwt, wrap(controller.addComment))
-  .get('/:postId/comments', checkJwt, wrap(controller.getComments));
+  .get('/:postId/comments', checkJwt, wrap(controller.getComments))
+  .get('/reviews/:mediaId', checkJwt, wrap(controller.getReviewPosts));

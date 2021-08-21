@@ -51,8 +51,8 @@ const EditProfile = ({ user, auth0User, onProfileSave }) => {
 									<div className="h-20 w-20 rounded-full overflow-hidden bg-gray-100">
 										<img src={user.avatarUrl} alt="" />
 									</div>
-								</div>	
-							</div>			
+								</div>
+							</div>
 						</div>
 						<div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
 							<button

@@ -4,6 +4,7 @@ import { StarIcon } from '@heroicons/react/solid';
 import Navbar from '../components/Navbar';
 import Loading from '../components/Loading';
 import ReactPlayer from 'react-player';
+import { Link } from 'react-router-dom';
 
 const MoviePage = ({ match }) => {
 	const [movieDetails, setMovieDetails] = useState();
@@ -30,7 +31,7 @@ const MoviePage = ({ match }) => {
 		// eslint-disable-next-line
 	}, [])
 
-	// console.log(movieVideos);
+	console.log(movieDetails);
 
 	// Delete later
 	const reviews = [{
@@ -102,12 +103,15 @@ const MoviePage = ({ match }) => {
 									</div>
 									<p className='h-auto text-left text-sm'>{movieDetails.overview}</p>
 
-									<div className="flex text-xs mt-4"><p className="text-xs underline">Genres:</p>
+									<div className="flex text-xs mt-3"><p className="text-xs underline">Genres:</p>
 										{movieDetails.genres.map(genre => (
 											<p className='text-xs ml-4 no-underline' key={genre.id}>{genre.name};</p>
 										))}
 									</div>
 
+									<Link className="text-xs text-left mt-2" to={movieDetails.homepage}>
+										<p className="mt-2 text-indigo-400 hover:text-blue-800 hover:underline">HomePage</p>
+									</Link>
 
 								</div>
 							</div>

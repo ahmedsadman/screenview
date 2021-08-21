@@ -109,9 +109,9 @@ const MoviePage = ({ match }) => {
 										))}
 									</div>
 
-									<Link className="text-xs text-left mt-2" to={movieDetails.homepage}>
+									<a className="text-xs text-left mt-2" href={movieDetails.homepage}>
 										<p className="mt-2 text-indigo-400 hover:text-blue-800 hover:underline">HomePage</p>
-									</Link>
+									</a>
 
 								</div>
 							</div>

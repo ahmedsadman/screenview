@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import hero from '../assets/1154.jpg';
+import hero from '../assets/1154.png';
 import SignIn from '../components/SignIn';
 
 const LandingPage = () => {
@@ -11,7 +11,7 @@ const LandingPage = () => {
 			<div className="bg-white hidden lg:block max-w-screen md:w-1/2 xl:w-2/3 justify-center">
 				<img src={hero} alt="hero" className="w-full  max-h-screen object-cover" />
 			</div>
-			<SignIn/>
+			<SignIn />
 		</div>
 	)
 }

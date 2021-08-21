@@ -21,7 +21,16 @@ class PostController {
     res.json({
       total: comments.length,
       comments
-    })
+    });
+  }
+
+  async getReviewPosts(req, res) {
+    const { mediaId } = req.params;
+    const posts = await postService.getReviewPosts(mediaId);
+    res.json({
+      total: posts.length,
+      posts
+    });
   }
 }
 

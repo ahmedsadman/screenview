@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { getRecommendedObject } from '../data/getMovieData'
 import Loading from './Loading'
 import MovieShowCard from './MovieShowCard'
+import { PlusCircleIcon } from '@heroicons/react/solid'
 
 const getSelectedClassName = (selected) => {
 	const staticClass = 'w-full text-sm leading-5 font-medium rounded-lg bg-white rounded-md p-4 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'
@@ -33,6 +34,10 @@ const Recommendation = () => {
 		// eslint-disable-next-line
 	}, [])
 
+	const addToWatchList = () => {
+		// TODO: The logic for adding to watchlist
+	}
+
 	return (
 		<div className="rounded-lg overflow-auto hidden border-2 border-gray-500 xl:block border-opacity-20 max-w-1/4 max-h-3/4">
 			{catagories ?
@@ -51,9 +56,16 @@ const Recommendation = () => {
 							{Object.values(catagories).map((shows, idx) => (
 								<Tab.Panel key={idx}>
 									{shows.map((show) => (
-										<Link to={`/movie/${show.id}`} key={show.id} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-											<MovieShowCard show={show} />
-										</Link>
+										<div className="flex">
+											<Link to={`/movie/${show.id}`} key={show.id} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+												<MovieShowCard show={show} />
+											</Link>
+											<button className="flex h-10 justify-start bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+												onClick={addToWatchList(show.id)}
+											>
+												<PlusCircleIcon className='h-6 w-6 text-green-600' />
+											</button>
+										</div>
 									))}
 								</Tab.Panel>
 							))}

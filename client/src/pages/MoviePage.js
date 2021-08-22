@@ -104,7 +104,7 @@ const MoviePage = ({ match }) => {
 						{visibleReviews ?
 							<div className="w-full mt-4">
 								{visibleReviews.map(review => (
-									<div className="bg-white border-1 bg-gray-100 border-white mb-2 rounded-lg shadow content-center p-2 text-md text-gray-700">
+									<div key={review.id} className="bg-white border-1 bg-gray-100 border-white mb-2 rounded-lg shadow content-center p-2 text-md text-gray-700">
 										<div>
 											<div className="flex items-center justify-start">
 												<img className="h-8 w-8 mr-3 rounded-full"

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 import MovieShow from './MovieShow'
 import { SearchIcon } from '@heroicons/react/outline'
 import MovieShowCard from './MovieShowCard'
+import { PlusCircleIcon } from '@heroicons/react/solid'
 
 const SearchBarContainer = styled(motion.div)`
   display: flex;
@@ -141,6 +142,10 @@ const PostSearchBar = ({ keyword, selectHandler, fromPost }) => {
 		setLoading(false)
 	}
 
+	const addToWatchList = () => {
+		// TODO: The logic for adding to watchlist
+	}
+
 	useDebounce(searchQuery, 500, searchTvShow)
 
 
@@ -192,9 +197,17 @@ const PostSearchBar = ({ keyword, selectHandler, fromPost }) => {
 								!fromPost ?
 									<>
 										{tvShows.map(show => (
-											<Link to={`/movie/${show.id}`} key={show.id} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-												<MovieShowCard fromSearch={fromSearch} show={show} />
-											</Link>
+											<div className='flex'>
+												<Link to={`/movie/${show.id}`} key={show.id} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+													<MovieShowCard fromSearch={fromSearch} show={show} />
+												</Link>
+												<button className="flex h-10 justify-start bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+													onClick={addToWatchList(show.id)}
+												>
+													<PlusCircleIcon className='h-6 w-6 text-green-600' />
+												</button>
+											</div>
+
 										))}
 									</>
 									:

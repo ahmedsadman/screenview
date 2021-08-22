@@ -108,12 +108,12 @@ const Status = ({ post, addComment }) => {
 
 								{hoveredId && hoveredId === media.id ?
 									<div className="has-tooltip">
-										<span class="tooltip rounded shadow-lg bg-white-100 text-xs mt-8 -ml-28 p-2">Add To Watch List</span>
-										<button className="flex absolute right-10 top-2 justify-start rounded-md text-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+										<span class="tooltip rounded shadow-lg bg-white-100 text-xs mt-8 text-center -ml-10">Add To Watch List</span>
+										<button className="flex absolute right-2 top-2 justify-start rounded-md text-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
 											onClick={addToWatchList(media.id)}
 										>
 
-											<PlusCircleIcon className='h-6 w-6 text-green-600' />
+											<PlusCircleIcon className='h-6 w-6 text-gray-400' />
 										</button>
 									</div>
 									: null

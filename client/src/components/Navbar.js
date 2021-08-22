@@ -56,7 +56,7 @@ const Navbar = () => {
 									<span class="tooltip rounded shadow-lg p-2 bg-white-100 text-xs mt-20">Connection</span>
 									<UserGroupIcon className="h-6 w-6" aria-hidden="true" />
 								</Link>
-								<Link to="#" className="ml-8 has-tooltip bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+								<Link to="watchlist" className="ml-8 has-tooltip bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<span class="tooltip rounded shadow-lg p-2 bg-white-100 text-xs mt-20">Watch List</span>
 									<BookmarkAltIcon className="h-6 w-6" aria-hidden="true" />
 								</Link>
@@ -118,7 +118,7 @@ const Navbar = () => {
 											<span class="tooltip rounded shadow-lg p-2 bg-white-100 text-xs mt-20">Connection</span>
 											<UserGroupIcon className="h-6 w-6" aria-hidden="true" />
 										</Link>
-										<Link to="#" className="ml-8 has-tooltip bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+										<Link to="/watchlist" className="ml-8 has-tooltip bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 											<span class="tooltip rounded shadow-lg p-2 bg-white-100 text-xs mt-20">Watch List</span>
 											<BookmarkAltIcon className="h-6 w-6" aria-hidden="true" />
 										</Link>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { getRecommendedObject } from '../data/getMovieData'
 import Loading from './Loading'
 import MovieShowCard from './MovieShowCard'
-import { PlusCircleIcon } from '@heroicons/react/solid'
+import { PlusCircleIcon } from '@heroicons/react/outline'
 
 const getSelectedClassName = (selected) => {
 	const staticClass = 'w-full text-sm leading-5 font-medium rounded-lg bg-white rounded-md p-4 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'
@@ -63,7 +63,7 @@ const Recommendation = () => {
 											<button className="flex h-10 justify-start has-tooltip bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
 												onClick={addToWatchList(show.id)}
 											>
-												<span class="tooltip  rounded shadow-lg p-2 bg-white-100 text-xs ml-8 -mt-2">Add To Watch List</span>
+												<span class="tooltip  rounded shadow-lg p-2 bg-white-100 text-xs mt-8 -ml-8">Add To Watch List</span>
 												<PlusCircleIcon className='h-6 w-6 text-green-600' />
 											</button>
 										</div>

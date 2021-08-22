@@ -164,7 +164,7 @@ const PostSearchBar = ({ keyword, selectHandler, fromPost }) => {
 				animate={isExpanded ? "expanded" : "collapsed"}
 				variants={containerVariants}
 				ref={parentRef}
-				className="border-2 border-gray-300 "
+				className="border-2 border-gray-300"
 			>
 				<div className="relative mx-auto z-0 text-gray-600 flex items-center">
 					<SearchIcon className="p-2 items-center text-center h-10 w-10" aria-hidden="true" />
@@ -215,7 +215,7 @@ const PostSearchBar = ({ keyword, selectHandler, fromPost }) => {
 														onClick={addToWatchList(show.id)}
 													>
 														<span class="tooltip  rounded shadow-lg bg-white-100 text-xs mt-8 -ml-4">Add To Watch List</span>
-														<PlusCircleIcon className='h-6 w-6 text-green-600' />
+														<PlusCircleIcon className='h-6 w-6 text-gray-400' />
 													</button> : null
 												}
 

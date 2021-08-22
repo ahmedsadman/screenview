@@ -75,7 +75,7 @@ const Recommendation = () => {
 													onClick={addToWatchList(show.id)}
 												>
 													<span class="tooltip rounded shadow-lg bg-white-100 text-xs mt-8 -ml-2">Add To Watch List</span>
-													<PlusCircleIcon className='h-6 w-6 text-green-600' />
+													<PlusCircleIcon className='h-6 w-6 text-gray-400' />
 												</button> : null
 											}
 										</div>

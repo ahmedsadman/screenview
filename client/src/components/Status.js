@@ -5,7 +5,7 @@ import Comments from './Comments';
 import API from '../api';
 import { useAuth0 } from '@auth0/auth0-react';
 import MovieShowCard from './MovieShowCard';
-import { StarIcon } from '@heroicons/react/solid';
+import { PlusCircleIcon, StarIcon } from '@heroicons/react/solid';
 
 
 const Status = ({ post, addComment }) => {
@@ -67,6 +67,10 @@ const Status = ({ post, addComment }) => {
 		setCommentArea(!commentArea)
 	}
 
+	const addToWatchList = () => {
+		// TODO: The logic for adding to watchlist
+	}
+
 	return (
 		<div>
 			<div className="mt-3 flex flex-col">
@@ -86,9 +90,17 @@ const Status = ({ post, addComment }) => {
 							{post.type === 'watch' ? <p className='text-md text-gray-600 mt-2 mb-2'>Is Watching...</p> :
 								<p className='text-md text-gray-600 mt-2 mb-2'>Posted a Review on</p>}
 
-							<Link to={`/movie/${media.id}`} className="bg-white p-1 shadow-md rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-								<MovieShowCard show={media} fromStatus={fromStatus} />
-							</Link>
+							<div className="flex  shadow-md ">
+								<Link to={`/movie/${media.id}`} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+									<MovieShowCard show={media} fromStatus={fromStatus} />
+								</Link>
+								<button className="flex h-10 justify-start bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+									onClick={addToWatchList(media.id)}
+								>
+									<PlusCircleIcon className='h-6 w-6 text-green-600' />
+								</button>
+							</div>
+
 							{post.rating ?
 								<p className='text-sm mt-3 flex items-center'>
 									Rating: {post.rating}<StarIcon className="h-4 w-4 text-yellow-500" />

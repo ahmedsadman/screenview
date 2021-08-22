@@ -201,9 +201,10 @@ const PostSearchBar = ({ keyword, selectHandler, fromPost }) => {
 												<Link to={`/movie/${show.id}`} key={show.id} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 													<MovieShowCard fromSearch={fromSearch} show={show} />
 												</Link>
-												<button className="flex h-10 justify-start bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+												<button className="flex h-10 justify-start has-tooltip bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
 													onClick={addToWatchList(show.id)}
 												>
+													<span class="tooltip  rounded shadow-lg p-2 bg-white-100 text-xs ml-8 -mt-2">Add To Watch List</span>
 													<PlusCircleIcon className='h-6 w-6 text-green-600' />
 												</button>
 											</div>

@@ -84,6 +84,7 @@ const PostSearchBar = ({ keyword, selectHandler, fromPost }) => {
 	const [isLoading, setLoading] = useState(false)
 	const [tvShows, setTvShows] = useState([])
 	const [noTvShows, setNoTvShows] = useState(false)
+	const [hoveredId, setHoveredId] = useState(null);
 
 	const fromSearch = useState(true)
 
@@ -142,6 +143,14 @@ const PostSearchBar = ({ keyword, selectHandler, fromPost }) => {
 		setLoading(false)
 	}
 
+	const handleMouseIn = (id) => {
+		setHoveredId(id);
+	}
+
+	const handleMouseOut = () => {
+		setHoveredId(null);
+	}
+
 	const addToWatchList = () => {
 		// TODO: The logic for adding to watchlist
 	}
@@ -197,16 +206,19 @@ const PostSearchBar = ({ keyword, selectHandler, fromPost }) => {
 								!fromPost ?
 									<>
 										{tvShows.map(show => (
-											<div className='flex'>
-												<Link to={`/movie/${show.id}`} key={show.id} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+											<div className='flex relative' key={show.id} onMouseEnter={() => handleMouseIn(show.id)} onMouseLeave={() => handleMouseOut()}>
+												<Link to={`/movie/${show.id}`} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 													<MovieShowCard fromSearch={fromSearch} show={show} />
 												</Link>
-												<button className="flex h-10 justify-start has-tooltip bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-													onClick={addToWatchList(show.id)}
-												>
-													<span class="tooltip  rounded shadow-lg p-2 bg-white-100 text-xs mt-8 -ml-8">Add To Watch List</span>
-													<PlusCircleIcon className='h-6 w-6 text-green-600' />
-												</button>
+												{hoveredId && hoveredId === show.id ?
+													<button className="flex absolute right-0 top-0 justify-start has-tooltip rounded-md p-2 text-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+														onClick={addToWatchList(show.id)}
+													>
+														<span class="tooltip  rounded shadow-lg bg-white-100 text-xs mt-8 -ml-4">Add To Watch List</span>
+														<PlusCircleIcon className='h-6 w-6 text-green-600' />
+													</button> : null
+												}
+
 											</div>
 
 										))}

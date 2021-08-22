@@ -15,6 +15,7 @@ const Status = ({ post, addComment }) => {
 	const [visibleComment, setVisibleComment] = useState(post?.comments);
 	const [media, setMedia] = useState({});
 	const [fromStatus, setFromStatus] = useState(true)
+	const [hoveredId, setHoveredId] = useState(null);
 
 	let commentVisibility = false;
 
@@ -67,6 +68,14 @@ const Status = ({ post, addComment }) => {
 		setCommentArea(!commentArea)
 	}
 
+	const handleMouseIn = (id) => {
+		setHoveredId(id);
+	}
+
+	const handleMouseOut = () => {
+		setHoveredId(null);
+	}
+
 	const addToWatchList = () => {
 		// TODO: The logic for adding to watchlist
 	}
@@ -90,16 +99,25 @@ const Status = ({ post, addComment }) => {
 							{post.type === 'watch' ? <p className='text-md text-gray-600 mt-2 mb-2'>Is Watching...</p> :
 								<p className='text-md text-gray-600 mt-2 mb-2'>Posted a Review on</p>}
 
-							<div className="flex  shadow-md ">
+							<div className="flex relative shadow-md" onMouseEnter={() => handleMouseIn(media.id)} onMouseLeave={() => handleMouseOut()}>
 								<Link to={`/movie/${media.id}`} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<MovieShowCard show={media} fromStatus={fromStatus} />
 								</Link>
-								<button className="flex h-10 justify-start items-center text-center has-tooltip bg-white rounded-md p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-									onClick={addToWatchList(media.id)}
-								>
-									<span class="tooltip  rounded shadow-lg p-2 bg-white-100 text-xs -ml-10 mt-14">Add To Watch List</span>
-									<PlusCircleIcon className='h-6 w-6 text-green-600' />
-								</button>
+
+								{console.log(hoveredId)}
+
+								{hoveredId && hoveredId === media.id ?
+									<div className="has-tooltip">
+										<span class="tooltip rounded shadow-lg bg-white-100 text-xs mt-8 -ml-28 p-2">Add To Watch List</span>
+										<button className="flex absolute right-10 top-2 justify-start rounded-md text-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+											onClick={addToWatchList(media.id)}
+										>
+
+											<PlusCircleIcon className='h-6 w-6 text-green-600' />
+										</button>
+									</div>
+									: null
+								}
 							</div>
 
 							{post.rating ?

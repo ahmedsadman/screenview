@@ -12,6 +12,7 @@ import {
 } from '@heroicons/react/outline'
 import UserAvatar from './UserAvatar'
 import PostSearchBar from './PostSearchBar';
+import logo from '../assets/screenView.png'
 
 const Navbar = () => {
 	const { user, logout } = useAuth0()
@@ -27,15 +28,14 @@ const Navbar = () => {
 							<div className="flex space-x-4 justify-start lg:w-0 lg:flex-1 items-center">
 								<Link to="/feed">
 									<span className="sr-only">Workflow</span>
-									<span className="text-xl font-bold text-black-600">ScreenView</span>
-
+									<span className="has-tooltip">
+										<span class="tooltip rounded shadow-lg p-2 bg-white-100 text-xs mt-5 -ml-4">ScreenView</span>
+										<img className="h-6 w-6" src={logo} alt="logo" />
+									</span>
 								</Link>
 								<div className="relative">
 									<PostSearchBar />
 								</div>
-
-
-
 							</div>
 
 							{/* small screen burger */}

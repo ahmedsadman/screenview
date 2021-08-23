@@ -22,7 +22,7 @@ const SignIn = () => {
 
 			<LoginButton />
 			<p className="mt-2">Need an account? <SignupButton /> </p>
-			<a href='https://www.freepik.com/vectors/pattern' className='absolute text-xs text-gray-300 hover:underline -bottom-32'>Pattern vector created by dgim-studio - www.freepik.com</a>
+			{/* <a href='https://www.freepik.com/vectors/pattern' className='absolute text-xs text-gray-300 hover:underline -bottom-32'>Pattern vector created by dgim-studio - www.freepik.com</a> */}
 		</div>
 	)
 }

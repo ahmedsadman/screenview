@@ -8,7 +8,7 @@ const SignIn = () => {
 	return (
 		<div className="flex flex-col pl-10 pr-10 md:w-1/2 xl:w-1/3 relative">
 			<div className="flex justify-center">
-				<img src={logo} alt="logo" className="h-44 w-44 mb-4" />
+				<img src={logo} alt="logo" className="h-36 w-36 mb-4" />
 			</div>
 
 			<h1 className="text-center font-bold text-4xl">ScreenView</h1>
@@ -22,7 +22,7 @@ const SignIn = () => {
 
 			<LoginButton />
 			<p className="mt-2">Need an account? <SignupButton /> </p>
-			<a href='https://www.freepik.com/vectors/pattern' className='absolute text-xs text-blue-400 hover:underline -bottom-32'>Pattern vector created by dgim-studio - www.freepik.com</a>
+			<a href='https://www.freepik.com/vectors/pattern' className='absolute text-xs text-gray-300 hover:underline -bottom-32'>Pattern vector created by dgim-studio - www.freepik.com</a>
 		</div>
 	)
 }

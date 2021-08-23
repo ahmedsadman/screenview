@@ -30,7 +30,7 @@ const Navbar = () => {
 									<span className="sr-only">Workflow</span>
 									<span className="has-tooltip">
 										<span class="tooltip rounded shadow-lg p-2 bg-white-100 text-xs mt-5 -ml-4">ScreenView</span>
-										<img className="h-6 w-6" src={logo} alt="logo" />
+										<img className="h-10 w-10" src={logo} alt="logo" />
 									</span>
 								</Link>
 								<div className="relative">

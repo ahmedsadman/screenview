@@ -6,6 +6,7 @@ import API from '../api';
 import { useAuth0 } from '@auth0/auth0-react';
 import MovieShowCard from './MovieShowCard';
 import { PlusCircleIcon, StarIcon } from '@heroicons/react/outline';
+import useWatchList from '../hooks/useWatchList';
 
 
 const Status = ({ post, addComment }) => {
@@ -16,6 +17,7 @@ const Status = ({ post, addComment }) => {
 	const [media, setMedia] = useState({});
 	const [fromStatus, setFromStatus] = useState(true)
 	const [hoveredId, setHoveredId] = useState(null);
+	const { addToWatchList } = useWatchList();
 
 	let commentVisibility = false;
 
@@ -29,6 +31,11 @@ const Status = ({ post, addComment }) => {
 		e.preventDefault();
 		addComment(post._id, commentContent);
 		setCommentContent('');
+	}
+
+	const _addToWatchList = async (title, type, mediaId) => {
+		await addToWatchList(title, type, mediaId);
+		alert('Movie added to watchlist');
 	}
 
 	useEffect(() => {
@@ -76,10 +83,6 @@ const Status = ({ post, addComment }) => {
 		setHoveredId(null);
 	}
 
-	const addToWatchList = () => {
-		// TODO: The logic for adding to watchlist
-	}
-
 	return (
 		<div>
 			<div className="mt-3 flex flex-col">
@@ -103,14 +106,12 @@ const Status = ({ post, addComment }) => {
 								<Link to={`/movie/${media.id}`} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<MovieShowCard show={media} fromStatus={fromStatus} />
 								</Link>
-
-								{console.log(hoveredId)}
-
+								
 								{hoveredId && hoveredId === media.id ?
 									<div className="has-tooltip">
 										<span className="tooltip rounded shadow-lg bg-white-100 text-xs mt-8 text-center -ml-10">Add To Watch List</span>
 										<button className="flex absolute right-2 top-2 justify-start rounded-md text-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-											onClick={addToWatchList(media.id)}
+											onClick={() => _addToWatchList(media.title, 'movie', media.id)}
 										>
 
 											<PlusCircleIcon className='h-6 w-6 text-gray-400' />

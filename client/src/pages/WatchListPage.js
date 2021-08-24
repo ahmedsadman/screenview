@@ -1,67 +1,30 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import PosterCard from '../components/PosterCard'
+import React, { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
+import PosterCard from '../components/PosterCard';
+import useWatchList from '../hooks/useWatchList';
+import API from '../api';
 
 const WatchListPage = () => {
+	const { watchList, removeFromWatchList } = useWatchList();
+	const [populatedList, setPopulatedList] = useState([]);
 
-	const watchList = [
-		{
-			poster_path: "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
-			vote_average: 8.3,
-			title: "Nobody"
-		},
+	const fetchMovieDetails = async () => {
+		const api = new API();
+		const list = [];
+		for (let item of watchList) {
+			const detail = await api.getMediaDetails(item.mediaId);
+			list.push(detail);
+		}
+		setPopulatedList(list);
+	};
 
-		{
-			poster_path: "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
-			vote_average: 8.3,
-			title: "Nobody"
-		},
+	const handleWatchListRemove = (mediaId) => {
+		removeFromWatchList(mediaId);
+	}
 
-		{
-			poster_path: "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
-			vote_average: 8.3,
-			title: "Nobody"
-		},
-
-		{
-			poster_path: "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
-			vote_average: 8.3,
-			title: "Nobody"
-		},
-
-		{
-			poster_path: "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
-			vote_average: 8.3,
-			title: "Nobody"
-		},
-
-		{
-			poster_path: "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
-			vote_average: 8.3,
-			title: "Nobody"
-		},
-
-		{
-			poster_path: "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
-			vote_average: 8.3,
-			title: "Nobody"
-		},
-
-		{
-			poster_path: "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
-			vote_average: 8.3,
-			title: "Nobody"
-		},
-
-		{
-			poster_path: "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
-			vote_average: 8.3,
-			title: "Nobody"
-		},
-	]
-
-
-
+	useEffect(() => {
+		fetchMovieDetails();
+	}, [watchList]);
 
 	return (
 		<div>
@@ -75,8 +38,8 @@ const WatchListPage = () => {
 
 					<div className="w-1/2 grid grid-cols-4 gap-4 flex justify-between p-4 shadow-lg rounded border-1">
 
-						{watchList.map(list => (
-							<PosterCard show={list} key={list.title} />
+						{populatedList.map(list => (
+							<PosterCard show={list} key={list.title} handleWatchListRemove={handleWatchListRemove} />
 						))}
 					</div>
 

@@ -10,6 +10,7 @@ import ConnectionPage from './pages/ConnectionPage';
 import test from './pages/test';
 import MoviePage from './pages/MoviePage';
 import WatchListPage from './pages/WatchListPage';
+import UsersPage from './pages/UsersPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <ProtectedRoute exact path="/connections" component={ConnectionPage} />
         <ProtectedRoute exact path="/movie/:id" component={MoviePage} />
         <ProtectedRoute exact path="/watchlist" component={WatchListPage} />
+        <ProtectedRoute exact path="/user/:id" component={UsersPage} />
       </Switch>
       <Route path="/test" exact component={test} />
 

@@ -101,10 +101,10 @@ class UserService {
     // TODO: Make it a transaction
     const user = await User.findOne({ guid }).exec();
     const { watchList } = user;
-    const itemAlreadyExists = watchList.find(item => item.mediaId === mediaId);
+    const itemAlreadyExists = watchList.find(item => item.mediaId === mediaId.toString());
 
     if (itemAlreadyExists) {
-      throw new APIError('The item already exists in your watchlist', 400);
+      return user.watchList;
     }
 
     user.watchList.push({ title, type, mediaId });

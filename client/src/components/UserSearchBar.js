@@ -54,12 +54,12 @@ const LoadingWrapper = styled.div`
 const containerVariants = {
 	expanded: {
 		height: "30em",
-		position: "fixed",
+		position: "absolute",
 
 	},
 	collapsed: {
 		height: "2.7em",
-		position: "fixed"
+		position: "absolute"
 	},
 }
 

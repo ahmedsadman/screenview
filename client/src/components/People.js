@@ -49,9 +49,9 @@ const People = ({ user, actionHandler }) => {
 		<div>
 			<ConditionalWrapper
 				condition={isLink}
-				wrapper={children => <Link to={`/users/${user._id}`}>{children}</Link>}
+				wrapper={children => <Link onMouseEnter={() => handleBgMouseIn(user._id)} onMouseLeave={() => handleBgMouseOut()} to={`/users/${user._id}`}>{children}</Link>}
 			>
-				<div className={selectClass()} onMouseEnter={() => handleBgMouseIn(user._id)} onMouseLeave={() => handleBgMouseOut()}>
+				<div className={selectClass()} >
 					<div className="w-full w-1/3 h-18 p-4 items-center flex justify-center dark:bg-gray-800">
 						<img src={user.avatarUrl} className="h-10 w-10 rounded-full" alt={user.name} />
 					</div>

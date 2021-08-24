@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 const People = ({ user, actionHandler }) => {
 	const [isLink, setIsLink] = useState(true)
+	const [hoveredId, setHoveredId] = useState(null);
 
 	const onButtonClick = () => {
 		if (user.isFollowing) {
@@ -25,8 +26,21 @@ const People = ({ user, actionHandler }) => {
 		setIsLink(true);
 	}
 
+	const handleBgMouseIn = (id) => {
+		setHoveredId(id)
+	}
+
+	const handleBgMouseOut = () => {
+		setHoveredId(null)
+	}
+
 	const selectClass = () => {
-		//todo: handle bg change
+		let linkStyle = 'flex mt-2 shadow-md border rounded-lg items-center justify-between w-full'
+		if (isLink && hoveredId) {
+			linkStyle = 'flex mt-2 shadow-md border rounded-lg items-center justify-between w-full bg-gray-100'
+		}
+
+		return linkStyle;
 	}
 
 	const ConditionalWrapper = ({ condition, wrapper, children }) => condition ? wrapper(children) : children;
@@ -37,14 +51,14 @@ const People = ({ user, actionHandler }) => {
 				condition={isLink}
 				wrapper={children => <Link to={`/users/${user._id}`}>{children}</Link>}
 			>
-				<div className="flex mt-2 shadow-md border rounded-lg items-center justify-between w-full">
-					<div className="w-full w-1/3 h-18 p-4 items-center flex justify-center bg-white dark:bg-gray-800">
+				<div className={selectClass()} onMouseEnter={() => handleBgMouseIn(user._id)} onMouseLeave={() => handleBgMouseOut()}>
+					<div className="w-full w-1/3 h-18 p-4 items-center flex justify-center dark:bg-gray-800">
 						<img src={user.avatarUrl} className="h-10 w-10 rounded-full" alt={user.name} />
 					</div>
-					<div className="w-full w-1/3 h-18 bg-white dark:bg-gray-800">
+					<div className="w-full w-1/3 h-18 dark:bg-gray-800">
 						<h3 className="font-bold text-lg md:text-md">{user.name}</h3>
 					</div>
-					<div className="w-full w-1/3 h-18 flex justify-center bg-white dark:bg-gray-800">
+					<div className="w-full w-1/3 h-18 flex justify-center dark:bg-gray-800">
 						<button onClick={onButtonClick} onMouseEnter={() => handleMouseIn()} onMouseLeave={() => handleMouseOut()} >{!user.isFollowing ? <PersonAddIcon fontSize="medium" className="text-blue-300 hover:text-blue-500" /> : <PersonAddDisabledIcon fontSize="medium" className="text-red-300 hover:text-red-500" />}  </button>
 					</div>
 				</div>

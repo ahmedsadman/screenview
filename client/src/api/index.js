@@ -1,18 +1,18 @@
-import axios from 'axios';
+import axios from "axios";
 
-const STAGE = process.env.REACT_APP_STAGE
-const BASE_URL_LOCAL = 'http://localhost:3001';
-const BASE_URL_PROD = 'https://screenview.herokuapp.com';
+const STAGE = process.env.REACT_APP_STAGE;
+const BASE_URL_LOCAL = "http://localhost:3001";
+const BASE_URL_PROD = "https://screenview.herokuapp.com";
 
 class API {
   constructor(token) {
-    const baseURL = STAGE === 'PROD' ? BASE_URL_PROD : BASE_URL_LOCAL;
+    const baseURL = STAGE === "PROD" ? BASE_URL_PROD : BASE_URL_LOCAL;
     this.tmdbKey = process.env.REACT_APP_TMDB_KEY;
     this._axiosAuth = axios.create({
       baseURL,
       headers: {
-        'Authorization': `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 
@@ -38,8 +38,8 @@ class API {
     const data = {
       name,
       email,
-      avatar_url
-    }
+      avatar_url,
+    };
     const res = await this._axiosAuth.put(`/users/me`, data);
     return res.data;
   }
@@ -74,19 +74,21 @@ class API {
     const data = {
       title,
       type,
-      mediaId
-    }
+      mediaId,
+    };
     const res = await this._axiosAuth.post(`/users/me/watchlist`, data);
     return res.data;
   }
 
   async removeFromWatchList(mediaId) {
-    const res = await this._axiosAuth.delete(`/users/me/watchlist?mediaId=${mediaId}`);
+    const res = await this._axiosAuth.delete(
+      `/users/me/watchlist?mediaId=${mediaId}`
+    );
     return res.data;
   }
 
   async getUserSuggestions() {
-    const res = await this._axiosAuth.get('/users/suggestions');
+    const res = await this._axiosAuth.get("/users/suggestions");
     return res.data;
   }
 
@@ -96,7 +98,7 @@ class API {
       type,
       content,
       mediaId,
-      rating
+      rating,
     };
     const res = await this._axiosAuth.post(`/posts`, data);
     return res.data;
@@ -105,7 +107,7 @@ class API {
   async addPostComment(postId, content) {
     const data = {
       postId,
-      content
+      content,
     };
     const res = await this._axiosAuth.post(`/posts/${postId}/comments`, data);
     return res.data;
@@ -123,10 +125,10 @@ class API {
 
   /* --------- TMDB ----------------- */
   buildTmdbUrl(url) {
-    return `https://api.themoviedb.org/3${url}api_key=${this.tmdbKey}`
+    return `https://api.themoviedb.org/3${url}api_key=${this.tmdbKey}`;
   }
 
-  getPosterPath(url, size=300) {
+  getPosterPath(url, size = 300) {
     return `https://image.tmdb.org/t/p/w${size}/${url}`;
   }
 

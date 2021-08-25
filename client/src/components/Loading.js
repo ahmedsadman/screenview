@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-const Loading = () => {
-	return (
-		<button type="button" disabled>
-  			Processing...
-		</button>
-	)
-}
+const Loading = () => (
+  <button type="button" disabled>
+    Processing...
+  </button>
+);
 
-export default Loading
+export default Loading;

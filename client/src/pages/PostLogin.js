@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
-import API from '../api';
+import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import API from "../api";
 
 const PostLogin = () => {
   const { getAccessTokenSilently, user } = useAuth0();
@@ -32,10 +32,10 @@ const PostLogin = () => {
   return (
     <div>
       <div>Please wait</div>
-      {redirectFeed && <Redirect to='/feed' />}
-      {redirectProfile && <Redirect to='/profile' />}
+      {redirectFeed && <Redirect to="/feed" />}
+      {redirectProfile && <Redirect to="/profile" />}
     </div>
   );
-}
+};
 
 export default PostLogin;

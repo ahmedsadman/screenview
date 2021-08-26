@@ -1,5 +1,11 @@
-import React from "react";
+import React from 'react'
 
-const test = () => <div />;
+const test = () => {
+	return (
+		<div>
 
-export default test;
+		</div>
+	)
+}
+
+export default test

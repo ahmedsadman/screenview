@@ -3,7 +3,7 @@ import { StarIcon } from '@heroicons/react/solid';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const PosterCard = ({ show, fromUserPage }) => {
+const PosterCard = ({ show, fromUserPage, handleWatchListRemove }) => {
 	const image_url = `https://image.tmdb.org/t/p/w500${show.poster_path}`;
 	const [details, setDetails] = useState(false);
 
@@ -33,7 +33,7 @@ const PosterCard = ({ show, fromUserPage }) => {
 
 	//TODO: remove movie logic
 	const removeMovie = () => {
-
+		handleWatchListRemove(show.id);
 	}
 
 

@@ -27,6 +27,11 @@ class UserService {
     return user;
   }
 
+  async getById(id) {
+    const user = await User.findById(id).lean().exec();
+    return user;
+  }
+
   async getUserPosts(guid) {
     const user = await User.findOne({ guid }).lean().exec();
     const posts = await Post.find({ author: user._id }).lean().exec();

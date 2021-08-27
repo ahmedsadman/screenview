@@ -3,7 +3,7 @@ import { StarIcon } from '@heroicons/react/solid';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const PosterCard = ({ show, handleWatchListRemove }) => {
+const PosterCard = ({ show, fromUserPage, handleWatchListRemove }) => {
 	const image_url = `https://image.tmdb.org/t/p/w500${show.poster_path}`;
 	const [details, setDetails] = useState(false);
 
@@ -44,10 +44,14 @@ const PosterCard = ({ show, handleWatchListRemove }) => {
 					{details ?
 						<div className="pt-8 text-center relative">
 							<button className='has-tooltip' onClick={removeMovie}>
-								<span class="tooltip rounded shadow-lg text-white text-xs -mt-4 bg-gray-900 p-2 ml-12">Remove</span>
-								<XCircleIcon className="w-8 h-8 text-red-400 absolute top-0 right-0 absolute" />
+								<span className="tooltip rounded shadow-lg text-white text-xs -mt-4 bg-gray-900 p-2 ml-12">Remove</span>
+								{!fromUserPage ?
+									<XCircleIcon className="w-8 h-8 text-red-400 absolute top-0 right-0 absolute" /> : null
+								}
 							</button>
 							<span className="text-xl flex items-center justify-center font-bold text-white tracking-wider leading-relaxed font-sans">{show.vote_average}<StarIcon className="h-4 w-4 text-yellow-500" /> </span>
+
+
 							<Link to={`/movie/${show.id}`} >
 								<button className="text-center rounded-lg px-4 p-2 bg-blue-400 text-white mt-32 text-md">Details</button>
 							</Link>

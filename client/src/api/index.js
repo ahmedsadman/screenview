@@ -32,6 +32,11 @@ class API {
     return res.data;
   }
 
+  async getUserById(id) {
+    const res = await this._axiosAuth.get(`/users/${id}`);
+    return res.data;
+  }
+
   // guid and userId (or id in short) is different. id/userId refers to the mongoose id
   // while guid refers to the unique auth0 id
   async updateUser(name, email, avatar_url = null) {

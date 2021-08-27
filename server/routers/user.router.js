@@ -16,4 +16,5 @@ module.exports = express
   .get('/me/followee', checkJwt, wrap(controller.getFollowees))
   .get('/me/feed', checkJwt, wrap(controller.getUserFeed))
   .post('/me/watchlist', checkJwt, wrap(controller.addToWatchList))
-  .delete('/me/watchlist', checkJwt, wrap(controller.removeFromWatchList));
+  .delete('/me/watchlist', checkJwt, wrap(controller.removeFromWatchList))
+  .get('/:id', checkJwt, wrap(controller.getUserById));

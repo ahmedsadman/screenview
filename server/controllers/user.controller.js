@@ -17,6 +17,15 @@ class UserController {
     });
   }
 
+  async getUserById(req, res) {
+    const { id } = req.params;
+    const user = await userService.getById(id);
+    res.json({
+      found: !!user,
+      user
+    });
+  }
+
   async updateUser(req, res) {
     const { sub } = req.user;
     const user = await userService.updateByGuid(sub, req.body);

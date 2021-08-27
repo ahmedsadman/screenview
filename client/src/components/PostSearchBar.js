@@ -214,7 +214,7 @@ const PostSearchBar = ({ keyword, selectHandler, fromPost }) => {
 													<button className="flex absolute right-0 top-0 justify-start has-tooltip rounded-md p-2 text-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
 														onClick={addToWatchList(show.id)}
 													>
-														<span class="tooltip  rounded shadow-lg bg-white-100 text-xs mt-8 -ml-4">Add To Watch List</span>
+														<span className="tooltip  rounded shadow-lg bg-white-100 text-xs mt-8 -ml-4">Add To Watch List</span>
 														<PlusCircleIcon className='h-6 w-6 text-gray-400' />
 													</button> : null
 												}

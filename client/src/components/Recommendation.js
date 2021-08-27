@@ -77,7 +77,7 @@ const Recommendation = () => {
 												<button className="flex absolute right-2 top-1 justify-start has-tooltip rounded-md p-2 text-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
 													onClick={() => _addToWatchList(show.title, 'movie', show.id)}
 												>
-													<span class="tooltip rounded shadow-lg bg-white-100 text-xs mt-8 -ml-2">Add To Watch List</span>
+													<span className="tooltip rounded shadow-lg bg-white-100 text-xs mt-8 -ml-2">Add To Watch List</span>
 													<PlusCircleIcon className='h-6 w-6 text-gray-400' />
 												</button> : null
 											}

@@ -40,14 +40,14 @@ const People = ({ user, actionHandler }) => {
 		<div>
 			<div className={selectClass()} >
 				<Link to={`/user/${user._id}`} className='flex items-center justify-between w-full hover:bg-gray-100'>
-					<div className="w-full w-1/3 h-18 p-4 items-center flex justify-start dark:bg-gray-800">
+					<div className="w-1/2 h-18 p-4 items-center flex justify-center dark:bg-gray-800">
 						<img src={user.avatarUrl} className="h-10 w-10 rounded-full" alt={user.name} />
 					</div>
-					<div className="w-full w-1/3 h-18 justify-center dark:bg-gray-800">
+					<div className="w-1/2 h-18 justify-center dark:bg-gray-800">
 						<h3 className="font-bold text-lg md:text-md">{user.name}</h3>
 					</div>
 				</Link>
-				<div className="w-full w-1/3 h-18 flex justify-center dark:bg-gray-800">
+				<div className="w-full w-1/4 h-18 flex justify-center dark:bg-gray-800">
 					<button onClick={onButtonClick} onMouseEnter={() => handleMouseIn()} onMouseLeave={() => handleMouseOut()} >{!user.isFollowing ? <PersonAddIcon fontSize="medium" className="text-blue-300 hover:text-blue-500" /> : <PersonAddDisabledIcon fontSize="medium" className="text-red-300 hover:text-red-500" />}  </button>
 				</div>
 			</div>

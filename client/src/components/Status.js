@@ -89,12 +89,16 @@ const Status = ({ post, addComment }) => {
 				<div className="bg-white mt-3 border rounded-t-lg shadow-lg">
 					<div className="bg-white w-full shadow-lg border-2 border-gray-100 rounded-lg p-5">
 						<div className="flex items-center">
-							<img className="h-10 w-10 mr-4 rounded-full"
-								src={post?.author?.avatarUrl}
-								alt=""
-							/>
+							<Link to={`/user/${post.author._id}`} className='hover:bg-gray-100 p-2 items-center flex rounded justify-center'>
+								<img className="h-10 w-10 rounded-full"
+									src={post?.author?.avatarUrl}
+									alt=""
+								/>
+							</Link>
 							<div>
-								<h4 className="text-lg text-gray-700">{post.author.name}</h4>
+								<Link to={`/user/${post.author._id}`} className='flex items-center justify-between w-full py-2 rounded ml-4'>
+									<h4 className="text-lg text-gray-700 hover:underline">{post.author.name}</h4>
+								</Link>
 								<p className="text-sm mt-1 text-gray-400">{post.postDate}</p>
 							</div>
 						</div>
@@ -106,7 +110,7 @@ const Status = ({ post, addComment }) => {
 								<Link to={`/movie/${media.id}`} className="bg-white p-1 rounded-md inline-flex justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 									<MovieShowCard show={media} fromStatus={fromStatus} />
 								</Link>
-								
+
 								{hoveredId && hoveredId === media.id ?
 									<div className="has-tooltip">
 										<span className="tooltip rounded shadow-lg bg-white-100 text-xs mt-8 text-center -ml-10">Add To Watch List</span>

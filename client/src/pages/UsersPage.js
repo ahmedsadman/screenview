@@ -10,6 +10,7 @@ const UsersPage = ({ match }) => {
 	const fromUserPage = true;
 	const [user, setUser] = useState({});
 	const [isFollowing, setIsFollowing] = useState(false);
+	const [showFollowing, setShowFollowing] = useState(false);
 	const [movies, setMovies] = useState([]);
 	const { id } = match.params;
 	const { getAccessTokenSilently } = useAuth0();
@@ -29,6 +30,13 @@ const UsersPage = ({ match }) => {
 		const followeesId = res.followees.map(item => item.to._id);
 		setIsFollowing(followeesId.includes(id));
 	};
+
+	const checkSameUser = async () => {
+		const token = await getAccessTokenSilently();
+		const api = new API(token);
+		const res = await api.getUser();
+		setShowFollowing(res.user._id !== id);
+	}
 
 	const handleFollowUnfollow = async (action, id) => {
 		const token = await getAccessTokenSilently();
@@ -54,6 +62,7 @@ const UsersPage = ({ match }) => {
 	useEffect(() => {
 		getUser();
 		checkFollowing();
+		checkSameUser();
 	}, []);
 
 	return (
@@ -69,13 +78,16 @@ const UsersPage = ({ match }) => {
 					<p className="text-xl mt-2">{user.name}</p>
 
 				</div>
-				<div className="flex justify-center dark:bg-gray-800">
+				{showFollowing && (
+					<div className="flex justify-center dark:bg-gray-800">
 					<h2 className="my-4 text-2xl font-bold"> You are {!isFollowing ? 'not' : ''} following {user.name} </h2>
-					<button className="ml-4">{!isFollowing ? 
-						<PersonAddIcon fontSize="large" className="text-blue-300 hover:text-blue-500" onClick={() => handleFollowUnfollow('follow', id)} /> : 
-						<PersonAddDisabledIcon fontSize="large" className="text-red-300 hover:text-red-500" onClick={() => handleFollowUnfollow('unfollow', id)} />}
-					</button>
-				</div>
+						<button className="ml-4">{!isFollowing ? 
+							<PersonAddIcon fontSize="large" className="text-blue-300 hover:text-blue-500" onClick={() => handleFollowUnfollow('follow', id)} /> : 
+							<PersonAddDisabledIcon fontSize="large" className="text-red-300 hover:text-red-500" onClick={() => handleFollowUnfollow('unfollow', id)} />}
+						</button>
+					</div>
+				)}
+				
 
 				<h3 className="text-lg my-3" >{user.name}'s Current Watch List</h3>
 				<div className="flex justify-center w-screen">

@@ -32,10 +32,10 @@ const PostLogin = () => {
   return (
     <div>
       <div>Please wait</div>
-      {redirectFeed && <Redirect to='/feed' />}
-      {redirectProfile && <Redirect to='/profile' />}
+      {redirectFeed && <Redirect to="/feed" />}
+      {redirectProfile && <Redirect to="/profile" />}
     </div>
   );
-}
+};
 
 export default PostLogin;

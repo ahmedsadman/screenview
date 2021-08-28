@@ -1,5 +1,5 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const SignupButton = () => {
   const { loginWithRedirect } = useAuth0();
@@ -8,7 +8,7 @@ const SignupButton = () => {
       className="p-2 rounded-md font-bold hover:bg-gray-100 text-blue-400 hover:text-blue-800"
       onClick={() =>
         loginWithRedirect({
-          screen_hint: "signup",
+          screen_hint: 'signup',
         })
       }
     >

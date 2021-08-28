@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export function useDebounce(value, timeout, callback) {
   const [timer, setTimer] = useState(null);

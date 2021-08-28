@@ -35,7 +35,7 @@ const Recommendation = () => {
     getRecommended();
 
     // eslint-disable-next-line
-	}, [])
+  }, []);
 
   const _addToWatchList = async (title, type, mediaId) => {
     // TODO: The logic for adding to watchlist

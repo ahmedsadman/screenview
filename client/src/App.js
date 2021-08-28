@@ -1,10 +1,10 @@
 import './App.css';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 // import SignForm from './components/SignForm';
 import HomePage from './pages/HomePage';
 import PostLogin from './pages/PostLogin';
-import Profile from './pages/Profile'
+import Profile from './pages/Profile';
 import ProtectedRoute from './auth/protected-route';
 import ConnectionPage from './pages/ConnectionPage';
 import test from './pages/test';
@@ -27,9 +27,7 @@ function App() {
         <ProtectedRoute exact path="/user/:id" component={UsersPage} />
       </Switch>
       <Route path="/test" exact component={test} />
-
     </>
-
   );
 }
 

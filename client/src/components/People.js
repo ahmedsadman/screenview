@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const People = ({ user, actionHandler }) => {
   const [isLink, setIsLink] = useState(true);
-  const [hoveredId, setHoveredId] = useState(null);
 
   const onButtonClick = () => {
     if (user.isFollowing) {
@@ -28,7 +27,7 @@ const People = ({ user, actionHandler }) => {
   const selectClass = () => {
     let linkStyle =
       'flex mt-2 shadow-md border rounded-lg items-center justify-between w-full';
-    if (isLink && hoveredId) {
+    if (isLink) {
       linkStyle =
         'flex mt-2 shadow-md border rounded-lg items-center justify-between w-full bg-gray-100';
     }

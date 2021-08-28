@@ -4,7 +4,6 @@ import Status from './Status';
 import API from '../api';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
-import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid';
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);

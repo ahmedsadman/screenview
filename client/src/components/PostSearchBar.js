@@ -71,7 +71,7 @@ const containerVariants = {
   },
 };
 
-const PostSearchBar = ({ keyword, selectHandler, fromPost }) => {
+const PostSearchBar = ({ selectHandler, fromPost }) => {
   const key = process.env.REACT_APP_TMDB_KEY;
 
   const [isExpanded, setExpanded] = useState(false);

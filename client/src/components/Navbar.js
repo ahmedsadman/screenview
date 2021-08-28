@@ -8,7 +8,6 @@ import {
   HomeIcon,
   UserGroupIcon,
   XIcon,
-  BellIcon,
 } from '@heroicons/react/outline';
 import UserAvatar from './UserAvatar';
 import PostSearchBar from './PostSearchBar';

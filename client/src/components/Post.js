@@ -10,7 +10,7 @@ const Post = ({ onPostComplete }) => {
 
   const [selectedPostType, setSelectedPostType] = useState('watch');
   const [selectedShow, setSelectedShow] = useState(null);
-  const [fromPost, setFromPost] = useState(true);
+  const fromPost = true;
 
   const [mediaId, setMediaId] = useState(null);
   const [content, setContent] = useState('');

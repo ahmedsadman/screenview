@@ -23,11 +23,11 @@ const PosterCard = ({ show, fromUserPage, handleWatchListRemove }) => {
     backgroundPosition: 'center',
   };
 
-  const setBgStyle = (e) => {
+  const setBgStyle = () => {
     setDetails(false);
   };
 
-  const setStyle = (e) => {
+  const setStyle = () => {
     setDetails(true);
   };
 

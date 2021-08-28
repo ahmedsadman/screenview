@@ -4,12 +4,8 @@ import { IoClose } from 'react-icons/io5';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useClickOutside } from 'react-click-outside-hook';
 import MoonLoader from 'react-spinners/MoonLoader';
-import axios from 'axios';
-import { useDebounce } from '../hooks/debounceHook';
 import { SearchIcon } from '@heroicons/react/outline';
 import People from './People';
-import { useAuth0 } from '@auth0/auth0-react';
-import API from '../api';
 
 const SearchBarContainer = styled(motion.div)`
   display: flex;
